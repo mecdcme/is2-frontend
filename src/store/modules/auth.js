@@ -80,7 +80,7 @@ const actions = {
       commit("SET_STATUS", AuthStatus.Logged);
     }
   },
-  register({ commit, dispatch }, authData) {
+  register({ commit }, authData) {
     authService.register(authData).then(
       data => {
         //decode JWT token
@@ -94,18 +94,6 @@ const actions = {
         });
 
         commit("SET_STATUS", AuthStatus.Logged);
-
-        //Save agent
-        const agentData = {
-          name: user.name,
-          description: "",
-          account: user.user,
-          type: "Individual",
-          localId: user.email
-        };
-        dispatch("agent/save", agentData, {
-          root: true
-        });
 
         router.push("/"); //Go to main page
       },

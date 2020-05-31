@@ -14,7 +14,7 @@
       <img src="/img/istat-logo.png" height="20" />
     </CHeaderBrand>
     <CHeaderNav class="d-md-down-none mr-auto">
-      <!--CDropdown
+      <CDropdown
         inNav
         class="c-header-nav-items"
         placement="bottom"
@@ -22,19 +22,28 @@
       >
         <template #toggler>
           <CHeaderNavLink>
-            <div class="c-header-nav-first">Artifacts</div>
+            <div class="c-header-nav-first">Settings</div>
           </CHeaderNavLink>
         </template>
-
         <CDropdownHeader tag="div" class="text-center" color="light">
-          <strong>Referential</strong>
+          <strong>IS<sup>2</sup> Workbench</strong>
         </CDropdownHeader>
-        <CDropdownItem> <CIcon name="cil-user" />Agent </CDropdownItem>
-        <CDropdownItem> <CIcon name="cil-terminal" />Software </CDropdownItem>
         <CDropdownItem>
-          <CIcon name="cil-terminal" />Methodology
+          <router-link
+            tag="a"
+            :to="{
+              name: 'UserList'
+            }"
+          >
+            <users-icon class="b-0"></users-icon
+            ><span class="icon-span pl-1">Users</span>
+          </router-link>
         </CDropdownItem>
-      </CDropdown-->
+        <CDropdownItem>
+          <server-icon class="b-0"></server-icon
+          ><span class="icon-span pl-1">Server</span></CDropdownItem
+        >
+      </CDropdown>
     </CHeaderNav>
     <CHeaderNav class="mr-4">
       <app-header-dropdown-account />
@@ -72,5 +81,29 @@ export default {
 }
 .c-icon {
   margin-right: 0.4rem;
+}
+.b-0 > .material-design-icon__svg {
+  bottom: 0;
+}
+.dropdown-item a {
+  color: #4f5d73;
+}
+.dropdown-item a:active,
+.dropdown-item a:hover,
+.dropdown-item a:focus {
+  color: #321fdb;
+  text-decoration: none;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+  text-decoration: none;
+  color: #321fdb;
+  background-color: #fff;
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+  text-decoration: none;
+  color: #321fdb;
+  background-color: #fff;
 }
 </style>
