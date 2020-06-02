@@ -32,11 +32,9 @@ This operation could take time, node will install all the project dependencies i
 
 ## Browser setup
 In order to debug is2-frontend applications, we will use:
-1. **Webpack**: Webpack is used to bundle our application both in development and production environment. This tool also allows debugging the application in the browser ([debug screenshot](https://github.com/mecdcme/is2-frontend/docs/img/is2-webpack.png)).
-2. **Local storage**
-3. **Vue.js devtools**
-
-In order to test if node.js has been succesfully installed in your machine, open your favorite shell and run:
+1. **Webpack**: allows to bundle our application both in development and production environment. This tool also allows debugging the application in the browser ([debug screenshot](https://github.com/mecdcme/is2-frontend/blob/master/docs/img/is2-webpack.png)).
+2. **Local storage**: currently we use localstorage to store jwt tokens. To get the content of the storage simply open the *Application* tab in the development tools ([storage screenshot](https://github.com/mecdcme/is2-frontend/blob/master/docs/img/is2-storage.png)).
+3. **Vue.js devtools**: depending on the browser you are using, you should add vue dev tools as a browser extension. Currently we use this tool to inspect the content of *vue state* ([state screenshot](https://github.com/mecdcme/is2-frontend/blob/master/docs/img/is2-vue.png)) 
 
 ### Compiles and hot-reloads for development
 It's time to run our application in the localhost development server. Run the following command:
