@@ -35,4 +35,4 @@ We will start working on **exercise 1 static**. @smacone you should implement a 
 4. User view (http)
 5. User delete (http)
 
-We will start working on **exercise 1 static**. @smacone you should implement a component that has a data property with a static list of users. Such list will be displayed in a table, each table row will contain two links (edit, delete).
+We will start working on **exercise 1 static**. @papizzo you should implement a component that has a data property with a static list of users. Such list will be displayed in a table, each table row will contain two links (edit, delete).

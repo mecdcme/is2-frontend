@@ -1,24 +1,82 @@
 {
-  "posts": [
+  "services": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "Relais",
+      "description": "Record Linkage at Istat",
+      "organization": "Istat"
     },
     {
-      "title": "Vue",
-      "author": "Mauro",
-      "id": 2
+      "id": 2,
+      "name": "Validate",
+      "description": "Data validation in R",
+      "organization": "Istat"
+    },
+    {
+      "id": 3,
+      "name": "ARC loader",
+      "description": "Arc file loader",
+      "organization": "Istat"
     }
   ],
-  "comments": [
+  "processes": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Probabilistic record linkage",
+      "description": "Probabilistic record linkage",
+      "label": "PRL",
+      "organization": "Istat"
+    },
+    {
+      "id": 2,
+      "name": "Deterministic record linkage",
+      "description": "Deterministic record linkage",
+      "label": "DRL",
+      "organization": "Istat"
+    },
+    {
+      "id": 3,
+      "name": "Probabilistic record linkage with blocking",
+      "description": "Probabilistic record linkage with blocking",
+      "label": "PRLBlock",
+      "organization": "Istat"
+    },
+    {
+      "id": 4,
+      "name": "Data validation in R",
+      "description": "Data validation in R",
+      "label": "ValidateR",
+      "organization": "Istat"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "users": [
+    {
+      "id": 1,
+      "email": "framato@istat.it",
+      "name": "Francesco",
+      "surname": "Amato",
+      "role": "ADMIN"
+    },
+    {
+      "id": 2,
+      "email": "iannacone@istat.it",
+      "name": "Renzo",
+      "surname": "Iannacone",
+      "role": "USER"
+    },
+    {
+      "id": 3,
+      "email": "macone@istat.it",
+      "name": "Stefano",
+      "surname": "Macone",
+      "role": "ADMIN"
+    },
+    {
+      "id": 4,
+      "email": "papizzo@istat.it",
+      "name": "Paolo",
+      "surname": "Pizzo",
+      "role": "USER"
+    }
+  ]
 }
