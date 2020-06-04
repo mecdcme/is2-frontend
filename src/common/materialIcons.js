@@ -9,6 +9,7 @@ import Vue from "vue";
 
 import "vue-material-design-icons/styles.css";
 
+import HomeIcon from "icons/Home.vue";
 import ChevronRightBoxIcon from "icons/ArrowRightBold.vue";
 import AddIcon from "icons/Plus.vue";
 import EditIcon from "icons/SquareEditOutline.vue";
@@ -21,7 +22,9 @@ import RegulationIcon from "icons/Bank.vue";
 import GsimIcon from "icons/Puzzle.vue";
 import GsimOutlineIcon from "icons/PuzzleOutline.vue";
 import ServerIcon from "icons/Server.vue";
+import LayerIcon from "icons/LayersOutline.vue";
 
+Vue.component("home-icon", HomeIcon);
 Vue.component("chevron-right-icon", ChevronRightBoxIcon);
 Vue.component("add-icon", AddIcon);
 Vue.component("edit-icon", EditIcon);
@@ -34,3 +37,4 @@ Vue.component("regulation-icon", RegulationIcon);
 Vue.component("gsim-icon", GsimIcon);
 Vue.component("gsim-outline-icon", GsimOutlineIcon);
 Vue.component("server-icon", ServerIcon);
+Vue.component("layer-icon", LayerIcon);
