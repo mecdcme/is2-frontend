@@ -27,8 +27,7 @@
   <div v-else>
     <CHeaderNavLink>
       <router-link tag="a" to="/login">
-        <CIcon name="cilUser"></CIcon>
-        <span>Login</span>
+        <span class="icon-span"><v-icon small>mdi-account</v-icon> Login</span>
       </router-link>
     </CHeaderNavLink>
   </div>

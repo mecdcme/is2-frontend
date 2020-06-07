@@ -10,13 +10,13 @@
               <div class="card-body text-center">
                 <div class="mb-2">
                   <h2>IS<sup>2</sup> Workbench</h2>
-                  <p style="margin-bottom:4rem">
+                  <p style="margin-bottom:8.6rem">
                     Welcome to an open source environment that offers a set of
                     statistical services to process your data. Services are
                     classified according to GSBPM standard and can be chained in
                     processes.
                   </p>
-                  <p>
+                  <p class="mb-0">
                     The project has been developed in the context of SERV2
                     ESSNet.
                   </p>
@@ -27,7 +27,7 @@
               <CCardHeader align="center">
                 <h3 class="mt-3">Sign in to IS<sup>2</sup> Workbench</h3>
               </CCardHeader>
-              <CCardBody>
+              <CCardBody class="mb-0">
                 <CForm>
                   <CAlert color="danger" v-if="errorMsg" class="text-center">
                     <span>{{ errorMsg }}</span>

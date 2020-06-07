@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
   devServer: {
     host: "localhost",
@@ -8,9 +6,11 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        icons: path.resolve(__dirname, "node_modules/vue-material-design-icons")
+        icons:
+          "D:\\development\\is2-frontend\\node_modules\\vue-material-design-icons"
       },
       extensions: [".vue"]
     }
-  }
+  },
+  transpileDependencies: ["vuetify"]
 };

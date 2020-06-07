@@ -8,7 +8,7 @@ import Vuelidate from "vuelidate";
 import vSelect from "vue-select";
 import VueSpinners from "vue-spinners";
 
-import "@/common/materialIcons";
+import vuetify from "@/plugins/vuetify";
 
 Vue.config.productionTip = false;
 
@@ -28,5 +28,6 @@ new Vue({
   router,
   store,
   icons,
+  vuetify,
   render: h => h(App)
 }).$mount("#app");

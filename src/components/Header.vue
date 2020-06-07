@@ -35,13 +35,17 @@
               name: 'UserList'
             }"
           >
-            <users-icon class="b-0"></users-icon
-            ><span class="icon-span pl-1">Users</span>
+            <span class="icon-span pl-1"
+              ><v-icon small>mdi-account-multiple</v-icon
+              ><span class="pl-1">Users</span></span
+            >
           </router-link>
         </CDropdownItem>
         <CDropdownItem>
-          <server-icon class="b-0"></server-icon
-          ><span class="icon-span pl-1">Server</span></CDropdownItem
+          <span class="icon-span pl-1"
+            ><v-icon small>mdi-server</v-icon
+            ><span class="pl-1">Server</span></span
+          ></CDropdownItem
         >
       </CDropdown>
     </CHeaderNav>
