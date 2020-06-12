@@ -35,7 +35,7 @@
               name: 'UserList'
             }"
           >
-            <span class="pl-1"><users-icon class="pr-3"/>Users</span>
+            <span class="pl-1"><users-icon class="pr-3" />Users</span>
           </router-link>
         </CDropdownItem>
         <CDropdownItem>

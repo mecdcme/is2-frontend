@@ -1,5 +1,5 @@
 <template>
-  <CFooter :fixed="false"> 
+  <CFooter :fixed="false">
     <div>
       <a href="https://i3s-essnet.github.io/Documents/" target="_blank"
         >I3S essnet project</a

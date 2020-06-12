@@ -60,7 +60,7 @@ export default {
     removeRow: function(index) {
       console.log("Removing", index);
       this.rows.splice(index, 1);
-    },
+    }
   }
-}
+};
 </script>

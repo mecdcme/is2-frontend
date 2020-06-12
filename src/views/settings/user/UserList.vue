@@ -1,12 +1,12 @@
 <template>
-  <div class="rownp">
+  <div class="row">
     <div class="col-sm-6 col-md-6">
       <div class="card ">
         <header class="card-header">
           Users
         </header>
         <div class="card-body">
-          <table class="userList table table-striped ">
+          <table class="table table-striped ">
             <thead>
               <tr>
                 <th>id</th>
@@ -17,7 +17,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in tableData" v-bind:key="item.id">
+              <tr v-for="item in tableData" :key="item.id">
                 <td>{{ item.id }}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.name }}</td>

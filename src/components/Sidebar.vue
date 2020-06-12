@@ -24,7 +24,7 @@
           :to="{ name: 'BusinessServiceList' }"
           class="c-sidebar-nav-link"
         >
-          <layers-icon class="pr-4"/> Service
+          <layers-icon class="pr-4" /> Service
         </router-link>
       </li>
       <li class="c-sidebar-nav-item">
@@ -33,7 +33,7 @@
           :to="{ name: 'BusinessProcessList' }"
           class="c-sidebar-nav-link"
         >
-          <layers-icon class="pr-4"/> Process
+          <layers-icon class="pr-4" /> Process
         </router-link>
       </li>
       <li class="c-sidebar-nav-item">
@@ -42,7 +42,7 @@
           :to="{ name: 'WorkSessionList' }"
           class="c-sidebar-nav-link"
         >
-          <layers-icon class="pr-4"/> Session
+          <layers-icon class="pr-4" /> Session
         </router-link>
       </li>
     </ul>
