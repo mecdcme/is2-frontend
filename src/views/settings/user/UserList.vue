@@ -1,12 +1,12 @@
 <template>
-  <div class="row">
-    <div class="col-sm-4 col-md-5">
+  <div class="rownp">
+    <div class="col-sm-6 col-md-6">
       <div class="card ">
         <header class="card-header">
           Users
         </header>
         <div class="card-body">
-          <b-table class="userList table table-striped">
+          <table class="userList table table-striped ">
             <thead>
               <tr>
                 <th>id</th>
@@ -27,7 +27,7 @@
                 <td v-html="item.elimina"></td>
               </tr>
             </tbody>
-          </b-table>
+          </table>
         </div>
       </div>
     </div>
