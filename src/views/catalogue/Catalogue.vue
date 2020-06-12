@@ -11,10 +11,7 @@
           The statistical services are classified according to GSBPM standard.
           <p class="section-link">
             <router-link tag="a" :to="{ name: 'BusinessServiceList' }"
-              ><span class="icon-span"
-                >Go to service catalogue
-                <v-icon small>mdi-arrow-right</v-icon></span
-              >
+              ><span>Go to service catalogue <chevron-right-icon /></span>
             </router-link>
           </p>
         </div>
@@ -33,10 +30,7 @@
           <br />
           <p class="section-link">
             <router-link tag="a" :to="{ name: 'BusinessProcessList' }"
-              ><span class="icon-span"
-                >Go to process catalogue
-                <v-icon small>mdi-arrow-right</v-icon></span
-              >
+              ><span>Go to process catalogue <chevron-right-icon /></span>
             </router-link>
           </p>
         </div>
@@ -48,11 +42,7 @@
         <div class="card-body">
           This section contains the work sessions created by authenticated user.
           <p class="section-link section-link-disabled">
-            <span class="icon-span"
-              >Go to work session section<v-icon small
-                >mdi-arrow-right</v-icon
-              ></span
-            >
+            <span>Go to work session section <chevron-right-icon /></span>
           </p>
         </div>
       </div>
@@ -65,3 +55,9 @@ export default {
   name: "Metadata"
 };
 </script>
+
+<style scoped>
+.material-design-icon > .material-design-icon__svg {
+  bottom: -0.17rem;
+}
+</style>

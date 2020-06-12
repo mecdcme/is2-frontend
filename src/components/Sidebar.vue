@@ -13,7 +13,7 @@
     <ul class="c-sidebar-nav h-100 ps" style="position: relative;">
       <li class="c-sidebar-nav-item">
         <router-link tag="a" :to="{ name: 'Home' }" class="c-sidebar-nav-link">
-          <v-icon small>mdi-home</v-icon> Home
+          <home-icon class="pr-4" /> Home
           <span class="badge badge-primary">Alpha</span>
         </router-link>
       </li>
@@ -24,7 +24,7 @@
           :to="{ name: 'BusinessServiceList' }"
           class="c-sidebar-nav-link"
         >
-          <v-icon small>mdi-layers-outline</v-icon> Service
+          <layers-icon class="pr-4"/> Service
         </router-link>
       </li>
       <li class="c-sidebar-nav-item">
@@ -33,7 +33,7 @@
           :to="{ name: 'BusinessProcessList' }"
           class="c-sidebar-nav-link"
         >
-          <v-icon small>mdi-layers-outline</v-icon> Process
+          <layers-icon class="pr-4"/> Process
         </router-link>
       </li>
       <li class="c-sidebar-nav-item">
@@ -42,7 +42,7 @@
           :to="{ name: 'WorkSessionList' }"
           class="c-sidebar-nav-link"
         >
-          <v-icon small>mdi-layers-outline</v-icon> Session
+          <layers-icon class="pr-4"/> Session
         </router-link>
       </li>
     </ul>
@@ -70,5 +70,8 @@ export default {
   flex: 0 0 42px;
   margin-left: -0.7rem;
   color: #fff;
+}
+.material-design-icon > .material-design-icon__svg {
+  bottom: 0;
 }
 </style>

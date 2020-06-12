@@ -16,18 +16,16 @@
       <CDropdownHeader tag="div" class="text-center" color="light">
         <strong>Settings</strong>
       </CDropdownHeader>
-      <CDropdownItem> <CIcon name="cil-user" />Profile </CDropdownItem>
-      <CDropdownItem> <CIcon name="cil-settings" />Settings </CDropdownItem>
+      <CDropdownItem> <user-icon />Profile </CDropdownItem>
+      <CDropdownItem> <settings-icon />Settings </CDropdownItem>
       <CDropdownDivider />
-      <CDropdownItem @click="logout">
-        <CIcon name="cil-lock-locked" />Logout
-      </CDropdownItem>
+      <CDropdownItem @click="logout"> <logout-icon />Logout </CDropdownItem>
     </CDropdown>
   </div>
   <div v-else>
     <CHeaderNavLink>
       <router-link tag="a" to="/login">
-        <span class="icon-span"><v-icon small>mdi-account</v-icon> Login</span>
+        <span><user-icon /> Login</span>
       </router-link>
     </CHeaderNavLink>
   </div>
