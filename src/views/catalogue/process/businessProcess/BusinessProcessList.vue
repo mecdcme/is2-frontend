@@ -146,7 +146,8 @@ export default {
       });
     },
     deleteItem(item) {
-      item.splice();
+      var index = this.items.indexOf(item);
+      this.items.splice(index, 1);
     }
   }
 };
