@@ -72,16 +72,7 @@ const routes = [
             "../views/catalogue/service/businessService/BusinessServiceEdit"
           ),
         meta: { authorize: [Role.User, Role.Admin] }
-      },
-      {
-        path: "catalogue/service/view/:id",
-        name: "BusinessServiceView",
-        component: () =>
-          import(
-            "../views/catalogue/service/businessService/BusinessServiceView"
-          ),
-        meta: { authorize: [] }
-      },
+      },      
       {
         path: "catalogue/service/delete/:id",
         name: "BusinessServiceDelete",
