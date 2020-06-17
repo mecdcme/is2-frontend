@@ -18,14 +18,14 @@
           </CBadge>
         </td>
       </template>
-      <template #show_details="{item, index}">
+      <template #show_details="{item}">
         <td class="py-2">
           <CButton
             color="primary"
             variant="outline"
             square
             size="sm"
-            @click="toggleDetails(item, index)"
+            @click="toggleDetails(item)"
           >
             {{ Boolean(item._toggled) ? "Hide" : "Show" }}
           </CButton>
@@ -38,11 +38,16 @@
               <h4>
                 {{ item.name }}
               </h4>
-              <p class="text-muted">User since: {{ item.registered }}</p>
+              <p class="text-muted">Registered: {{ item.registered }}</p>
               <CButton size="sm" color="info" class="">
                 User Settings
               </CButton>
-              <CButton size="sm" color="danger" class="ml-1">
+              <CButton
+                size="sm"
+                color="danger"
+                class="ml-1"
+                @click="deleteItem(item)"
+              >
                 Delete
               </CButton>
             </CMedia>
@@ -53,7 +58,7 @@
   </CCardBody>
 </template>
 <script>
-const items = [
+var items = [
   {
     id: 1,
     name: "Probabilistic record linkage",
@@ -139,6 +144,9 @@ export default {
       this.$nextTick(() => {
         this.collapseDuration = 0;
       });
+    },
+    deleteItem(item) {
+      item.splice();
     }
   }
 };
