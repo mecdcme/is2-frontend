@@ -33,8 +33,8 @@
     </div>
   </div>
 </template>
-
 <script>
+/*
 export default {
   name: "userList",
   data() {
@@ -78,6 +78,20 @@ export default {
         }
       ]
     };
+  }
+};
+*/
+
+import axios from "axios";
+export default {
+  name: "userList",
+  data() {
+    return {
+      tableData: null
+    };
+  },
+  created() {
+    axios.get("http://localhost:3000/users").then(response => (this.tableData = response));
   }
 };
 </script>
