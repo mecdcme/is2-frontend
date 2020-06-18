@@ -82,7 +82,7 @@ export default {
 };
 */
 
-import axios from "axios";
+import { axiosIs2 } from "@/http";
 export default {
   name: "userList",
   data() {
@@ -91,7 +91,7 @@ export default {
     };
   },
   created() {
-    axios.get("http://localhost:3000/users").then(response => (this.tableData = response));
+    axiosIs2.get("/users").then(response => (this.tableData = response));
   }
 };
 </script>

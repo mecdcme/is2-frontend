@@ -1,4 +1,4 @@
-import { axiosIais } from "@/http";
+import { axiosIs2 } from "@/http";
 import qs from "querystring";
 
 export const businessProcessService = {
@@ -11,7 +11,7 @@ export const businessProcessService = {
 
 function findAll() {
   return new Promise((resolve, reject) => {
-    axiosIais.get("/referential/statistical/standards?language=en").then(
+    axiosIs2.get("/referential/statistical/standards?language=en").then(
       response => {
         console.log(response.data);
         resolve(response.data);
@@ -25,7 +25,7 @@ function findAll() {
 
 function findById(id) {
   return new Promise((resolve, reject) => {
-    axiosIais
+    axiosIs2
       .get("/referential/statistical/standards/" + id + "?language=en")
       .then(
         response => {
@@ -57,7 +57,7 @@ function save(formData) {
       localId: formData.localId
     };
 
-    axiosIais
+    axiosIs2
       .post(
         "close/referential/statistical/standards?language=en",
         qs.stringify(requestBody),
@@ -92,7 +92,7 @@ function update(formData) {
       localId: formData.localId
     };
 
-    axiosIais
+    axiosIs2
       .patch(
         "close/referential/statistical/standards/" +
           formData.id +
@@ -114,7 +114,7 @@ function update(formData) {
 
 function _delete(id) {
   return new Promise((resolve, reject) => {
-    axiosIais.delete("close/referential/statistical/standards/" + id).then(
+    axiosIs2.delete("close/referential/statistical/standards/" + id).then(
       response => {
         //console.log(response.data);
         resolve(response.data);
