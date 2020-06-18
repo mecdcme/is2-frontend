@@ -101,6 +101,15 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "catalogue/newprocess",
+        name: "NewBusinessProcess",
+        component: () =>
+          import(
+            "../views/catalogue/process/businessProcess/NewBusinessProcess"
+          ),
+        meta: { authorize: [] }
+      },
+      {
         path: "catalogue/session",
         name: "WorkSessionList",
         component: () =>
