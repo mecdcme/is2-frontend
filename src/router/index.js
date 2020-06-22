@@ -121,6 +121,24 @@ const routes = [
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),
         meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/useredit",
+        name: "UserEdit",
+        component: () => import("../views/settings/user/UserEdit"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/userdelete",
+        name: "UserDelete",
+        component: () => import("../views/settings/user/UserDelete"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/useredit",
+        name: "UserEdit",
+        component: () => import("../views/settings/user/UserEdit"),
+        meta: { authorize: [] }
       }
     ]
   },
