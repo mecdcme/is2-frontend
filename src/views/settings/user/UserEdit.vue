@@ -16,17 +16,77 @@
           </router-link>
         </header>
         <div class="card-body">
-          <div>
-            <label>id</label>
-            <input :value="user.id" :placeholder="user.id" />
-            <label>email</label>
-            <input :value="user.email" :placeholder="user.email" />
-            <label>name</label>
-            <input :value="user.name" :placeholder="user.name" />
-            <label>surname</label>
-            <input :value="user.surname" :placeholder="user.surname" />
-            <label>role</label>
-            <input :value="user.role" :placeholder="user.role" />
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >id</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.id"
+            />
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >email</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.email"
+            />
+          </div>
+
+                    <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >name</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.name"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >surname</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.surname"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >role</span
+              >
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.role"
+            />
           </div>
         </div>
       </div>
@@ -44,7 +104,7 @@ export default {
     };
   },
   created() {
-    axiosIs2.get("/users/" & this.$route.params.id).then(response => {
+    axiosIs2.get("/users/" + this.$route.params.id).then(response => {
       console.log(response);
       this.user = response.data;
     });

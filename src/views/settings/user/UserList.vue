@@ -29,7 +29,7 @@
                     tag="a"
                     :to="{
                       name: 'UserEdit',
-                      param: '{{ item.id }}'
+                      params: { id: item.id }
                     }"
                   >
                     edit
@@ -40,7 +40,7 @@
                     tag="a"
                     :to="{
                       name: 'UserDelete',
-                      param: '{{ item.id }}'
+                      params: { id: item.id }
                     }"
                   >
                     delete
