@@ -23,8 +23,29 @@
                 <td>{{ item.name }}</td>
                 <td>{{ item.surname }}</td>
                 <td>{{ item.role }}</td>
-                <td v-html="item.modifica"></td>
-                <td v-html="item.elimina"></td>
+
+                <td>
+                  <router-link
+                    tag="a"
+                    :to="{
+                      name: 'UserEdit',
+                      param: '{{ item.id }}'
+                    }"
+                  >
+                    edit
+                  </router-link>
+                </td>
+                <td>
+                  <router-link
+                    tag="a"
+                    :to="{
+                      name: 'UserDelete',
+                      param: '{{ item.id }}'
+                    }"
+                  >
+                    delete
+                  </router-link>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -35,9 +56,8 @@
 </template>
 <script>
 import { axiosIs2 } from "@/http";
-
 export default {
-  name: "userList",
+  name: "UserList",
   data() {
     return {
       users: []
@@ -46,7 +66,7 @@ export default {
   created() {
     axiosIs2.get("/users").then(response => {
       console.log(response);
-      this.users = response;
+      this.users = response.data;
     });
   }
 };
