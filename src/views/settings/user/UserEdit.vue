@@ -16,7 +16,7 @@
           </router-link>
         </header>
         <div class="card-body">
-          <div>
+          <div v-for="item in users" :key="item.id">
             <label>id</label>
             <input :value="item.id" />
             <label>email</label>
