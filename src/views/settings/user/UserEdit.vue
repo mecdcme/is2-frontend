@@ -16,17 +16,17 @@
           </router-link>
         </header>
         <div class="card-body">
-          <div v-for="item in users" :key="item.id">
+          <div>
             <label>id</label>
-            <input :value="item.id" />
+            <input :value="user.id" :placeholder="user.id" />
             <label>email</label>
-            <input :value="item.email" />
+            <input :value="user.email" :placeholder="user.email" />
             <label>name</label>
-            <input :value="item.name" />
+            <input :value="user.name" :placeholder="user.name" />
             <label>surname</label>
-            <input :value="item.surname" />
+            <input :value="user.surname" :placeholder="user.surname" />
             <label>role</label>
-            <input :value="item.role" />
+            <input :value="user.role" :placeholder="user.role" />
           </div>
         </div>
       </div>
@@ -40,13 +40,13 @@ export default {
   name: "UserEdit",
   data() {
     return {
-      users: []
+      user: null
     };
   },
   created() {
     axiosIs2.get("/users/" & this.$route.params.id).then(response => {
       console.log(response);
-      this.users = response.data;
+      this.user = response.data;
     });
   }
 };

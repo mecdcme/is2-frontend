@@ -123,21 +123,15 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/useredit",
+        path: "catalogue/user/edit",
         name: "UserEdit",
         component: () => import("../views/settings/user/UserEdit"),
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/userdelete",
+        path: "catalogue/user/delete",
         name: "UserDelete",
         component: () => import("../views/settings/user/UserDelete"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "catalogue/useredit",
-        name: "UserEdit",
-        component: () => import("../views/settings/user/UserEdit"),
         meta: { authorize: [] }
       }
     ]
