@@ -111,6 +111,20 @@ const fields = [
     filter: false
   }
 ];
+/* export default {
+  name: "AdvancedTables",
+  data() {
+    return {
+      items: items.map((item, id) => {
+        return { ...item, id };
+      }),
+      fields,
+      details: [],
+      collapseDuration: 0
+    };
+  }, */
+
+import { axiosIs2 } from "@/http";
 export default {
   name: "AdvancedTables",
   data() {
@@ -123,6 +137,13 @@ export default {
       collapseDuration: 0
     };
   },
+  created() {
+    axiosIs2.get("/processes").then(response => {
+      console.log(response);
+      this.items = response.data;
+    });
+  },
+
   methods: {
     getBadge(status) {
       switch (status) {
