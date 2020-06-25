@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-sm-9 col-md-9">
+    <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">Processes</header>
         <CCardBody>
@@ -14,19 +14,65 @@
             hover
             sorter
             pagination
-          ></CDataTable>
+          >
+            <template #show_update="{item, index}">
+              <td class="py-2">
+                <CButton
+                  color="primary"
+                  square
+                  size="sm"
+                  @click="toggleDetails(item, index)"
+                  >Modifica</CButton
+                >
+              </td>
+            </template>
+            <template #show_delete="{item, index}">
+              <td class="py-2">
+                <CButton
+                  color="primary"
+                  variant="outline"
+                  square
+                  size="sm"
+                  @click="toggleDetails(item, index)"
+                  >Elimina</CButton
+                >
+              </td>
+            </template>
+          </CDataTable>
         </CCardBody>
       </div>
     </div>
   </div>
 </template>
 <script>
+const fields = [
+  { key: "id", _style: "width:5%" },
+  { key: "name", _style: "width:15%" },
+  { key: "description", _style: "width:15%;" },
+  { key: "label", _style: "width:20%;" },
+  { key: "organization", _style: "width:10%;" },
+  {
+    key: "show_update",
+    label: "",
+    _style: "width:1%",
+    sorter: false,
+    filter: false
+  },
+  {
+    key: "show_delete",
+    label: "",
+    _style: "width:1%",
+    sorter: false,
+    filter: false
+  }
+];
 import { axiosIs2 } from "@/http";
 export default {
   name: "processlist",
   data() {
     return {
-      processes: []
+      processes: [],
+      fields
     };
   },
   created() {
