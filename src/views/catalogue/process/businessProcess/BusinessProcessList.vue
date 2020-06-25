@@ -88,10 +88,11 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     editProcess(item, index) {
-      // var index = this.processes.indexOf(item);
+      // eslint-disable-next-line no-redeclare
+      var index = this.processes.indexOf(item);
       // this.processes.splice(index, 1);
       this.$router.replace(
-        "/catalogue/process/newprocess/" + this.processes.indexOf(item).id
+        "/catalogue/process/newprocess/" + this.processes[index].id
       );
     }
   }

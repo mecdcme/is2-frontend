@@ -107,14 +107,12 @@ export default {
     return {
       process: null
     };
+  },
+  created() {
+    axiosIs2.get("/processes/" + this.$route.params.id).then(response => {
+      console.log(response);
+      this.process = response.data;
+    });
   }
-  // created() {
-  //   axiosIs2
-  //     .get("/catalogue/process/newprocess/" + this.$route.params.id)
-  //     .then(response => {
-  //       console.log(response);
-  //       this.process = response.data;
-  //   });
-  // }
 };
 </script>
