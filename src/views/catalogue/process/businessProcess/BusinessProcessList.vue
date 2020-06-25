@@ -21,7 +21,7 @@
                   color="primary"
                   square
                   size="sm"
-                  @click="toggleDetails(item, index)"
+                  @click="editProcess(item, index)"
                   >Modifica</CButton
                 >
               </td>
@@ -33,7 +33,7 @@
                   variant="outline"
                   square
                   size="sm"
-                  @click="toggleDetails(item, index)"
+                  @click="deleteProcess(item, index)"
                   >Elimina</CButton
                 >
               </td>
@@ -82,9 +82,17 @@ export default {
     });
   },
   methods: {
-    deleteItem(item) {
-      var index = this.processes.indexOf(item);
+    deleteProcess(item, index) {
+      // var index = this.processes.indexOf(item);
       this.processes.splice(index, 1);
+    },
+    // eslint-disable-next-line no-unused-vars
+    editProcess(item, index) {
+      // var index = this.processes.indexOf(item);
+      // this.processes.splice(index, 1);
+      this.$router.replace(
+        "/catalogue/process/newprocess/" + this.processes.indexOf(item).id
+      );
     }
   }
 };

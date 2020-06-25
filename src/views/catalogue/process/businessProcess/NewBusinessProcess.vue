@@ -98,3 +98,23 @@
     </form>
   </div>
 </template>
+<script>
+// eslint-disable-next-line no-unused-vars
+import { axiosIs2 } from "@/http";
+export default {
+  name: "UserEdit",
+  data() {
+    return {
+      process: null
+    };
+  }
+  // created() {
+  //   axiosIs2
+  //     .get("/catalogue/process/newprocess/" + this.$route.params.id)
+  //     .then(response => {
+  //       console.log(response);
+  //       this.process = response.data;
+  //   });
+  // }
+};
+</script>
