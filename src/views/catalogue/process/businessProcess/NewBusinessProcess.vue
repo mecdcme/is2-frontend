@@ -61,7 +61,7 @@ export default {
     return {
       process: null
     };
-  },
+  }
   /*  created() {
     axiosIs2.get("/processes/" + this.$route.params.id).then(response => {
       console.log(response);
