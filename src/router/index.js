@@ -105,7 +105,7 @@ const routes = [
         name: "NewBusinessProcess",
         component: () =>
           import(
-            "../views/catalogue/process/businessProcess/NewBusinessProcess"
+            "../views/catalogue/process/businessProcess/EditBusinessProcess"
           ),
         meta: { authorize: [] }
       },
