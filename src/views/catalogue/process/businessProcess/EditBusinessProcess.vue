@@ -7,7 +7,7 @@
           <div>
             <CRow>
               <CCol sm="9">
-                <CInput label="Id" placeholder="Id" />
+                <CInput label="Id" placeholder="Id" disabled />
               </CCol>
             </CRow>
             <CRow>
