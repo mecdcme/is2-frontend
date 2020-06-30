@@ -5,12 +5,12 @@ const axiosAuth = axios.create({
   baseURL: process.env.VUE_APP_DEV_SERVER + "/security"
 });
 
-const axiosIais = axios.create({
+const axiosIs2 = axios.create({
   baseURL: process.env.VUE_APP_DEV_SERVER
 });
 
 //request interceptor
-axiosIais.interceptors.request.use(
+axiosIs2.interceptors.request.use(
   config => {
     store.dispatch("coreui/loading", true);
     const token = store.getters["auth/token"];
@@ -25,7 +25,7 @@ axiosIais.interceptors.request.use(
 );
 
 //response interceptor
-axiosIais.interceptors.response.use(
+axiosIs2.interceptors.response.use(
   response => {
     store.dispatch("coreui/loading", false);
     return response;
@@ -68,4 +68,4 @@ axiosIais.interceptors.response.use(
   }
 );
 
-export { axiosAuth, axiosIais };
+export { axiosAuth, axiosIs2 };

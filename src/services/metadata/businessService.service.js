@@ -1,4 +1,4 @@
-import { axiosIais } from "@/http";
+import { axiosIs2 } from "@/http";
 import qs from "querystring";
 
 export const businessServiceService = {
@@ -14,7 +14,7 @@ export const businessServiceService = {
 
 function findAll() {
   return new Promise((resolve, reject) => {
-    axiosIais.get("/referential/statistical/programs?language=en").then(
+    axiosIs2.get("/referential/statistical/programs?language=en").then(
       response => {
         var data = response.data ? response.data : [];
         console.log(data);
@@ -29,7 +29,7 @@ function findAll() {
 
 function findById(id) {
   return new Promise((resolve, reject) => {
-    axiosIais
+    axiosIs2
       .get("/referential/statistical/programs/" + id + "?language=en")
       .then(
         response => {
@@ -67,7 +67,7 @@ function save(formData) {
 
     const legislativeReferences = formData.legislativeReferences;
 
-    axiosIais
+    axiosIs2
       .put(
         "close/referential/statistical/programs/" +
           formData.localId +
@@ -119,7 +119,7 @@ function update(formData) {
 
     const legislativeReferences = formData.legislativeReferences;
 
-    axiosIais
+    axiosIs2
       .patch(
         "close/referential/statistical/programs/" +
           formData.id +
@@ -166,7 +166,7 @@ function update(formData) {
 
 function updateLegislativeReference(formData) {
   return new Promise((resolve, reject) => {
-    axiosIais
+    axiosIs2
       .put(
         "close/referential/statistical/programs/" +
           formData.id +
@@ -188,7 +188,7 @@ function updateLegislativeReference(formData) {
 
 function updateOwner(formData) {
   return new Promise((resolve, reject) => {
-    axiosIais
+    axiosIs2
       .put(
         "close/referential/statistical/programs/" +
           formData.id +
@@ -210,7 +210,7 @@ function updateOwner(formData) {
 
 function updateContact(formData) {
   return new Promise((resolve, reject) => {
-    axiosIais
+    axiosIs2
       .put(
         "close/referential/statistical/programs/" +
           formData.id +
@@ -232,7 +232,7 @@ function updateContact(formData) {
 
 function updateMaintainer(formData) {
   return new Promise((resolve, reject) => {
-    axiosIais
+    axiosIs2
       .put(
         "close/referential/statistical/programs/" +
           formData.id +
@@ -254,7 +254,7 @@ function updateMaintainer(formData) {
 
 function _delete(id) {
   return new Promise((resolve, reject) => {
-    axiosIais.delete("close/referential/statistical/programs/" + id).then(
+    axiosIs2.delete("close/referential/statistical/programs/" + id).then(
       response => {
         //console.log(response.data);
         resolve(response.data);

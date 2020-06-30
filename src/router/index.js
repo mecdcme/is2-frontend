@@ -92,6 +92,15 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "catalogue/process/newprocess/:id",
+        name: "NewBusinessProcess",
+        component: () =>
+          import(
+            "../views/catalogue/process/businessProcess/EditBusinessProcess"
+          ),
+        meta: { authorize: [] }
+      },
+      {
         path: "catalogue/session",
         name: "WorkSessionList",
         component: () =>
@@ -102,6 +111,18 @@ const routes = [
         path: "catalogue/user",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/user/edit/:id",
+        name: "UserEdit",
+        component: () => import("../views/settings/user/UserEdit"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/user/delete/:id",
+        name: "UserDelete",
+        component: () => import("../views/settings/user/UserDelete"),
         meta: { authorize: [] }
       }
     ]
