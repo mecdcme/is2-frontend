@@ -101,11 +101,20 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/process/newprocess/:id",
+        path: "catalogue/process/processedit/:id",
         name: "NewBusinessProcess",
         component: () =>
           import(
-            "../views/catalogue/process/businessProcess/EditBusinessProcess"
+            "../views/catalogue/process/businessProcess/BusinessProcessEdit"
+          ),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/process/processnew/:id",
+        name: "NewBusinessProcess",
+        component: () =>
+          import(
+            "../views/catalogue/process/businessProcess/BusinessProcessNew"
           ),
         meta: { authorize: [] }
       },
