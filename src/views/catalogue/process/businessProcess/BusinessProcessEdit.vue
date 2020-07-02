@@ -6,11 +6,20 @@
         <form
           id="app"
           @submit="checkForm"
-          action="https://vuejs.org/"
+          @action="updateBusinessProcess"
           method="post"
         >
           <CCardBody>
             <div>
+              <CRow>
+                <p v-if="errors.length">
+                  <b>Please correct the following error(s):</b>
+                </p>
+                <ul>
+                  <li v-for="error in errors" :key="error">{{ error }}</li>
+                </ul>
+              </CRow>
+
               <CRow>
                 <CCol sm="9">
                   <CInput label="Id" placeholder="Id" disabled />
@@ -70,13 +79,21 @@
   </div>
 </template>
 <script>
-// eslint-disable-next-line no-unused-vars
+const config = {
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  }
+};
 import { axiosIs2 } from "@/http";
+
+const querystring = require("querystring");
+
 export default {
   name: "UserEdit",
   data() {
     return {
-      process: null
+      process: null,
+      errors: []
     };
   },
   created() {
@@ -86,11 +103,46 @@ export default {
     });
   },
   methods: {
+    updateBusinessProcess() {
+      axiosIs2
+        .put("/processes/", querystring.stringify(process), config)
+        .then(response => {
+          console.log(response);
+          this.process = response.data;
+        });
+    },
     goBusinessProcessList() {
       // eslint-disable-next-line no-redeclare
 
       // this.processes.splice(index, 1);
       this.$router.push("/catalogue/process");
+    },
+    checkForm: function(e) {
+      if (
+        this.process.name &&
+        this.process.description &&
+        this.process.label &&
+        this.process.organization
+      ) {
+        return true;
+      }
+
+      this.errors = [];
+
+      if (!this.process.name) {
+        this.errors.push("Name required.");
+      }
+      if (!this.process.description) {
+        this.errors.push("Description required.");
+      }
+      if (!this.process.label) {
+        this.errors.push("Label required.");
+      }
+      if (!this.process.organization) {
+        this.errors.push("Organization required.");
+      }
+
+      e.preventDefault();
     }
   }
 };
