@@ -86,13 +86,13 @@ export default {
       // var index = this.processes.indexOf(item);
       this.processes.splice(index, 1);
     },
-    // eslint-disable-next-line no-unused-vars
-    editProcess(item, index) {
+
+    editProcess(item) {
       // eslint-disable-next-line no-redeclare
       var index = this.processes.indexOf(item);
       // this.processes.splice(index, 1);
-      this.$router.replace(
-        "/catalogue/process/newprocess/" + this.processes[index].id
+      this.$router.push(
+        "/catalogue/process/processedit/" + this.processes[index].id
       );
     }
   }
