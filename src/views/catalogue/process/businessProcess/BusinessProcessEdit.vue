@@ -12,6 +12,15 @@
           <CCardBody>
             <div>
               <CRow>
+                <p v-if="errors.length">
+                  <b>Please correct the following error(s):</b>
+                </p>
+                <ul>
+                  <li v-for="error in errors" :key="error">{{ error }}</li>
+                </ul>
+              </CRow>
+
+              <CRow>
                 <CCol sm="9">
                   <CInput label="Id" placeholder="Id" disabled />
                 </CCol>
@@ -76,7 +85,8 @@ export default {
   name: "UserEdit",
   data() {
     return {
-      process: null
+      process: null,
+      errors: []
     };
   },
   created() {
@@ -91,6 +101,33 @@ export default {
 
       // this.processes.splice(index, 1);
       this.$router.push("/catalogue/process");
+    },
+    checkForm: function(e) {
+      if (
+        this.process.name &&
+        this.process.description &&
+        this.process.label &&
+        this.process.organization
+      ) {
+        return true;
+      }
+
+      this.errors = [];
+
+      if (!this.process.name) {
+        this.errors.push("Name required.");
+      }
+      if (!this.process.description) {
+        this.errors.push("Description required.");
+      }
+      if (!this.process.label) {
+        this.errors.push("Label required.");
+      }
+      if (!this.process.organization) {
+        this.errors.push("Organization required.");
+      }
+
+      e.preventDefault();
     }
   }
 };
