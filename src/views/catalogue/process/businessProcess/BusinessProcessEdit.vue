@@ -3,12 +3,7 @@
     <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">Edit Process</header>
-        <form
-          id="app"
-          @submit="checkForm"
-          action="https://vuejs.org/"
-          method="post"
-        >
+        <form id="app" @submit="checkForm" method="post">
           <CCardBody>
             <div>
               <CRow>
@@ -79,8 +74,15 @@
   </div>
 </template>
 <script>
-// eslint-disable-next-line no-unused-vars
+const config = {
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  }
+};
 import { axiosIs2 } from "@/http";
+
+const querystring = require("querystring");
+
 export default {
   name: "UserEdit",
   data() {
@@ -109,6 +111,12 @@ export default {
         this.process.label &&
         this.process.organization
       ) {
+        axiosIs2
+          .put("/processes/", querystring.stringify(process), config)
+          .then(response => {
+            console.log(response);
+            this.process = response.data;
+          });
         return true;
       }
 
