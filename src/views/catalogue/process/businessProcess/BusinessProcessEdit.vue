@@ -3,7 +3,12 @@
     <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">Edit Process</header>
-        <form id="app" @submit="checkForm" method="post">
+        <form
+          id="app"
+          @submit="checkForm"
+          @action="updateBusinessProcess"
+          method="post"
+        >
           <CCardBody>
             <div>
               <CRow>
@@ -98,6 +103,14 @@ export default {
     });
   },
   methods: {
+    updateBusinessProcess() {
+      axiosIs2
+        .put("/processes/", querystring.stringify(process), config)
+        .then(response => {
+          console.log(response);
+          this.process = response.data;
+        });
+    },
     goBusinessProcessList() {
       // eslint-disable-next-line no-redeclare
 
@@ -111,12 +124,6 @@ export default {
         this.process.label &&
         this.process.organization
       ) {
-        axiosIs2
-          .put("/processes/", querystring.stringify(process), config)
-          .then(response => {
-            console.log(response);
-            this.process = response.data;
-          });
         return true;
       }
 
