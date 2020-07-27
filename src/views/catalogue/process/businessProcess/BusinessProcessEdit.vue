@@ -89,7 +89,7 @@ import { required, minLength, between } from "vuelidate/lib/validators";
 const querystring = require("querystring");
 
 export default {
-  name: "UserEdit",
+  name: "ProcessEdit",
   data() {
     return {
       process: null,
