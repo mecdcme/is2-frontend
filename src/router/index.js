@@ -102,7 +102,7 @@ const routes = [
       },
       {
         path: "catalogue/process/processedit/:id",
-        name: "NewBusinessProcess",
+        name: "BusinessProcessEdit",
         component: () =>
           import(
             "../views/catalogue/process/businessProcess/BusinessProcessEdit"
@@ -111,7 +111,7 @@ const routes = [
       },
       {
         path: "catalogue/process/processnew/:id",
-        name: "NewBusinessProcess",
+        name: "BusinessProcessNew",
         component: () =>
           import(
             "../views/catalogue/process/businessProcess/BusinessProcessNew"

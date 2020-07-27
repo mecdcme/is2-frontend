@@ -84,7 +84,8 @@ const config = {
   }
 };
 import { axiosIs2 } from "@/http";
-
+// eslint-disable-next-line no-unused-vars
+import { required, minLength, between } from "vuelidate/lib/validators";
 const querystring = require("querystring");
 
 export default {
@@ -94,6 +95,22 @@ export default {
       process: null,
       errors: []
     };
+  },
+  validations: {
+    name: {
+      required,
+      minLength: minLength(4)
+    },
+    description: {
+      minLength: minLength(4)
+    },
+    label: {
+      required,
+      minLength: minLength(2)
+    },
+    organization: {
+      minLength: minLength(4)
+    }
   },
   created() {
     axiosIs2.get("/processes/" + this.$route.params.id).then(response => {
@@ -137,6 +154,7 @@ export default {
             console.log(response);
             this.process = response.data;
           });
+        this.$router.push("/catalogue/process");
         return true;
       }
 
