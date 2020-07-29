@@ -25,7 +25,7 @@
                   <CInput
                     label="Name"
                     placeholder="Name"
-                    v-model="process.name"
+                    v-model.trim="$v.name.$model"
                   />
                 </CCol>
               </CRow>
@@ -34,7 +34,7 @@
                   <CInput
                     label="Description"
                     placeholder="Description"
-                    v-model="process.description"
+                    v-model.trim="$v.description.$model"
                   />
                 </CCol>
               </CRow>
@@ -43,7 +43,7 @@
                   <CInput
                     label="Label"
                     placeholder="Label"
-                    v-model="process.label"
+                    v-model.trim="$v.label.$model"
                   />
                 </CCol>
               </CRow>
@@ -52,7 +52,7 @@
                   <CInput
                     label="Organization"
                     placeholder="Organization"
-                    v-model="process.organization"
+                    v-model.trim="$v.organization.$model"
                   />
                 </CCol>
               </CRow>
@@ -92,24 +92,28 @@ export default {
   name: "ProcessEdit",
   data() {
     return {
-      process: null,
+      process: [],
       errors: []
     };
   },
   validations: {
-    name: {
-      required,
-      minLength: minLength(4)
-    },
-    description: {
-      minLength: minLength(4)
-    },
-    label: {
-      required,
-      minLength: minLength(2)
-    },
-    organization: {
-      minLength: minLength(4)
+    process: {
+      name: {
+        required,
+        minLength: minLength(4)
+      },
+      description: {
+        required,
+        minLength: minLength(4)
+      },
+      label: {
+        required,
+        minLength: minLength(4)
+      },
+      organization: {
+        required,
+        minLength: minLength(4)
+      }
     }
   },
   created() {
@@ -119,6 +123,22 @@ export default {
     });
   },
   methods: {
+    setName(value) {
+      this.process.name = value;
+      this.process.$v.name.$touch();
+    },
+    setDescription(value) {
+      this.process.description = value;
+      this.process.$v.description.$touch();
+    },
+    setLabel(value) {
+      this.process.label = value;
+      this.process.$v.label.$touch();
+    },
+    setOrganization(value) {
+      this.process.organization = value;
+      this.process.$v.organization.$touch();
+    },
     updateBusinessProcess() {
       axiosIs2
         .put(
@@ -132,9 +152,6 @@ export default {
         });
     },
     goBusinessProcessList() {
-      // eslint-disable-next-line no-redeclare
-
-      // this.processes.splice(index, 1);
       this.$router.push("/catalogue/process");
     },
     handleSubmit() {
