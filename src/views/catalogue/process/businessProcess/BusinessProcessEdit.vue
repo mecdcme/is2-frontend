@@ -1,14 +1,9 @@
 <template>
-  <div class="row">
+  <div class="row" v-if="process">
     <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">Edit Process</header>
-        <form
-          id="app"
-          @submit="checkForm"
-          @action="updateBusinessProcess"
-          method="post"
-        >
+        <form>
           <CCardBody>
             <div>
               <CRow>
@@ -66,7 +61,11 @@
           <CCardFooter>
             <CRow class="d-flex justify-content-middle">
               <CCol sm="9">
-                <CButton color="primary" type="submit" value="Submit"
+                <CButton
+                  color="primary"
+                  type="submit"
+                  value="Submit"
+                  @click.prevent="handleSubmit"
                   >Update</CButton
                 >
                 <CButton @click="goBusinessProcessList()">Cancel</CButton>
@@ -85,16 +84,33 @@ const config = {
   }
 };
 import { axiosIs2 } from "@/http";
-
+// eslint-disable-next-line no-unused-vars
+import { required, minLength, between } from "vuelidate/lib/validators";
 const querystring = require("querystring");
 
 export default {
-  name: "UserEdit",
+  name: "ProcessEdit",
   data() {
     return {
       process: null,
       errors: []
     };
+  },
+  validations: {
+    name: {
+      required,
+      minLength: minLength(4)
+    },
+    description: {
+      minLength: minLength(4)
+    },
+    label: {
+      required,
+      minLength: minLength(2)
+    },
+    organization: {
+      minLength: minLength(4)
+    }
   },
   created() {
     axiosIs2.get("/processes/" + this.$route.params.id).then(response => {
@@ -105,7 +121,11 @@ export default {
   methods: {
     updateBusinessProcess() {
       axiosIs2
-        .put("/processes/", querystring.stringify(process), config)
+        .put(
+          "/processes/" + this.process.id,
+          querystring.stringify(this.process),
+          config
+        )
         .then(response => {
           console.log(response);
           this.process = response.data;
@@ -117,13 +137,24 @@ export default {
       // this.processes.splice(index, 1);
       this.$router.push("/catalogue/process");
     },
-    checkForm: function(e) {
+    handleSubmit() {
       if (
         this.process.name &&
         this.process.description &&
         this.process.label &&
         this.process.organization
       ) {
+        axiosIs2
+          .put(
+            "/processes/" + this.process.id,
+            querystring.stringify(this.process),
+            config
+          )
+          .then(response => {
+            console.log(response);
+            this.process = response.data;
+          });
+        this.$router.push("/catalogue/process");
         return true;
       }
 
@@ -141,8 +172,6 @@ export default {
       if (!this.process.organization) {
         this.errors.push("Organization required.");
       }
-
-      e.preventDefault();
     }
   }
 };
