@@ -20,7 +20,6 @@
                   <CInput label="Id" placeholder="Id" disabled />
                 </CCol>
               </CRow>
-
               <CRow>
                 <CCol sm="9">
                   <CInput
@@ -45,7 +44,7 @@
                     placeholder="Description"
                     v-model="$v.process.description.$model"
                   />
-                  <p class="error" v-if="!$v.formResponses.name.required">
+                  <p class="error" v-if="!$v.process.description.required">
                     This field is required
                   </p>
                   <p class="error" v-if="!$v.process.description.minLength">
@@ -62,7 +61,7 @@
                     placeholder="Label"
                     v-model="$v.process.label.$model"
                   />
-                  <p class="error" v-if="!$v.formResponses.name.required">
+                  <p class="error" v-if="!$v.process.label.required">
                     This field is required
                   </p>
                   <p class="error" v-if="!$v.process.label.minLength">
@@ -79,7 +78,7 @@
                     placeholder="Organization"
                     v-model="$v.process.organization.$model"
                   />
-                  <p class="error" v-if="!$v.formResponses.name.required">
+                  <p class="error" v-if="!$v.process.organization.required">
                     This field is required
                   </p>
                   <p class="error" v-if="!$v.process.organization.minLength">

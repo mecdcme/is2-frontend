@@ -25,21 +25,21 @@
       "name": "Probabilistic record linkage",
       "description": "Probabilistic record linkage",
       "label": "PRL",
-      "organization": "Istat"
+      "organization": "Istatooo"
     },
     {
       "id": 2,
       "name": "Deterministic record linkage",
       "description": "Deterministic record linkage",
-      "label": "DRL",
-      "organization": "Istat"
+      "label": "DRLOOO",
+      "organization": "Istatgggg"
     },
     {
       "id": 3,
       "name": "Probabilistic record linkage with blocking",
       "description": "Probabilistic record linkage with blocking",
-      "label": "PRLBlock",
-      "organization": "Istat"
+      "label": "PRLBlockELLO",
+      "organization": "Istatello"
     },
     {
       "id": 4,
@@ -47,6 +47,14 @@
       "description": "Data validation in R",
       "label": "ValidateR",
       "organization": "Istat"
+    },
+    {
+      "{\"id\":1,\"name\":\"Probabilistic record linkage\",\"description\":\"Probabilistic record \",\"label\":\"PRL\",\"organization\":\"Istat\"}": "",
+      "id": 5
+    },
+    {
+      "{\"id\":2,\"name\":\"Deterministic record \",\"description\":\"Deterministic record linkage\",\"label\":\"DRL\",\"organization\":\"Istat\"}": "",
+      "id": 6
     }
   ],
   "users": [
