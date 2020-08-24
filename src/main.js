@@ -10,7 +10,6 @@ import vSelect from "vue-select";
 import VueSpinners from "vue-spinners";
 
 import "@/assets/icons/materialIcons";
-
 Vue.config.productionTip = false;
 
 Vue.use(CoreuiVue);

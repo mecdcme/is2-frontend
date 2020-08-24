@@ -20,13 +20,22 @@
                   <CInput label="Id" placeholder="Id" disabled />
                 </CCol>
               </CRow>
+
               <CRow>
                 <CCol sm="9">
                   <CInput
                     label="Name"
                     placeholder="Name"
-                    v-model.trim="$v.name.$model"
+                    v-model="$v.process.name.$model"
                   />
+                  <p class="error" v-if="!$v.process.name.required">
+                    This field is required
+                  </p>
+                  <p class="error" v-if="!$v.process.name.minLength">
+                    Field must have at least
+                    {{ $v.process.name.$params.minLength.min }}
+                    characters.
+                  </p>
                 </CCol>
               </CRow>
               <CRow>
@@ -34,8 +43,16 @@
                   <CInput
                     label="Description"
                     placeholder="Description"
-                    v-model.trim="$v.description.$model"
+                    v-model="$v.process.description.$model"
                   />
+                  <p class="error" v-if="!$v.formResponses.name.required">
+                    This field is required
+                  </p>
+                  <p class="error" v-if="!$v.process.description.minLength">
+                    Field must have at least
+                    {{ $v.process.description.$params.minLength.min }}
+                    characters.
+                  </p>
                 </CCol>
               </CRow>
               <CRow>
@@ -43,8 +60,16 @@
                   <CInput
                     label="Label"
                     placeholder="Label"
-                    v-model.trim="$v.label.$model"
+                    v-model="$v.process.label.$model"
                   />
+                  <p class="error" v-if="!$v.formResponses.name.required">
+                    This field is required
+                  </p>
+                  <p class="error" v-if="!$v.process.label.minLength">
+                    Field must have at least
+                    {{ $v.process.label.$params.minLength.min }}
+                    characters.
+                  </p>
                 </CCol>
               </CRow>
               <CRow>
@@ -52,8 +77,16 @@
                   <CInput
                     label="Organization"
                     placeholder="Organization"
-                    v-model.trim="$v.organization.$model"
+                    v-model="$v.process.organization.$model"
                   />
+                  <p class="error" v-if="!$v.formResponses.name.required">
+                    This field is required
+                  </p>
+                  <p class="error" v-if="!$v.process.organization.minLength">
+                    Field must have at least
+                    {{ $v.process.organization.$params.minLength.min }}
+                    characters.
+                  </p>
                 </CCol>
               </CRow>
             </div>
@@ -92,7 +125,13 @@ export default {
   name: "ProcessEdit",
   data() {
     return {
-      process: [],
+      process: {
+        name: "",
+        description: "",
+        label: "",
+        organization: ""
+      },
+      /*  process: [], */
       errors: []
     };
   },
@@ -123,7 +162,7 @@ export default {
     });
   },
   methods: {
-    setName(value) {
+    /*  setName(value) {
       this.process.name = value;
       this.process.$v.name.$touch();
     },
@@ -138,7 +177,7 @@ export default {
     setOrganization(value) {
       this.process.organization = value;
       this.process.$v.organization.$touch();
-    },
+    }, */
     updateBusinessProcess() {
       axiosIs2
         .put(
