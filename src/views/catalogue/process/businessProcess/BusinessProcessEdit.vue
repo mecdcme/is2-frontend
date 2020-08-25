@@ -13,6 +13,20 @@
                 <ul>
                   <li v-for="error in errors" :key="error">{{ error }}</li>
                 </ul>
+                <p v-if="error" class="error">
+                  The form above has errors,
+                  <br />please get your act together and resubmit
+                </p>
+                <p
+                  v-else-if="formTouched && uiState === 'submit clicked'"
+                  class="error"
+                >
+                  The form above is empty,
+                  <br />cmon y'all you can't submit an empty form!
+                </p>
+                <p v-else-if="uiState === 'form submitted'" class="success">
+                  >Hooray! Your form was submitted!
+                </p>
               </CRow>
 
               <CRow>
@@ -124,6 +138,9 @@ export default {
   name: "ProcessEdit",
   data() {
     return {
+      uiState: "submit not clicked",
+      errore: false,
+      empty: true,
       process: {
         name: "",
         description: "",
@@ -193,6 +210,9 @@ export default {
       this.$router.push("/catalogue/process");
     },
     handleSubmit() {
+      this.formTouched = !this.$v.process.$anyDirty;
+      this.errore = this.$v.process.$invalid;
+
       if (
         this.process.name &&
         this.process.description &&
@@ -209,8 +229,13 @@ export default {
             console.log(response);
             this.process = response.data;
           });
-        this.$router.push("/catalogue/process");
-        return true;
+
+        if (this.errore === false && this.formTouched === false) {
+          //this is where you send the responses
+          this.uiState = "form submitted";
+          this.$router.push("/catalogue/process");
+          return true;
+        }
       }
 
       this.errors = [];
