@@ -49,6 +49,9 @@
                     {{ $v.process.name.$params.minLength.min }}
                     characters.
                   </p>
+                  <p class="error" v-if="!$v.process.name.checkName">
+                    invalid character in field name.
+                  </p>
                 </CCol>
               </CRow>
               <CRow>
@@ -155,7 +158,12 @@ export default {
     process: {
       name: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(4),
+        checkName(name) {
+          return (
+            /[a-z]/.test(name) && !/[0-9]/.test(name) // checks for a-z
+          );
+      }
       },
       description: {
         required,
