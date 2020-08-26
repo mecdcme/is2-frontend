@@ -127,12 +127,8 @@
   </div>
 </template>
 <script>
-const config = {
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  }
-};
 import { axiosIs2 } from "@/http";
+import { config } from "@/common";
 // eslint-disable-next-line no-unused-vars
 import { required, minLength, between } from "vuelidate/lib/validators";
 const querystring = require("querystring");
@@ -163,7 +159,7 @@ export default {
           return (
             /[a-z]/.test(name) && !/[0-9]/.test(name) // checks for a-z
           );
-      }
+        }
       },
       description: {
         required,
@@ -221,12 +217,8 @@ export default {
       this.formTouched = !this.$v.process.$anyDirty;
       this.errore = this.$v.process.$invalid;
 
-      if (
-        this.process.name &&
-        this.process.description &&
-        this.process.label &&
-        this.process.organization
-      ) {
+      this.$v.$touch(); //validate form data
+      if (!this.$v.$invalid) {
         axiosIs2
           .put(
             "/processes/" + this.process.id,

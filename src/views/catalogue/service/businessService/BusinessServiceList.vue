@@ -9,7 +9,7 @@
           <table class="table table-striped ">
             <thead>
               <tr>
-                <th>id</th>                
+                <th>id</th>
                 <th>name</th>
                 <th>description</th>
                 <th>organization</th>
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
               <tr v-for="item in tableData" :key="item.id">
-                <td>{{ item.id }}</td>                
+                <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.organization }}</td>
