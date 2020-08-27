@@ -72,7 +72,7 @@ const routes = [
             "../views/catalogue/service/businessService/BusinessServiceEdit"
           ),
         meta: { authorize: [Role.User, Role.Admin] }
-      },      
+      },
       {
         path: "catalogue/service/delete/:id",
         name: "BusinessServiceDelete",

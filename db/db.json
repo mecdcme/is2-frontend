@@ -22,9 +22,9 @@
   "processes": [
     {
       "id": 1,
-      "name": "Probabilistic record linkage",
+      "name": "Prob",
       "description": "Probabilistic record linkage",
-      "label": "PRL",
+      "label": "PRLo",
       "organization": "Istatooo"
     },
     {
