@@ -221,12 +221,7 @@ export default {
       this.formTouched = !this.$v.process.$anyDirty;
       this.errore = this.$v.process.$invalid;
 
-      if (
-        this.process.name &&
-        this.process.description &&
-        this.process.label &&
-        this.process.organization
-      ) {
+       if (this.errore === false && this.formTouched === false) {
         axiosIs2
           .put(
             "/processes/" + this.process.id,
@@ -238,12 +233,10 @@ export default {
             this.process = response.data;
           });
 
-        if (this.errore === false && this.formTouched === false) {
-          //this is where you send the responses
-          this.uiState = "form submitted";
-          this.$router.push("/catalogue/process");
-          return true;
-        }
+        //this is where you send the responses
+        this.uiState = "form submitted";
+        this.$router.push("/catalogue/process");
+        return true;
       }
 
       this.errors = [];
