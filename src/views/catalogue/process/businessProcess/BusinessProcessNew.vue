@@ -7,15 +7,10 @@
           <div>
             <CRow>
               <CCol sm="9">
-                <CInput label="Id" placeholder="Id" />
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="9">
                 <CInput
                   label="Name"
                   placeholder="Name"
-                  v-model="process.name"
+                  v-model="$v.process.name.$model"
                 />
                 <p class="error" v-if="!$v.process.name.required">
                   This field is required
@@ -24,6 +19,9 @@
                   Field must have at least
                   {{ $v.process.name.$params.minLength.min }}
                   characters.
+                </p>
+                <p class="error" v-if="!$v.process.name.checkName">
+                  invalid character in field name.
                 </p>
               </CCol>
             </CRow>
@@ -80,6 +78,20 @@
             </CRow>
           </div>
         </CCardBody>
+        <CCardFooter>
+          <CRow class="d-flex justify-content-middle">
+            <CCol sm="9">
+              <CButton
+                color="primary"
+                type="submit"
+                value="Submit"
+                @click.prevent="handleSubmit"
+                >Save</CButton
+              >
+              <CButton @click="goBusinessProcessList()">Cancel</CButton>
+            </CCol>
+          </CRow>
+        </CCardFooter>
       </div>
     </div>
   </div>
@@ -89,10 +101,16 @@
 import { axiosIs2 } from "@/http";
 // eslint-disable-next-line no-unused-vars
 import { required, minLength, between } from "vuelidate/lib/validators";
+const querystring = require("querystring");
+import { config } from "@/common";
 export default {
   name: "ProcessNew",
   data() {
     return {
+      uiState: "submit not clicked",
+      errore: false,
+      formTouched: false,
+      empty: true,
       process: {
         name: "",
         description: "",
@@ -105,7 +123,12 @@ export default {
     process: {
       name: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(4),
+        checkName(name) {
+          return (
+            /[a-z]/.test(name) && !/[0-9]/.test(name) // checks for a-z
+          );
+        }
       },
       description: {
         required,
@@ -120,12 +143,48 @@ export default {
         minLength: minLength(4)
       }
     }
-  }
-  /*  created() {
+  },
+
+  methods: {
+    handleSubmit() {
+      this.formTouched = !this.$v.process.$anyDirty;
+      this.errore = this.$v.process.$invalid;
+
+      if (this.errore === false && this.formTouched === false) {
+        axiosIs2
+          .put("/processes/", querystring.stringify(this.process), config)
+          .then(response => {
+            console.log(response);
+            this.process = response.data;
+          });
+
+        //this is where you send the responses
+        this.uiState = "form submitted";
+        this.$router.push("/catalogue/process");
+        return true;
+      }
+
+      this.errors = [];
+
+      if (!this.process.name) {
+        this.errors.push("Name required.");
+      }
+      if (!this.process.description) {
+        this.errors.push("Description required.");
+      }
+      if (!this.process.label) {
+        this.errors.push("Label required.");
+      }
+      if (!this.process.organization) {
+        this.errors.push("Organization required.");
+      }
+    }
+    /*  created() {
     axiosIs2.get("/processes/" + this.$route.params.id).then(response => {
       console.log(response);
       this.process = response.data;
     });
   } */
+  }
 };
 </script>
