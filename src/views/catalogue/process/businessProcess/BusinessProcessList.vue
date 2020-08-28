@@ -2,7 +2,19 @@
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <div class="card">
-        <header class="card-header">Processes</header>
+        <header class="card-header">
+          Processes
+          <router-link
+            tag="a"
+            :to="{
+              name: 'BusinessProcessNew'
+            }"
+          >
+            <span class="pl-1"
+              ><plus-icon class="fas fa plus" />New Process</span
+            >
+          </router-link>
+        </header>
         <CCardBody>
           <CDataTable
             :items="processes"
