@@ -13,7 +13,7 @@
                 <ul>
                   <li v-for="error in errors" :key="error">{{ error }}</li>
                 </ul>
-                <p v-if="error" class="error">
+                <p v-if="errore" class="error">
                   The form above has errors,
                   <br />please get your act together and resubmit
                 </p>
@@ -139,6 +139,7 @@ export default {
     return {
       uiState: "submit not clicked",
       errore: false,
+      formTouched: false,
       empty: true,
       process: {
         name: "",
