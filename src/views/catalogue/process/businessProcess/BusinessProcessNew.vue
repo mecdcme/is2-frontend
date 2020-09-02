@@ -121,6 +121,7 @@ export default {
   },
   validations: {
     process: {
+      id: {},
       name: {
         required,
         minLength: minLength(4),
@@ -152,20 +153,16 @@ export default {
 
       if (this.errore === false && this.formTouched === false) {
         axiosIs2
-          .put(
-            "/processes/",
-            this.process.id,
-            querystring.stringify(this.process),
-            config
-          )
+          .put("/processes/", null, querystring.stringify(this.process), config)
           .then(response => {
             console.log(response);
             this.process = response.data;
+            this.uiState = "form submitted";
+            this.$router.push("/catalogue/process");
           });
 
         //this is where you send the responses
-        this.uiState = "form submitted";
-        this.$router.push("/catalogue/process");
+
         return true;
       }
 
