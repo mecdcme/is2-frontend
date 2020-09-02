@@ -30,7 +30,7 @@
                 <CInput
                   label="Description"
                   placeholder="Description"
-                  v-model="process.description"
+                  v-model="$v.process.description.$model"
                 />
                 <p class="error" v-if="!$v.process.description.required">
                   This field is required
@@ -47,7 +47,7 @@
                 <CInput
                   label="Label"
                   placeholder="Label"
-                  v-model="process.label"
+                  v-model="$v.process.label.$model"
                 />
                 <p class="error" v-if="!$v.process.label.required">
                   This field is required
@@ -64,7 +64,7 @@
                 <CInput
                   label="Organization"
                   placeholder="Organization"
-                  v-model="process.organization"
+                  v-model="$v.process.organization.$model"
                 />
                 <p class="error" v-if="!$v.process.organization.required">
                   This field is required
@@ -152,7 +152,12 @@ export default {
 
       if (this.errore === false && this.formTouched === false) {
         axiosIs2
-          .put("/processes/", querystring.stringify(this.process), config)
+          .put(
+            "/processes/",
+            this.process.id,
+            querystring.stringify(this.process),
+            config
+          )
           .then(response => {
             console.log(response);
             this.process = response.data;
