@@ -12,15 +12,30 @@
                   placeholder="Name"
                   v-model="process.name"
                 />
-                <p class="error" v-if="!$v.process.name.required">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.name.required && uiState === 'form submitted'
+                  "
+                >
                   This field is required
                 </p>
-                <p class="error" v-if="!$v.process.name.minLength">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.name.minLength && uiState === 'form submitted'
+                  "
+                >
                   Field must have at least
                   {{ $v.process.name.$params.minLength.min }}
                   characters.
                 </p>
-                <p class="error" v-if="!$v.process.name.checkName">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.name.checkName && uiState === 'form submitted'
+                  "
+                >
                   invalid character in field name.
                 </p>
               </CCol>
@@ -32,10 +47,22 @@
                   placeholder="Description"
                   v-model="process.description"
                 />
-                <p class="error" v-if="!$v.process.description.required">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.description.required &&
+                      uiState === 'form submitted'
+                  "
+                >
                   This field is required
                 </p>
-                <p class="error" v-if="!$v.process.description.minLength">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.description.minLength &&
+                      uiState === 'form submitted'
+                  "
+                >
                   Field must have at least
                   {{ $v.process.description.$params.minLength.min }}
                   characters.
@@ -49,10 +76,20 @@
                   placeholder="Label"
                   v-model="process.label"
                 />
-                <p class="error" v-if="!$v.process.label.required">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.label.required && uiState === 'form submitted'
+                  "
+                >
                   This field is required
                 </p>
-                <p class="error" v-if="!$v.process.label.minLength">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.label.minLength && uiState === 'form submitted'
+                  "
+                >
                   Field must have at least
                   {{ $v.process.label.$params.minLength.min }}
                   characters.
@@ -66,10 +103,22 @@
                   placeholder="Organization"
                   v-model="process.organization"
                 />
-                <p class="error" v-if="!$v.process.organization.required">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.organization.required &&
+                      uiState === 'form submitted'
+                  "
+                >
                   This field is required
                 </p>
-                <p class="error" v-if="!$v.process.organization.minLength">
+                <p
+                  class="error"
+                  v-if="
+                    !$v.process.organization.minLength &&
+                      uiState === 'form submitted'
+                  "
+                >
                   Field must have at least
                   {{ $v.process.organization.$params.minLength.min }}
                   characters.
@@ -150,14 +199,13 @@ export default {
     handleSubmit() {
       this.formTouched = !this.$v.process.$anyDirty;
       this.errore = this.$v.process.$invalid;
-
+      this.uiState = "form submitted";
       if (this.errore === false) {
         axiosIs2
           .post("/processes", querystring.stringify(this.process), config)
           .then(response => {
             console.log(response);
             this.process = response.data;
-            this.uiState = "form submitted";
             this.$router.push("/catalogue/process");
           });
 
