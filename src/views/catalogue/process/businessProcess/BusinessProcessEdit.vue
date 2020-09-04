@@ -39,7 +39,7 @@
                   <CInput
                     label="Name"
                     placeholder="Name"
-                    v-model="$v.process.name.$model"
+                    v-model="process.name"
                   />
                   <p class="error" v-if="!$v.process.name.required">
                     This field is required
@@ -59,7 +59,7 @@
                   <CInput
                     label="Description"
                     placeholder="Description"
-                    v-model="$v.process.description.$model"
+                    v-model="process.description"
                   />
                   <p class="error" v-if="!$v.process.description.required">
                     This field is required
@@ -76,7 +76,7 @@
                   <CInput
                     label="Label"
                     placeholder="Label"
-                    v-model="$v.process.label.$model"
+                    v-model="process.label"
                   />
                   <p class="error" v-if="!$v.process.label.required">
                     This field is required
@@ -93,7 +93,7 @@
                   <CInput
                     label="Organization"
                     placeholder="Organization"
-                    v-model="$v.process.organization.$model"
+                    v-model="process.organization"
                   />
                   <p class="error" v-if="!$v.process.organization.required">
                     This field is required
