@@ -6,6 +6,18 @@
         <CCardBody>
           <div>
             <CRow>
+              <p v-if="errors.length">
+                <b>Please correct the following error(s):</b>
+              </p>
+              <ul>
+                <li v-for="error in errors" :key="error">{{ error }}</li>
+              </ul>
+              <p v-if="errore" class="error">
+                The form above has errors,
+                <br />please get your act together and resubmit
+              </p>
+            </CRow>
+            <CRow>
               <CCol sm="9">
                 <CInput
                   label="Name"
@@ -165,7 +177,8 @@ export default {
         description: "",
         label: "",
         organization: ""
-      }
+      },
+      errors: []
     };
   },
   validations: {
