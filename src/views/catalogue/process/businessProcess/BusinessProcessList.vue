@@ -27,25 +27,24 @@
             sorter
             pagination
           >
-            <template #show_update="{item, index}">
+            <template #show_update="{item}">
               <td class="py-2">
                 <CButton
                   color="primary"
                   square
                   size="sm"
-                  @click="editProcess(item, index)"
+                  @click="editProcess(item)"
                   >Modifica</CButton
                 >
               </td>
             </template>
-            <template #show_delete="{item, index}">
+            <template #show_delete="{item}">
               <td class="py-2">
                 <CButton
                   color="primary"
-                  variant="outline"
                   square
                   size="sm"
-                  @click="deleteProcess(item, index)"
+                  @click="deleteProcess(item)"
                   >Elimina</CButton
                 >
               </td>
@@ -94,9 +93,18 @@ export default {
     });
   },
   methods: {
-    deleteProcess(item, index) {
-      // var index = this.processes.indexOf(item);
-      this.processes.splice(index, 1);
+    deleteProcess(item) {
+      var index = this.processes.indexOf(item);
+      //this.processes.splice(index, 1);
+      axiosIs2
+        .delete("/processes/" + this.processes[index].id)
+        .then(response => {
+          console.log(response);
+        });
+      axiosIs2.get("/processes").then(response => {
+        console.log(response);
+        this.processes = response.data;
+      });
     },
 
     editProcess(item) {
