@@ -1,6 +1,10 @@
 import Vue from "vue";
 
-/* Material design icons*/
+/* Material design icons available at:
+ *
+ * https://materialdesignicons.com/
+ *
+ */
 import "vue-material-design-icons/styles.css";
 
 import HomeIcon from "icons/Home.vue";
