@@ -13,7 +13,7 @@
     <ul class="c-sidebar-nav h-100 ps" style="position: relative;">
       <li class="c-sidebar-nav-item">
         <router-link tag="a" :to="{ name: 'Home' }" class="c-sidebar-nav-link">
-          <home-icon class="pr-4" /> Home
+          <CIcon name="cil-home" class="c-sidebar-nav-icon" />Home
           <span class="badge badge-primary">Alpha</span>
         </router-link>
       </li>
@@ -24,7 +24,7 @@
           :to="{ name: 'BusinessServiceList' }"
           class="c-sidebar-nav-link"
         >
-          <layers-icon class="pr-4" /> Service
+          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Service
         </router-link>
       </li>
       <li class="c-sidebar-nav-item">
@@ -33,7 +33,7 @@
           :to="{ name: 'BusinessProcessList' }"
           class="c-sidebar-nav-link"
         >
-          <layers-icon class="pr-4" /> Process
+          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Process
         </router-link>
       </li>
       <li class="c-sidebar-nav-item">
@@ -42,7 +42,7 @@
           :to="{ name: 'WorkSessionList' }"
           class="c-sidebar-nav-link"
         >
-          <layers-icon class="pr-4" /> Session
+          <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Session
         </router-link>
       </li>
     </ul>
@@ -65,13 +65,5 @@ export default {
 .brand {
   font-size: 1.2em;
   padding-left: 1rem;
-}
-.c-sidebar-nav-link > i {
-  flex: 0 0 42px;
-  margin-left: -0.7rem;
-  color: #fff;
-}
-.material-design-icon > .material-design-icon__svg {
-  bottom: 0;
 }
 </style>

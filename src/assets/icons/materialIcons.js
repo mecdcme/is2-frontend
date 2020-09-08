@@ -4,13 +4,16 @@ import Vue from "vue";
  *
  * https://materialdesignicons.com/
  *
+ * Documentation on the component is available at:
+ *
+ * https://www.npmjs.com/package/vue-material-design-icons
  */
 import "vue-material-design-icons/styles.css";
 
 import HomeIcon from "icons/Home.vue";
 import LayersIcon from "icons/Layers.vue";
 import ChevronRightBoxIcon from "icons/ArrowRightBold.vue";
-import AddIcon from "icons/Plus.vue";
+import AddIcon from "icons/PlusBox.vue";
 import EditIcon from "icons/SquareEditOutline.vue";
 import DeleteIcon from "icons/TrashCanOutline.vue";
 import ViewIcon from "icons/Magnify.vue";

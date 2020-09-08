@@ -4,16 +4,11 @@
       <div class="card">
         <header class="card-header">
           Processes
-          <router-link
-            tag="a"
-            :to="{
-              name: 'BusinessProcessNew'
-            }"
-          >
-            <span class="pl-1"
-              ><plus-icon class="fas fa plus" />New Process</span
-            >
-          </router-link>
+          <div class="card-header-actions">
+            <router-link tag="a" :to="{ name: 'BusinessProcessNew' }">
+              <add-icon />
+            </router-link>
+          </div>
         </header>
         <CCardBody>
           <CDataTable
@@ -56,34 +51,33 @@
   </div>
 </template>
 <script>
-const fields = [
-  { key: "id", _style: "width:5%" },
-  { key: "name", _style: "width:15%" },
-  { key: "description", _style: "width:15%;" },
-  { key: "label", _style: "width:20%;" },
-  { key: "organization", _style: "width:10%;" },
-  {
-    key: "show_update",
-    label: "",
-    _style: "width:1%",
-    sorter: false,
-    filter: false
-  },
-  {
-    key: "show_delete",
-    label: "",
-    _style: "width:1%",
-    sorter: false,
-    filter: false
-  }
-];
 import { axiosIs2 } from "@/http";
 export default {
   name: "processlist",
   data() {
     return {
       processes: [],
-      fields
+      fields: [
+        { key: "id", _style: "width:5%" },
+        { key: "name", _style: "width:15%" },
+        { key: "description", _style: "width:15%;" },
+        { key: "label", _style: "width:20%;" },
+        { key: "organization", _style: "width:10%;" },
+        {
+          key: "show_update",
+          label: "",
+          _style: "width:1%",
+          sorter: false,
+          filter: false
+        },
+        {
+          key: "show_delete",
+          label: "",
+          _style: "width:1%",
+          sorter: false,
+          filter: false
+        }
+      ]
     };
   },
   created() {
@@ -118,3 +112,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.card-header-actions {
+  margin-right: 0;
+}
+.card-header-actions .material-design-icon > .material-design-icon__svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  bottom: auto;
+}
+</style>

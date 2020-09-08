@@ -69,6 +69,17 @@ button:focus {
 .section-link-disabled > .theme--light.v-icon {
   color: #ced2d8;
 }
+
+/* Cards */
+.card-header-actions {
+  margin-right: 0;
+}
+.card-header-actions .material-design-icon > .material-design-icon__svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  bottom: auto;
+}
+
 /* Forms */
 
 .form-group {
@@ -134,18 +145,4 @@ button:focus {
 /* Spinner */
 .spinner > div {
   background-color: #321fdb !important;
-}
-
-/* Material design icons */
-.icon-span{
-  vertical-align: middle;
-  display: inline-block;
-  line-height: 1em;
-}
-.icon-header{
-  vertical-align: middle;
-  padding-left: 0.2rem;
-}
-.theme--light.v-icon {
-  color: inherit;
 }

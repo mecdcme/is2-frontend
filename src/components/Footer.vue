@@ -1,8 +1,9 @@
 <template>
   <CFooter :fixed="false">
     <div>
+      <span class="mr-1">Funded by</span>
       <a href="https://i3s-essnet.github.io/Documents/" target="_blank"
-        >I3S essnet project</a
+        >I3S ESSNet</a
       >
     </div>
     <div class="ml-auto">
