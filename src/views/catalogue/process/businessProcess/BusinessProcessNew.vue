@@ -6,18 +6,6 @@
         <CCardBody>
           <div>
             <CRow>
-              <p v-if="errors.length">
-                <b>Please correct the following error(s):</b>
-              </p>
-              <ul>
-                <li v-for="error in errors" :key="error">{{ error }}</li>
-              </ul>
-              <p v-if="errore" class="error">
-                The form above has errors,
-                <br />please get your act together and resubmit
-              </p>
-            </CRow>
-            <CRow>
               <CCol sm="9">
                 <CInput
                   label="Name"
@@ -226,28 +214,7 @@ export default {
 
         return true;
       }
-
-      this.errors = [];
-
-      if (!this.process.name) {
-        this.errors.push("Name required.");
-      }
-      if (!this.process.description) {
-        this.errors.push("Description required.");
-      }
-      if (!this.process.label) {
-        this.errors.push("Label required.");
-      }
-      if (!this.process.organization) {
-        this.errors.push("Organization required.");
-      }
     }
-    /*  created() {
-    axiosIs2.get("/processes/" + this.$route.params.id).then(response => {
-      console.log(response);
-      this.process = response.data;
-    });
-  } */
   }
 };
 </script>

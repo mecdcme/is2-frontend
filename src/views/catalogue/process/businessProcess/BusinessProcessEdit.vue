@@ -6,7 +6,7 @@
         <form>
           <CCardBody>
             <div>
-              <CRow>
+              <!-- <CRow>
                 <p v-if="errors.length">
                   <b>Please correct the following error(s):</b>
                 </p>
@@ -27,7 +27,7 @@
                 <p v-else-if="uiState === 'form submitted'" class="success">
                   >Hooray! Your form was submitted!
                 </p>
-              </CRow>
+              </CRow> -->
 
               <CRow>
                 <CCol sm="9">
@@ -183,22 +183,6 @@ export default {
     });
   },
   methods: {
-    /*  setName(value) {
-      this.process.name = value;
-      this.process.$v.name.$touch();
-    },
-    setDescription(value) {
-      this.process.description = value;
-      this.process.$v.description.$touch();
-    },
-    setLabel(value) {
-      this.process.label = value;
-      this.process.$v.label.$touch();
-    },
-    setOrganization(value) {
-      this.process.organization = value;
-      this.process.$v.organization.$touch();
-    }, */
     updateBusinessProcess() {
       axiosIs2
         .put(
@@ -236,7 +220,7 @@ export default {
         return true;
       }
 
-      this.errors = [];
+/*       this.errors = [];
 
       if (!this.process.name) {
         this.errors.push("Name required.");
@@ -249,7 +233,7 @@ export default {
       }
       if (!this.process.organization) {
         this.errors.push("Organization required.");
-      }
+      } */
     }
   }
 };
