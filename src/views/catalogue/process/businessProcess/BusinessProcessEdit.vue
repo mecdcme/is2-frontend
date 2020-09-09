@@ -218,7 +218,7 @@ export default {
       this.formTouched = !this.$v.process.$anyDirty;
       this.errore = this.$v.process.$invalid;
 
-      if (this.errore === false && this.formTouched === false) {
+      if (this.errore === false) {
         axiosIs2
           .put(
             "/processes/" + this.process.id,
