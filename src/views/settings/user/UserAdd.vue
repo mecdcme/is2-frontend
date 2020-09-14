@@ -183,7 +183,6 @@
 <script>
 import { axiosIs2 } from "@/http";
 import { required, minLength, email } from "vuelidate/lib/validators";
-const querystring = require("querystring");
 export default {
   name: "UserAdd",
   data() {
@@ -250,6 +249,8 @@ export default {
             role: this.user.role,
             password: this.user.password
           };
+
+          const querystring = require("querystring");
 
           axiosIs2.post("/users/", querystring.stringify(data), config).then(
             response => {
