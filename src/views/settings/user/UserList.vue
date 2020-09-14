@@ -48,6 +48,21 @@
                 </td>
               </tr>
             </tbody>
+            <tfoot>
+              <button class="btn-outline-dark btn-sm">
+                <router-link
+                  tag="a"
+                  :to="{
+                    name: 'UserAdd'
+                    /*,
+                      params: { id: item.id }
+                      */
+                  }"
+                >
+                  Add!
+                </router-link>
+              </button>
+            </tfoot>
           </table>
         </div>
       </div>

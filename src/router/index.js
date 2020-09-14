@@ -133,6 +133,12 @@ const routes = [
         name: "UserDelete",
         component: () => import("../views/settings/user/UserDelete"),
         meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/user/add/",
+        name: "UserAdd",
+        component: () => import("../views/settings/user/UserAdd"),
+        meta: { authorize: [] }
       }
     ]
   },
