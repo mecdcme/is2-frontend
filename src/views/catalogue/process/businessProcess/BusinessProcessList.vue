@@ -94,11 +94,11 @@ export default {
         .delete("/processes/" + this.processes[index].id)
         .then(response => {
           console.log(response);
+          axiosIs2.get("/processes").then(response => {
+            console.log(response);
+            this.processes = response.data;
+          });
         });
-      axiosIs2.get("/processes").then(response => {
-        console.log(response);
-        this.processes = response.data;
-      });
     },
 
     editProcess(item) {
