@@ -18,6 +18,7 @@
 
         <div class="card-body">
           <form @submit.prevent="submit">
+            
             <!--div>
               <div
                 class="form-group"
@@ -33,7 +34,20 @@
                 Field A must have at least
                 {{ $v.name.$params.minLength.min }} letters.
               </div>
-
+              <div
+                class="form-group"
+                :class="{ 'form-group--error': $v.name.$error }"
+              >
+                <label class="form__label">Field B</label>
+                <input class="form__input" v-model.trim="$v.name.$model" />
+              </div>
+              <div class="error" v-if="!$v.name.required">
+                Field B is required.
+              </div>
+              <div class="error" v-if="!$v.name.minLength">
+                Field B must have at least
+                {{ $v.name.$params.minLength.min }} letters.
+              </div>
               <div class="form-group">
                 <button class="button" @click="$v.$reset">$reset</button>
               </div>
@@ -46,9 +60,14 @@
                   <li v-if="$v.name.$error">
                     Field A has <kbd>$error</kbd> and <kbd>$anyError</kbd>.
                   </li>
-
+                  <li v-if="$v.name.$invalid">
+                    Field B is <kbd>$invalid</kbd>.
+                  </li>
+                  <li v-if="$v.name.$error">
+                    Field B has <kbd>$error</kbd> and <kbd>$anyError</kbd>.
+                  </li>
                   <li v-if="$v.$invalid">Form is <kbd>$invalid</kbd>.</li>
-                  <li v-else="v-else ">All fine.</li>
+                  <li v-else="v-else">All fine.</li>
                   <li v-if="$v.$error">
                     <strong>Form has <kbd>$error</kbd>.</strong>
                   </li>
@@ -58,6 +77,7 @@
                 </ul>
               </div>
             </div-->
+
             <div
               class="input-group mb-3"
               :class="{ 'form-group--error': $v.name.$error }"
@@ -190,7 +210,7 @@
 
             <div class="row col-12">
               <button
-                class="secondary btn-sm"
+                class="btn btn-outline-dark btn-sm"
                 type="submit"
                 :disabled="submitStatus === 'PENDING'"
               >
@@ -198,7 +218,7 @@
               </button>
 
               <Button
-                class="secondary btn-sm"
+                class="btn btn-outline-dark btn-sm"
                 @click.prevent="userReset()"
                 :disabled="disabled"
                 >Reset</Button

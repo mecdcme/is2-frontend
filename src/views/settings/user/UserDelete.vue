@@ -71,13 +71,22 @@
               />
             </div>
 
-            <button
+            <!--button
               class="secondary btn-sm"
               @click.prevent="userDeleteSubmit()"
               :disabled="submitStatus === 'PENDING'"
             >
               Delete!
-            </button>
+            </button-->
+
+            <CButton
+              color="secondary btn-sm"
+              square
+              size="sm"
+              @click="userDeleteSubmit()"
+              :disabled="submitStatus === 'PENDING'"
+              >Delete</CButton
+            >
 
             <p class="typo__p" v-if="submitStatus === 'OK'">
               Thanks for your submission!
