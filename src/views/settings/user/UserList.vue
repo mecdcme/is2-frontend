@@ -6,64 +6,43 @@
           Users
         </header>
         <div class="card-body">
-          <table class="table table-striped ">
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>email</th>
-                <th>name</th>
-                <th>surname</th>
-                <th>role</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in users" :key="item.id">
-                <td>{{ item.id }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.surname }}</td>
-                <td>{{ item.role }}</td>
-
-                <td>
-                  <router-link
-                    tag="a"
-                    :to="{
-                      name: 'UserEdit',
-                      params: { id: item.id }
-                    }"
-                  >
-                    edit
-                  </router-link>
-                </td>
-                <td>
-                  <router-link
-                    tag="a"
-                    :to="{
-                      name: 'UserDelete',
-                      params: { id: item.id }
-                    }"
-                  >
-                    delete
-                  </router-link>
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <button class="btn-outline-dark btn-sm">
-                <router-link
-                  tag="a"
-                  :to="{
-                    name: 'UserAdd'
-                    /*,
-                      params: { id: item.id }
-                      */
-                  }"
+          <CDataTable
+            :items="users"
+            :fields="fields"
+            column-filter
+            table-filter
+            items-per-page-select
+            :items-per-page="5"
+            hover
+            sorter
+            pagination
+          >
+            <template #show_update="{item}">
+              <td class="py-2">
+                <CButton
+                  color="secondary btn-sm"
+                  square
+                  size="sm"
+                  @click="userEdit(item.id)"
+                  >Update</CButton
                 >
-                  Add!
-                </router-link>
-              </button>
-            </tfoot>
-          </table>
+              </td>
+            </template>
+            <template #show_delete="{item}">
+              <td class="py-2">
+                <CButton
+                  color="secondary btn-sm"
+                  square
+                  size="sm"
+                  @click="userDelete(item.id)"
+                  >Delete</CButton
+                >
+              </td>
+            </template>
+          </CDataTable>
+          <CButton color="secondary btn-sm" square size="sm" @click="userAdd()"
+            >Add</CButton
+          >
         </div>
       </div>
     </div>
@@ -75,7 +54,28 @@ export default {
   name: "UserList",
   data() {
     return {
-      users: []
+      users: [],
+      fields: [
+        { key: "id", _style: "width:5%" },
+        { key: "name", _style: "width:15%" },
+        { key: "surname", _style: "width:15%;" },
+        { key: "email", _style: "width:20%;" },
+        { key: "role", _style: "width:10%;" },
+        {
+          key: "show_update",
+          label: "",
+          _style: "width:1%",
+          sorter: false,
+          filter: false
+        },
+        {
+          key: "show_delete",
+          label: "",
+          _style: "width:1%",
+          sorter: false,
+          filter: false
+        }
+      ]
     };
   },
   created() {
@@ -83,6 +83,17 @@ export default {
       console.log(response);
       this.users = response.data;
     });
+  },
+  methods: {
+    userDelete(id) {
+      this.$router.push("/settings/user/UserDelete/" + id);
+    },
+    userEdit(id) {
+      this.$router.push("/settings/user/UserEdit/" + id);
+    },
+    userAdd() {
+      this.$router.push("/settings/user/UserAdd/");
+    }
   }
 };
 </script>

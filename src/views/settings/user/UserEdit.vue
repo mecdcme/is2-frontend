@@ -123,15 +123,15 @@
             </div>
             <div class="row col-12">
               <button
-                class="btn btn-outline-dark btn-sm"
-                type="submit"
+                class="secondary btn-sm"
+                @click.prevent="userSubmit()"
                 :disabled="submitStatus === 'PENDING'"
               >
                 Update!
               </button>
 
               <Button
-                class="btn btn-outline-dark btn-sm"
+                class="secondary btn-sm"
                 @click.prevent="userReset()"
                 :disabled="disabled"
                 >Reset</Button
@@ -201,22 +201,13 @@ export default {
     });
   },
   methods: {
-    userUpdate() {
-      axiosIs2
-        .put("/users/" + this.user.id, querystring.stringify(this.user))
-        .then(response => {
-          console.log(response);
-          this.users = response.data;
-          //alert(response.statusText);
-        });
-    },
     userReset() {
       this.user.name = "";
       this.user.surname = "";
       this.user.email = "";
       this.user.role = "";
     },
-    submit() {
+    userSubmit() {
       console.log("submit!");
       //this.$v.$touch();
       if (this.$v.$invalid) {
@@ -229,10 +220,8 @@ export default {
             this.users = response.data;
             //alert(response.statusText);
           });
-
         // do your submit logic here
         this.submitStatus = "PENDING";
-
         setTimeout(() => {
           this.submitStatus = "OK";
         }, 500);
