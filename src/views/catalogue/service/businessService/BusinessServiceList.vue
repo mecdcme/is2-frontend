@@ -1,69 +1,125 @@
 <template>
   <div class="row">
-    <div class="col-sm-6 col-md-6">
-      <div class="card ">
+    <div class="col-sm-12 col-md-12">
+      <div class="card">
         <header class="card-header">
           Services
+          <div class="card-header-actions">
+            <router-link tag="a" :to="{ name: 'BusinessServiceNew' }">
+              <add-icon />
+            </router-link>
+          </div>
         </header>
-        <div class="card-body">
-          <table class="table table-striped ">
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>description</th>
-                <th>organization</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in tableData" :key="item.id">
-                <td>{{ item.id }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
-                <td>{{ item.organization }}</td>
-                <td v-html="item.modifica"></td>
-                <td v-html="item.elimina"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <CCardBody>
+          <CDataTable
+            :items="services"
+            :fields="fields"
+            column-filter
+            table-filter
+            items-per-page-select
+            :items-per-page="5"
+            hover
+            sorter
+            pagination
+          >
+            <template #show_update="{item}">
+              <td class="py-2">
+                <CButton
+                  color="primary"
+                  square
+                  size="sm"
+                  @click="editService(item)"
+                  >Modifica</CButton
+                >
+              </td>
+            </template>
+            <template #show_delete="{item}">
+              <td class="py-2">
+                <CButton
+                  color="primary"
+                  square
+                  size="sm"
+                  @click="deleteService(item)"
+                  >Elimina</CButton
+                >
+              </td>
+            </template>
+          </CDataTable>
+        </CCardBody>
       </div>
     </div>
   </div>
 </template>
-
 <script>
+import { axiosIs2 } from "@/http";
 export default {
-  name: "BusinessProcessList",
+  name: "servicelist",
   data() {
     return {
-      tableData: [
+      services: [],
+      fields: [
+        { key: "id", _style: "width:5%" },
+        { key: "name", _style: "width:15%" },
+        { key: "description", _style: "width:15%;" },
+        { key: "label", _style: "width:20%;" },
+        { key: "organization", _style: "width:10%;" },
         {
-          id: 1,
-          name: "Relais",
-          description: "Record Linkage at Istat",
-          organization: "Istat",
-          modifica: '<a class="badge badge-warning" href="1">modifica</a>',
-          elimina: '<a class="badge badge-warning" href="1">elimina</a>'
+          key: "show_update",
+          label: "",
+          _style: "width:1%",
+          sorter: false,
+          filter: false
         },
         {
-          id: 2,
-          name: "Validate",
-          description: "Data validation in R",
-          organization: "Istat",
-          modifica: '<a class="badge badge-warning" href="2">modifica</a>',
-          elimina: '<a class="badge badge-warning" href="2">elimina</a>'
-        },
-        {
-          id: 3,
-          name: "ARC loader",
-          description: "Arc file loader",
-          organization: "Istat",
-          modifica: '<a class="badge badge-warning" href="3">modifica</a>',
-          elimina: '<a class="badge badge-warning" href="3">elimina</a>'
+          key: "show_delete",
+          label: "",
+          _style: "width:1%",
+          sorter: false,
+          filter: false
         }
       ]
     };
+  },
+  created() {
+    axiosIs2.get("/services").then(response => {
+      console.log(response);
+      this.services = response.data;
+    });
+  },
+  methods: {
+    deleteService(item) {
+      var index = this.services.indexOf(item);
+      //this.services.splice(index, 1);
+      axiosIs2
+        .delete("/services/" + this.services[index].id)
+        .then(response => {
+          console.log(response);
+        });
+      axiosIs2.get("/services").then(response => {
+        console.log(response);
+        this.services = response.data;
+      });
+    },
+
+    editService(item) {
+      // eslint-disable-next-line no-redeclare
+      var index = this.services.indexOf(item);
+      // this.services.splice(index, 1);
+      this.$router.push(
+        "/catalogue/service/serviceedit/" + this.services[index].id
+      );
+    }
   }
 };
 </script>
+
+<style>
+.card-header-actions {
+  margin-right: 0;
+}
+.card-header-actions .material-design-icon > .material-design-icon__svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  bottom: auto;
+}
+</style>
