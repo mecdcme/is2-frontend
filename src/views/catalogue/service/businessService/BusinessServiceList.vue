@@ -60,8 +60,7 @@ export default {
       fields: [
         { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:15%" },
-        { key: "description", _style: "width:15%;" },
-        { key: "label", _style: "width:20%;" },
+        { key: "description", _style: "width:15%;" },        
         { key: "organization", _style: "width:10%;" },
         {
           key: "show_update",
@@ -106,7 +105,7 @@ export default {
       var index = this.services.indexOf(item);
       // this.services.splice(index, 1);
       this.$router.push(
-        "/catalogue/service/serviceedit/" + this.services[index].id
+        "/catalogue/service/edit/" + this.services[index].id
       );
     }
   }

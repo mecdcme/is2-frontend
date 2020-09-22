@@ -126,11 +126,7 @@ export default {
       description: {
         required,
         minLength: minLength(4)
-      },
-      label: {
-        required,
-        minLength: minLength(4)
-      },
+      },      
       organization: {
         required,
         minLength: minLength(4)
