@@ -117,25 +117,25 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "settings/user",
+        path: "settings/users",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),
         meta: { authorize: [] }
       },
       {
-        path: "settings/user/UserEdit/:id",
+        path: "settings/users/UserEdit/:id",
         name: "UserEdit",
         component: () => import("../views/settings/user/UserEdit"),
         meta: { authorize: [] }
       },
       {
-        path: "settings/user/UserDelete/:id",
+        path: "settings/users/UserDelete/:id",
         name: "UserDelete",
         component: () => import("../views/settings/user/UserDelete"),
         meta: { authorize: [] }
       },
       {
-        path: "settings/user/UserAdd/",
+        path: "settings/users/UserAdd/",
         name: "UserAdd",
         component: () => import("../views/settings/user/UserAdd"),
         meta: { authorize: [] }

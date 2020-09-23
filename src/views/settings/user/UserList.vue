@@ -20,7 +20,7 @@
             <template #show_update="{item}">
               <td class="py-2">
                 <CButton
-                  color="secondary btn-sm"
+                  color="outline-dark"
                   square
                   size="sm"
                   @click="userEdit(item.id)"
@@ -31,7 +31,7 @@
             <template #show_delete="{item}">
               <td class="py-2">
                 <CButton
-                  color="secondary btn-sm"
+                  color="outline-dark"
                   square
                   size="sm"
                   @click="userDelete(item.id)"
@@ -40,9 +40,12 @@
               </td>
             </template>
           </CDataTable>
-          <CButton color="secondary btn-sm" square size="sm" @click="userAdd()"
-            >Add</CButton
-          >
+
+          <div class="card-footer">
+            <Button class="btn btn-outline-dark btn-sm" @click="userAdd()"
+              >Add</Button
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -86,13 +89,13 @@ export default {
   },
   methods: {
     userDelete(id) {
-      this.$router.push("/settings/user/UserDelete/" + id);
+      this.$router.push("/settings/users/UserDelete/" + id);
     },
     userEdit(id) {
-      this.$router.push("/settings/user/UserEdit/" + id);
+      this.$router.push("/settings/users/UserEdit/" + id);
     },
     userAdd() {
-      this.$router.push("/settings/user/UserAdd/");
+      this.$router.push("/settings/users/UserAdd/");
     }
   }
 };

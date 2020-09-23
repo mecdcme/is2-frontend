@@ -70,24 +70,14 @@
                 v-model="user.role"
               />
             </div>
-
-            <!--button
-              class="secondary btn-sm"
-              @click.prevent="userDeleteSubmit()"
-              :disabled="submitStatus === 'PENDING'"
-            >
-              Delete!
-            </button-->
-
-            <CButton
-              color="secondary btn-sm"
-              square
-              size="sm"
-              @click="userDeleteSubmit()"
-              :disabled="submitStatus === 'PENDING'"
-              >Delete</CButton
-            >
-
+            <div class="card-footer">
+              <Button
+                class="btn btn-outline-dark btn-sm"
+                @click="userDelete()"
+                :disabled="submitStatus === 'PENDING'"
+                >Delete</Button
+              >
+            </div>
             <p class="typo__p" v-if="submitStatus === 'OK'">
               Thanks for your submission!
             </p>
@@ -128,14 +118,14 @@ export default {
     });
   },
   methods: {
-    userDeleteSubmit() {
+    userDelete() {
       axiosIs2
         .delete("/users/" + this.user.id, querystring.stringify(this.user))
         .then(response => {
           console.log(response);
           this.users = response.data;
           this.submitStatus = response.statusText;
-          this.$router.push("/views/settings/user/UserList/");
+          this.$router.push("/settings/users");
         });
     }
   }
