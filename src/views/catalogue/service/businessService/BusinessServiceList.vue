@@ -5,7 +5,7 @@
         <header class="card-header">
           Services
           <div class="card-header-actions">
-            <router-link tag="a" :to="{ name: 'BusinessServiceNew' }">
+            <router-link tag="a" :to="{ name: 'BusinessServiceAdd' }">
               <add-icon />
             </router-link>
           </div>

@@ -62,7 +62,7 @@ const routes = [
           import(
             "../views/catalogue/service/businessService/BusinessServiceAdd"
           ),
-        meta: { authorize: [Role.User, Role.Admin] }
+        meta: { authorize: [] }
       },
       {
         path: "catalogue/service/edit/:id",
