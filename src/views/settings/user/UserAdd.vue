@@ -18,66 +18,6 @@
 
         <div class="card-body">
           <form @submit.prevent="submit">
-            
-            <!--div>
-              <div
-                class="form-group"
-                :class="{ 'form-group--error': $v.name.$error }"
-              >
-                <label class="form__label">Name</label>
-                <input class="form__input" v-model.trim="$v.name.$model" />
-              </div>
-              <div class="error" v-if="!$v.name.required">
-                Field A is required.
-              </div>
-              <div class="error" v-if="!$v.name.minLength">
-                Field A must have at least
-                {{ $v.name.$params.minLength.min }} letters.
-              </div>
-              <div
-                class="form-group"
-                :class="{ 'form-group--error': $v.name.$error }"
-              >
-                <label class="form__label">Field B</label>
-                <input class="form__input" v-model.trim="$v.name.$model" />
-              </div>
-              <div class="error" v-if="!$v.name.required">
-                Field B is required.
-              </div>
-              <div class="error" v-if="!$v.name.minLength">
-                Field B must have at least
-                {{ $v.name.$params.minLength.min }} letters.
-              </div>
-              <div class="form-group">
-                <button class="button" @click="$v.$reset">$reset</button>
-              </div>
-              <div class="form-group">
-                <label class="form__label">Validation status:</label>
-                <ul class="list__ul">
-                  <li v-if="$v.name.$invalid">
-                    Field A is <kbd>$invalid</kbd>.
-                  </li>
-                  <li v-if="$v.name.$error">
-                    Field A has <kbd>$error</kbd> and <kbd>$anyError</kbd>.
-                  </li>
-                  <li v-if="$v.name.$invalid">
-                    Field B is <kbd>$invalid</kbd>.
-                  </li>
-                  <li v-if="$v.name.$error">
-                    Field B has <kbd>$error</kbd> and <kbd>$anyError</kbd>.
-                  </li>
-                  <li v-if="$v.$invalid">Form is <kbd>$invalid</kbd>.</li>
-                  <li v-else="v-else">All fine.</li>
-                  <li v-if="$v.$error">
-                    <strong>Form has <kbd>$error</kbd>.</strong>
-                  </li>
-                  <li v-if="$v.$anyError">
-                    <strong>Form has <kbd>$anyError</kbd>.</strong>
-                  </li>
-                </ul>
-              </div>
-            </div-->
-
             <div
               class="input-group mb-3"
               :class="{ 'form-group--error': $v.name.$error }"
@@ -181,7 +121,6 @@
                 </div>
               </div>
             </div>
-
             <div
               class="input-group mb-3"
               :class="{ 'form-group--error': $v.password.$error }"
@@ -207,24 +146,19 @@
                 </div>
               </div>
             </div>
-
-            <div class="row col-12">
-              <button
-                class="btn btn-outline-dark btn-sm"
-                type="submit"
-                :disabled="submitStatus === 'PENDING'"
-              >
-                Add!
-              </button>
-
+            <div class="card-footer">
               <Button
                 class="btn btn-outline-dark btn-sm"
-                @click.prevent="userReset()"
-                :disabled="disabled"
+                @click="userAdd()"
+                :disabled="submitStatus === 'PENDING'"
+                >Add</Button
+              >
+              <Button
+                class="btn btn-outline-dark btn-sm"
+                @click="userReset()"
+                :disabled="submitStatus === 'PENDING'"
                 >Reset</Button
               >
-            </div>
-            <div class="row col-12">
               <p class="typo__p" v-if="submitStatus === 'OK'">
                 Thanks for your submission!
               </p>
@@ -291,7 +225,7 @@ export default {
       this.role = "";
       this.password = "";
     },
-    submit() {
+    userAdd() {
       console.log("submit!");
       //this.$v.$touch();
       if (this.$v.$invalid) {
@@ -310,28 +244,37 @@ export default {
             role: this.role,
             password: this.password
           };
-          axiosIs2
-            .post("/users/", querystring.stringify(requestBody), config)
-            .then(
-              response => {
-                console.log(response);
-                const token = response.headers["jwt-auth"];
-                const data = {
-                  token: token,
-                  user: response.data
-                };
-                resolve(data);
-                this.submitStatus = response.statusText;
-              },
-              error => {
-                console.log(error.response.data.code);
-                const err = {
-                  code: error.response.status,
-                  message: error.response.data.code
-                };
-                reject(err);
-              }
-            );
+          if (this.$v.$invalid) {
+            this.submitStatus = "ERROR";
+          } else {
+            axiosIs2
+              .post("/users/", querystring.stringify(requestBody), config)
+              .then(
+                response => {
+                  console.log(response);
+                  const token = response.headers["jwt-auth"];
+                  const data = {
+                    token: token,
+                    user: response.data
+                  };
+                  resolve(data);
+                  this.submitStatus = response.statusText;
+                },
+                error => {
+                  console.log(error.response.data.code);
+                  const err = {
+                    code: error.response.status,
+                    message: error.response.data.code
+                  };
+                  reject(err);
+                }
+              );
+            // do your submit logic here
+            this.submitStatus = "PENDING";
+            setTimeout(() => {
+              this.submitStatus = "OK";
+            }, 500);
+          }
         });
       }
     }
