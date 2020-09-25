@@ -220,7 +220,7 @@ export default {
         return true;
       }
 
-/*       this.errors = [];
+      /*       this.errors = [];
 
       if (!this.process.name) {
         this.errors.push("Name required.");

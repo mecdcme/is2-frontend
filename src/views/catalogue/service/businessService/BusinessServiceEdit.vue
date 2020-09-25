@@ -6,8 +6,6 @@
         <form>
           <CCardBody>
             <div>
-              
-
               <CRow>
                 <CCol sm="9">
                   <CInput label="Id" placeholder="Id" disabled />
@@ -49,7 +47,7 @@
                     characters.
                   </p>
                 </CCol>
-              </CRow>              
+              </CRow>
               <CRow>
                 <CCol sm="9">
                   <CInput
@@ -105,7 +103,7 @@ export default {
       empty: true,
       service: {
         name: "",
-        description: "",        
+        description: "",
         organization: ""
       },
       /*  service: [], */
@@ -126,7 +124,7 @@ export default {
       description: {
         required,
         minLength: minLength(4)
-      },      
+      },
       organization: {
         required,
         minLength: minLength(4)
@@ -176,8 +174,6 @@ export default {
         this.$router.push("/catalogue/service");
         return true;
       }
-
-
     }
   }
 };

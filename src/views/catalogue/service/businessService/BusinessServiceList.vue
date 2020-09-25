@@ -39,7 +39,7 @@
                   color="primary"
                   square
                   size="sm"
-                  @click="deleteService(item)"
+                  @click.prevent="handleDelete(item)"
                   >Elimina</CButton
                 >
               </td>
@@ -60,7 +60,7 @@ export default {
       fields: [
         { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:15%" },
-        { key: "description", _style: "width:15%;" },        
+        { key: "description", _style: "width:15%;" },
         { key: "organization", _style: "width:10%;" },
         {
           key: "show_update",
@@ -89,11 +89,9 @@ export default {
     deleteService(item) {
       var index = this.services.indexOf(item);
       //this.services.splice(index, 1);
-      axiosIs2
-        .delete("/services/" + this.services[index].id)
-        .then(response => {
-          console.log(response);
-        });
+      axiosIs2.delete("/services/" + this.services[index].id).then(response => {
+        console.log(response);
+      });
       axiosIs2.get("/services").then(response => {
         console.log(response);
         this.services = response.data;
@@ -104,9 +102,14 @@ export default {
       // eslint-disable-next-line no-redeclare
       var index = this.services.indexOf(item);
       // this.services.splice(index, 1);
-      this.$router.push(
-        "/catalogue/service/edit/" + this.services[index].id
-      );
+      this.$router.push("/catalogue/service/edit/" + this.services[index].id);
+    },
+    handleDelete(item) {
+      console.log(item);
+      // Trigger an Alert dialog
+      this.$dialog.alert("Request completed!").then(function() {
+        console.log("Closed");
+      });
     }
   }
 };

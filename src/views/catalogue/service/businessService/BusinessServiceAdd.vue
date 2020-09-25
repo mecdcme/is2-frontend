@@ -68,7 +68,7 @@
                   characters.
                 </p>
               </CCol>
-            </CRow>            
+            </CRow>
             <CRow>
               <CCol sm="9">
                 <CInput
@@ -135,7 +135,7 @@ export default {
       empty: true,
       service: {
         name: "",
-        description: "",        
+        description: "",
         organization: ""
       },
       errors: []
@@ -156,7 +156,7 @@ export default {
       description: {
         required,
         minLength: minLength(4)
-      },      
+      },
       organization: {
         required,
         minLength: minLength(4)

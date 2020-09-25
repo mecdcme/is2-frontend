@@ -8,6 +8,9 @@ import { iconsSet as icons } from "@/assets/icons/icons.js";
 import Vuelidate from "vuelidate";
 import vSelect from "vue-select";
 import VueSpinners from "vue-spinners";
+import VuejsDialog from "vuejs-dialog";
+// include the default style
+import 'vuejs-dialog/dist/vuejs-dialog.min.css';
 
 import "@/assets/icons/materialIcons";
 Vue.config.productionTip = false;
@@ -15,6 +18,7 @@ Vue.config.productionTip = false;
 Vue.use(CoreuiVue);
 Vue.use(Vuelidate);
 Vue.use(VueSpinners);
+Vue.use(VuejsDialog);
 
 Vue.component("v-select", vSelect);
 
