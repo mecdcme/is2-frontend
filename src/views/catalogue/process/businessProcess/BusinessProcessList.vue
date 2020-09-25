@@ -12,7 +12,7 @@
         </header>
         <CCardBody>
           <CDataTable
-            :items="processes"
+            :items="businessProcesses"
             :fields="fields"
             column-filter
             table-filter
@@ -51,12 +51,12 @@
   </div>
 </template>
 <script>
-import { axiosIs2 } from "@/http";
+// import { axiosIs2 } from "@/http";
+import { mapGetters } from "vuex";
 export default {
   name: "processlist",
   data() {
     return {
-      processes: [],
       fields: [
         { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:15%" },
@@ -80,34 +80,20 @@ export default {
       ]
     };
   },
+  computed: {
+    ...mapGetters("businessProcess", ["businessProcesses"]),
+    ...mapGetters("businessProcess", ["businessProcess"])
+  },
   created() {
-    axiosIs2.get("/processes").then(response => {
-      console.log(response);
-      this.processes = response.data;
-    });
+    this.$store.dispatch("businessProcess/findAll");
   },
   methods: {
     deleteProcess(item) {
-      var index = this.processes.indexOf(item);
-      //this.processes.splice(index, 1);
-      axiosIs2
-        .delete("/processes/" + this.processes[index].id)
-        .then(response => {
-          console.log(response);
-        });
-      axiosIs2.get("/processes").then(response => {
-        console.log(response);
-        this.processes = response.data;
-      });
+      this.$store.dispatch("businessProcess/delete", item.id);
     },
 
     editProcess(item) {
-      // eslint-disable-next-line no-redeclare
-      var index = this.processes.indexOf(item);
-      // this.processes.splice(index, 1);
-      this.$router.push(
-        "/catalogue/process/processedit/" + this.processes[index].id
-      );
+      this.$router.push("/catalogue/process/processedit/" + item.id);
     }
   }
 };

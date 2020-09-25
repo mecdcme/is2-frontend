@@ -7,6 +7,7 @@ import { coreui } from "./modules/coreui";
 import { message } from "./modules/message";
 import { businessProcess } from "./modules/metadata/businessProcess";
 import { businessService } from "./modules/metadata/businessService";
+import { user } from "./modules/user/user";
 
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     coreui,
     message,
     businessProcess,
-    businessService
+    businessService,
+    user
   }
 });

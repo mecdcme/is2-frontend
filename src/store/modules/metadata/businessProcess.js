@@ -2,13 +2,13 @@ import router from "@/router";
 import { businessProcessService } from "@/services";
 
 const state = {
-  businessProcesss: [],
-  businessProcess: null
+  businessProcesses: [],
+  businessProcess: []
 };
 
 const mutations = {
-  SET_BUSINESS_PROCESSES(state, businessProcesss) {
-    state.businessProcesss = businessProcesss;
+  SET_BUSINESS_PROCESSES(state, businessProcesses) {
+    state.businessProcesses = businessProcesses;
   },
   SET_BUSINESS_PROCESS(state, businessProcess) {
     state.businessProcess = businessProcess;
@@ -82,8 +82,8 @@ const actions = {
 };
 
 const getters = {
-  businessProcesss: state => {
-    return state.businessProcesss;
+  businessProcesses: state => {
+    return state.businessProcesses;
   },
   businessProcess: state => {
     return state.businessProcess;

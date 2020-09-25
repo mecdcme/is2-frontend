@@ -15,7 +15,6 @@
             >
           </router-link>
         </header>
-
         <div class="card-body">
           <form @submit.prevent="submit">
             <div class="input-group mb-3">
@@ -73,7 +72,7 @@
             <div class="card-footer">
               <Button
                 class="btn btn-outline-dark btn-sm"
-                @click="userDelete()"
+                @click="handleDelete()"
                 :disabled="submitStatus === 'PENDING'"
                 >Delete</Button
               >
@@ -95,6 +94,28 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+export default {
+  name: "UserDelete",
+  data() {
+    return {
+      submitStatus: null
+    };
+  },
+  computed: {
+    ...mapGetters("user", ["user"])
+  },
+  created() {
+    this.$store.dispatch("user/findById", this.$route.params.id);
+  },
+  methods: {
+    handleDelete() {
+      this.$store.dispatch("user/delete", this.$route.params.id);
+    }
+  }
+};
+
+/*
 import { axiosIs2 } from "@/http";
 const querystring = require("querystring");
 export default {
@@ -118,7 +139,7 @@ export default {
     });
   },
   methods: {
-    userDelete() {
+    handleDelete() {
       axiosIs2
         .delete("/users/" + this.user.id, querystring.stringify(this.user))
         .then(response => {
@@ -130,4 +151,5 @@ export default {
     }
   }
 };
+*/
 </script>

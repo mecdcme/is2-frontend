@@ -150,7 +150,7 @@
 import { axiosIs2 } from "@/http";
 // eslint-disable-next-line no-unused-vars
 import { required, minLength, between } from "vuelidate/lib/validators";
-const querystring = require("querystring");
+/* const querystring = require("querystring"); */
 import { config } from "@/common";
 export default {
   name: "ProcessNew",
@@ -202,12 +202,11 @@ export default {
       this.errore = this.$v.process.$invalid;
       this.uiState = "form submitted";
       if (this.errore === false) {
-        axiosIs2
-          .post("/processes", querystring.stringify(this.process), config)
+        this.$store
+          .dispatch("businessProcess/save", this.process, config)
           .then(response => {
             console.log(response);
-            this.process = response.data;
-            this.$router.push("/catalogue/process");
+            /* this.$router.push("/catalogue/process"); */
           });
 
         //this is where you send the responses

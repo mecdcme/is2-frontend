@@ -120,10 +120,8 @@ function update(formData) {
     const legislativeReferences = formData.legislativeReferences;
 
     axiosIs2
-      .patch(
-        "close/referential/statistical/programs/" +
-          formData.id +
-          "?language=en",
+      .put(
+        "/processes/" + formData.id + "?language=en",
         qs.stringify(requestBody),
         config
       )
