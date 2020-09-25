@@ -125,7 +125,7 @@
             <div class="card-footer">
               <button
                 class="btn btn-outline-dark btn-sm"
-                type="submit"
+                @click.prevent="handleUpdate()"
                 :disabled="submitStatus === 'PENDING'"
               >
                 Update!
@@ -133,8 +133,7 @@
 
               <Button
                 class="btn btn-outline-dark btn-sm"
-                @click.prevent="userReset()"
-                :disabled="disabled"
+                @click.prevent="handleReset()"
                 >Reset</Button
               >
             </div>
@@ -157,8 +156,8 @@
 </template>
 
 <script>
+/*
 import { axiosIs2 } from "@/http";
-// eslint-disable-next-line no-unused-vars
 import { required, minLength, email } from "vuelidate/lib/validators";
 const querystring = require("querystring");
 export default {
@@ -202,22 +201,13 @@ export default {
     });
   },
   methods: {
-    userUpdate() {
-      axiosIs2
-        .put("/users/" + this.user.id, querystring.stringify(this.user))
-        .then(response => {
-          console.log(response);
-          this.users = response.data;
-          //alert(response.statusText);
-        });
-    },
-    userReset() {
+    handleReset() {
       this.user.name = "";
       this.user.surname = "";
       this.user.email = "";
       this.user.role = "";
     },
-    submit() {
+    handleUpdate() {
       console.log("submit!");
       //this.$v.$touch();
       if (this.$v.$invalid) {
@@ -238,6 +228,68 @@ export default {
           this.submitStatus = "OK";
         }, 500);
       }
+    }
+  }
+};
+*/
+
+import { mapGetters } from "vuex";
+import { required, minLength, email } from "vuelidate/lib/validators";
+export default {
+  name: "UserEdit",
+  data() {
+    return {
+      submitStatus: null
+      //disabled: true
+    };
+  },
+  validations: {
+    user: {
+      name: {
+        required,
+        minLength: minLength(4)
+      },
+      surname: {
+        required,
+        minLength: minLength(4)
+      },
+      email: {
+        required,
+        email
+      },
+      role: {
+        required,
+        minLength: minLength(4)
+      }
+    }
+  },
+  computed: {
+    ...mapGetters("user", ["user"])
+  },
+  created() {
+    this.$store.dispatch("user/findById", this.$route.params.id);
+  },
+  methods: {
+    handleUpdate() {
+      if (this.$v.$invalid) {
+        this.submitStatus = "ERROR";
+      } else {
+        const data = {
+          id: this.user.id,
+          name: this.user.name,
+          surname: this.user.surname,
+          email: this.user.email,
+          role: this.user.role
+        };
+        this.$store.dispatch("user/update", data);
+      }
+    },
+    handleReset() {
+      this.user.name = "";
+      this.user.surname = "";
+      this.user.email = "";
+      this.user.role = "";
+      this.$v.$reset();
     }
   }
 };
