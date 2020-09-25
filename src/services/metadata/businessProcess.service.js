@@ -1,6 +1,6 @@
 import { axiosIs2 } from "@/http";
-import qs from "querystring";
-
+/* import qs from "querystring"; */
+const querystring = require("querystring");
 export const businessProcessService = {
   findAll,
   findById,
@@ -11,7 +11,7 @@ export const businessProcessService = {
 
 function findAll() {
   return new Promise((resolve, reject) => {
-    axiosIs2.get("/referential/statistical/standards?language=en").then(
+    axiosIs2.get("/processes").then(
       response => {
         console.log(response.data);
         resolve(response.data);
@@ -48,30 +48,24 @@ function save(formData) {
       }
     };
 
-    const requestBody = {
+    /* const requestBody = {
       name: formData.name,
       description: formData.description,
       link: formData.link ? formData.link : "",
       version: formData.version ? formData.version : "",
       type: formData.type,
       localId: formData.localId
-    };
+    }; */
 
-    axiosIs2
-      .post(
-        "close/referential/statistical/standards?language=en",
-        qs.stringify(requestBody),
-        config
-      )
-      .then(
-        response => {
-          //console.log(response.data);
-          resolve(response.data);
-        },
-        error => {
-          reject(error);
-        }
-      );
+    axiosIs2.post("/processes", querystring.stringify(formData), config).then(
+      response => {
+        console.log(response.data);
+        resolve(response.data);
+      },
+      error => {
+        reject(error);
+      }
+    );
   });
 }
 
@@ -83,21 +77,19 @@ function update(formData) {
       }
     };
 
-    const requestBody = {
+    /* const requestBody = {
       name: formData.name,
       description: formData.description,
       link: formData.link ? formData.link : "",
       version: formData.version ? formData.version : "",
       type: formData.type,
       localId: formData.localId
-    };
+    }; */
 
     axiosIs2
-      .patch(
-        "close/referential/statistical/standards/" +
-          formData.id +
-          "?language=en",
-        qs.stringify(requestBody),
+      .put(
+        "/processes/" + formData.id + "?language=en",
+        querystring.stringify(formData),
         config
       )
       .then(
@@ -114,14 +106,21 @@ function update(formData) {
 
 function _delete(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2.delete("close/referential/statistical/standards/" + id).then(
+    axiosIs2.delete("/processes/" + id + "?language=en").then(
       response => {
-        //console.log(response.data);
+        console.log(response.data);
         resolve(response.data);
       },
       error => {
         reject(error);
       }
     );
+    /* axiosIs2.delete("/processes/" + id).then(response => {
+      console.log(response);
+      axiosIs2.get("/processes").then(response => {
+        console.log(response);
+        this.processes = response.data;
+      });
+    }); */
   });
 }

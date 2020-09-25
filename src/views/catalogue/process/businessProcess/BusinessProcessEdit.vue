@@ -128,11 +128,10 @@
 </template>
 <script>
 import { axiosIs2 } from "@/http";
-import { config } from "@/common";
+/* import { config } from "@/common";
 // eslint-disable-next-line no-unused-vars
-import { required, minLength, between } from "vuelidate/lib/validators";
-const querystring = require("querystring");
-
+const querystring = require("querystring"); */
+import { required, minLength } from "vuelidate/lib/validators";
 export default {
   name: "ProcessEdit",
   data() {
@@ -184,7 +183,8 @@ export default {
   },
   methods: {
     updateBusinessProcess() {
-      axiosIs2
+      this.$store.dispatch("businessProcess/update", this.process);
+      /*  axiosIs2
         .put(
           "/processes/" + this.process.id,
           querystring.stringify(this.process),
@@ -193,7 +193,7 @@ export default {
         .then(response => {
           console.log(response);
           this.process = response.data;
-        });
+        }); */
     },
     goBusinessProcessList() {
       this.$router.push("/catalogue/process");
@@ -203,7 +203,8 @@ export default {
       this.errore = this.$v.process.$invalid;
 
       if (this.errore === false) {
-        axiosIs2
+        this.$store.dispatch("businessProcess/update", this.process);
+        /* axiosIs2
           .put(
             "/processes/" + this.process.id,
             querystring.stringify(this.process),
@@ -212,15 +213,15 @@ export default {
           .then(response => {
             console.log(response);
             this.process = response.data;
-          });
+          }); */
 
         //this is where you send the responses
         this.uiState = "form submitted";
-        this.$router.push("/catalogue/process");
+        /* this.$router.push("/catalogue/process"); */
         return true;
       }
 
-/*       this.errors = [];
+      /*       this.errors = [];
 
       if (!this.process.name) {
         this.errors.push("Name required.");
