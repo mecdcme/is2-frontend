@@ -13,10 +13,15 @@ function findAll() {
     axiosIs2.get("/users/").then(
       response => {
         console.log(response.data);
+        console.log(response.statusText);
         resolve(response.data);
       },
       error => {
-        reject(error);
+        const err = {
+          code: error.response.status,
+          message: error.response.data.code
+        };
+        reject(err);
       }
     );
   });
@@ -27,10 +32,15 @@ function findById(id) {
       response => {
         //var data = response.data ? response.data : null;
         console.log(response.data);
+        console.log(response.statusText);
         resolve(response.data);
       },
       error => {
-        reject(error);
+        const err = {
+          code: error.response.status,
+          message: error.response.data.code
+        };
+        reject(err);
       }
     );
   });
@@ -45,14 +55,20 @@ function save(data) {
     axiosIs2.post("/users/", qs.stringify(data), config).then(
       response => {
         console.log(response.data);
+        console.log(response.statusText);
         resolve(response.data);
       },
       error => {
-        reject(error);
+        const err = {
+          code: error.response.status,
+          message: error.response.data.code
+        };
+        reject(err);
       }
     );
   });
 }
+
 function update(data) {
   return new Promise((resolve, reject) => {
     const config = {
@@ -61,31 +77,25 @@ function update(data) {
       }
     };
     const user = {
-      name: this.data.name,
-      surname: this.data.surname,
-      email: this.data.email,
-      role: this.data.role
+      name: data.name,
+      surname: data.surname,
+      email: data.email,
+      role: data.role
     };
     axiosIs2.put("/users/" + data.id, qs.stringify(user), config).then(
       response => {
         console.log(response.data);
+        console.log(response.statusText);
         resolve(response.data);
       },
       error => {
-        reject(error);
+        const err = {
+          code: error.response.status,
+          message: error.response.data.code
+        };
+        reject(err);
       }
     );
-    /*
-    axiosIs2.patch("/users/" + data.id + qs.stringify(user), config).then(
-      response => {
-        console.log(response.data);
-        resolve(response.data);
-      },
-      error => {
-        reject(error);
-      }
-    );
-    */
   });
 }
 function _delete(id) {
@@ -93,10 +103,15 @@ function _delete(id) {
     axiosIs2.delete("/users/" + id).then(
       response => {
         console.log(response.data);
+        console.log(response.statusText);
         resolve(response.data);
       },
       error => {
-        reject(error);
+        const err = {
+          code: error.response.status,
+          message: error.response.data.code
+        };
+        reject(err);
       }
     );
   });

@@ -52,55 +52,6 @@
   </div>
 </template>
 <script>
-/*
-import { axiosIs2 } from "@/http";
-export default {
-  name: "UserList",
-  data() {
-    return {
-      users: [],
-      fields: [
-        { key: "id", _style: "width:5%" },
-        { key: "name", _style: "width:15%" },
-        { key: "surname", _style: "width:15%;" },
-        { key: "email", _style: "width:20%;" },
-        { key: "role", _style: "width:10%;" },
-        {
-          key: "show_update",
-          label: "",
-          _style: "width:1%",
-          sorter: false,
-          filter: false
-        },
-        {
-          key: "show_delete",
-          label: "",
-          _style: "width:1%",
-          sorter: false,
-          filter: false
-        }
-      ]
-    };
-  },
-  created() {
-    axiosIs2.get("/users").then(response => {
-      console.log(response);
-      this.users = response.data;
-    });
-  },
-  methods: {
-    userDelete(id) {
-      this.$router.push("/settings/users/UserDelete/" + id);
-    },
-    userEdit(id) {
-      this.$router.push("/settings/users/UserEdit/" + id);
-    },
-    userAdd() {
-      this.$router.push("/settings/users/UserAdd/");
-    }
-  }
-};
-*/
 import { mapGetters } from "vuex";
 export default {
   name: "UserList",

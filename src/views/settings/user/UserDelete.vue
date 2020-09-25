@@ -16,77 +16,75 @@
           </router-link>
         </header>
         <div class="card-body">
-          <form @submit.prevent="submit">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default"
-                  >Name</span
-                >
-              </div>
-              <input
-                class="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-                v-model="user.name"
-              />
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default"
-                  >Surname</span
-                >
-              </div>
-              <input
-                class="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-                v-model="user.surname"
-              />
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default"
-                  >Email</span
-                >
-              </div>
-              <input
-                class="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-                v-model="user.email"
-              />
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default"
-                  >Role</span
-                >
-              </div>
-              <input
-                class="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-                v-model="user.role"
-              />
-            </div>
-            <div class="card-footer">
-              <Button
-                class="btn btn-outline-dark btn-sm"
-                @click="handleDelete()"
-                :disabled="submitStatus === 'PENDING'"
-                >Delete</Button
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Name</span
               >
             </div>
-            <p class="typo__p" v-if="submitStatus === 'OK'">
-              Thanks for your submission!
-            </p>
-            <p class="typo__p" v-if="submitStatus === 'ERROR'">
-              Please fill the form correctly.
-            </p>
-            <p class="typo__p" v-if="submitStatus === 'PENDING'">
-              Sending...
-            </p>
-          </form>
+            <input
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.name"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Surname</span
+              >
+            </div>
+            <input
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.surname"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Email</span
+              >
+            </div>
+            <input
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.email"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"
+                >Role</span
+              >
+            </div>
+            <input
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              v-model="user.role"
+            />
+          </div>
+          <div class="card-footer">
+            <Button
+              class="btn btn-outline-dark btn-sm"
+              @click="handleDelete()"
+              :disabled="submitStatus === 'PENDING'"
+              >Delete</Button
+            >
+          </div>
+          <p class="typo__p" v-if="submitStatus === 'OK'">
+            Thanks for your submission!
+          </p>
+          <p class="typo__p" v-if="submitStatus === 'ERROR'">
+            Please fill the form correctly.
+          </p>
+          <p class="typo__p" v-if="submitStatus === 'PENDING'">
+            Sending...
+          </p>
         </div>
       </div>
     </div>
@@ -114,42 +112,4 @@ export default {
     }
   }
 };
-
-/*
-import { axiosIs2 } from "@/http";
-const querystring = require("querystring");
-export default {
-  name: "UserDelete",
-  data() {
-    return {
-      //formTouched: false,
-      submitStatus: null,
-      user: {
-        name: "",
-        surname: "",
-        email: "",
-        role: ""
-      }
-    };
-  },
-  created() {
-    axiosIs2.get("/users/" + this.$route.params.id).then(response => {
-      console.log(response);
-      this.user = response.data;
-    });
-  },
-  methods: {
-    handleDelete() {
-      axiosIs2
-        .delete("/users/" + this.user.id, querystring.stringify(this.user))
-        .then(response => {
-          console.log(response);
-          this.users = response.data;
-          this.submitStatus = response.statusText;
-          this.$router.push("/settings/users");
-        });
-    }
-  }
-};
-*/
 </script>
