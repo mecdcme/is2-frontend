@@ -70,13 +70,14 @@
                 v-model="user.role"
               />
             </div>
-            <button
-              class="btn btn-outline-dark btn-sm"
-              type="submit"
-              :disabled="submitStatus === 'PENDING'"
-            >
-              Delete!
-            </button>
+            <div class="card-footer">
+              <Button
+                class="btn btn-outline-dark btn-sm"
+                @click="userDelete()"
+                :disabled="submitStatus === 'PENDING'"
+                >Delete</Button
+              >
+            </div>
             <p class="typo__p" v-if="submitStatus === 'OK'">
               Thanks for your submission!
             </p>
@@ -97,7 +98,7 @@
 import { axiosIs2 } from "@/http";
 const querystring = require("querystring");
 export default {
-  name: "UserEdit",
+  name: "UserDelete",
   data() {
     return {
       //formTouched: false,
@@ -117,13 +118,14 @@ export default {
     });
   },
   methods: {
-    submit() {
+    userDelete() {
       axiosIs2
         .delete("/users/" + this.user.id, querystring.stringify(this.user))
         .then(response => {
           console.log(response);
           this.users = response.data;
           this.submitStatus = response.statusText;
+          this.$router.push("/settings/users");
         });
     }
   }

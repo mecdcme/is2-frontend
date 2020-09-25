@@ -121,7 +121,8 @@
                 </div>
               </div>
             </div>
-            <div class="row col-12">
+
+            <div class="card-footer">
               <button
                 class="btn btn-outline-dark btn-sm"
                 type="submit"
