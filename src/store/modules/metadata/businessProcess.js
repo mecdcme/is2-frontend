@@ -55,10 +55,10 @@ const actions = {
     businessProcessService.delete(id).then(
       data => {
         console.log(data);
+        dispatch("findAll");
         dispatch("message/success", "Business process deleted!", {
           root: true
         });
-        /* router.push("/catalogue/process"); */
       },
       error => {
         console.log(error);
