@@ -89,7 +89,16 @@ export default {
   },
   methods: {
     deleteProcess(item) {
-      this.$store.dispatch("businessProcess/delete", item.id);
+      var myitem = item;
+      var mystore = this.$store;
+      this.$dialog.confirm("Please confirm to continue").then(function() {
+        console.log("Clicked on proceed" + item);
+        mystore.dispatch("businessProcess/delete", myitem.id);
+        mystore.dispatch("businessProcess/findAll");
+      });
+      /*  .catch(function() {
+          console.log("Clicked on cancel");
+        }); */
     },
 
     editProcess(item) {

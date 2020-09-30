@@ -58,7 +58,7 @@ const actions = {
         dispatch("message/success", "Business process deleted!", {
           root: true
         });
-        router.push("/catalogue/process");
+        /* router.push("/catalogue/process"); */
       },
       error => {
         console.log(error);

@@ -9,8 +9,8 @@ import Vuelidate from "vuelidate";
 import vSelect from "vue-select";
 import VueSpinners from "vue-spinners";
 import VuejsDialog from "vuejs-dialog";
-// include the default style
-import 'vuejs-dialog/dist/vuejs-dialog.min.css';
+
+import "vuejs-dialog/dist/vuejs-dialog.min.css";
 
 import "@/assets/icons/materialIcons";
 Vue.config.productionTip = false;
