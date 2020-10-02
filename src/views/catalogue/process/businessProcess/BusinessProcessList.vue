@@ -48,6 +48,20 @@
         </CCardBody>
       </div>
     </div>
+    <CModal title="Attenzione!" color="warning" :show.sync="warningModal">
+      <div slot="footer-wrapper">
+        <button class="btn btn-secondary" @click="onWarningModalCloseClick()">
+          Annulla
+        </button>
+        <button
+          class="btn btn-warning"
+          @click="onWarningModalSubmitClick(globalItem)"
+        >
+          Conferma
+        </button>
+      </div>
+      Sei sicuro di voler eliminare il processo?
+    </CModal>
   </div>
 </template>
 <script>
@@ -57,6 +71,8 @@ export default {
   name: "processlist",
   data() {
     return {
+      globalItem: [],
+      warningModal: false,
       fields: [
         { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:15%" },
@@ -89,13 +105,14 @@ export default {
   },
   methods: {
     deleteProcess(item) {
-      var myitem = item;
-      var mystore = this.$store;
-      this.$dialog.confirm("Please confirm to continue").then(function() {
+      /* var myitem = item;
+      var mystore = this.$store; */
+      this.globalItem = item;
+      this.warningModal = true;
+      /* this.$dialog.confirm("Please confirm to continue").then(function() {
         console.log("Clicked on proceed" + item);
         mystore.dispatch("businessProcess/delete", myitem.id);
-        mystore.dispatch("businessProcess/findAll");
-      });
+      }); */
       /*  .catch(function() {
           console.log("Clicked on cancel");
         }); */
@@ -103,6 +120,14 @@ export default {
 
     editProcess(item) {
       this.$router.push("/catalogue/process/processedit/" + item.id);
+    },
+    onWarningModalCloseClick() {
+      this.warningModal = false;
+    },
+    onWarningModalSubmitClick(item) {
+      console.log("Clicked on proceed" + item);
+      this.$store.dispatch("businessProcess/delete", item.id);
+      this.warningModal = false;
     }
   }
 };
