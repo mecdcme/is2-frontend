@@ -49,7 +49,7 @@
       </div>
     </div>
     <CModal title="Attenzione!" color="warning" :show.sync="warningModal">
-      <div slot="footer-wrapper">
+      <template #footer>
         <button class="btn btn-secondary" @click="onWarningModalCloseClick()">
           Annulla
         </button>
@@ -59,7 +59,7 @@
         >
           Conferma
         </button>
-      </div>
+      </template>
       Sei sicuro di voler eliminare il processo?
     </CModal>
   </div>
