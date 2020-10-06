@@ -7,6 +7,7 @@ import { coreui } from "./modules/coreui";
 import { message } from "./modules/message";
 import { businessProcess } from "./modules/metadata/businessProcess";
 import { businessService } from "./modules/metadata/businessService";
+import { processStep } from "./modules/metadata/processStep";
 import { user } from "./modules/user/user";
 import VuejsDialog from "vuejs-dialog";
 /* import "vuejs-dialog/dist/vuejs-dialog.min.css"; */
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     message,
     businessProcess,
     businessService,
+    processStep,
     user
   }
 });

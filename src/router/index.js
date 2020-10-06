@@ -110,6 +110,27 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "catalogue/processstep",
+        name: "ProcessStepList",
+        component: () =>
+          import("../views/catalogue/step/processStep/ProcessStepList"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/step/processstepedit/:id",
+        name: "ProcessStepEdit",
+        component: () =>
+          import("../views/catalogue/step/processStep/ProcessStepEdit"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "catalogue/step/processstepnew",
+        name: "ProcessStepNew",
+        component: () =>
+          import("../views/catalogue/step/processStep/ProcessStepNew"),
+        meta: { authorize: [] }
+      },
+      {
         path: "catalogue/session",
         name: "WorkSessionList",
         component: () =>
