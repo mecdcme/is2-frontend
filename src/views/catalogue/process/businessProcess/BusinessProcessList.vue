@@ -50,8 +50,7 @@
           Delete
         </CButton>
       </template>
-      Delete process <strong>{{ selectedProcess.name }}</strong
-      >?
+      Delete process '{{ selectedProcess.name }}'?
     </CModal>
   </div>
 </template>
