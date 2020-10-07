@@ -47,14 +47,6 @@
       "description": "Data validation in R",
       "label": "ValidateR",
       "organization": "Istat"
-    },
-    {
-      "{\"id\":1,\"name\":\"Probabilistic record linkage\",\"description\":\"Probabilistic record \",\"label\":\"PRL\",\"organization\":\"Istat\"}": "",
-      "id": 5
-    },
-    {
-      "{\"id\":2,\"name\":\"Deterministic record \",\"description\":\"Deterministic record linkage\",\"label\":\"DRL\",\"organization\":\"Istat\"}": "",
-      "id": 6
     }
   ],
   "users": [

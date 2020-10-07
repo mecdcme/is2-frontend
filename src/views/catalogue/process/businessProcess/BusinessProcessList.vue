@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" v-if="businessProcesses">
     <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">
@@ -23,55 +23,45 @@
             pagination
           >
             <template #show_update="{item}">
-              <td class="py-2">
-                <CButton
-                  color="primary"
-                  square
-                  size="sm"
-                  @click="editProcess(item)"
-                  >Modifica</CButton
-                >
+              <td>
+                <a href="#" @click="editProcess(item)"><edit-icon /></a>
               </td>
             </template>
             <template #show_delete="{item}">
-              <td class="py-2">
-                <CButton
-                  color="primary"
-                  square
-                  size="sm"
-                  @click="deleteProcess(item)"
-                  >Elimina</CButton
-                >
+              <td>
+                <a href="#" @click="modalOpen(item)"><delete-icon /></a>
               </td>
             </template>
           </CDataTable>
         </CCardBody>
       </div>
     </div>
-    <CModal title="Attenzione!" color="warning" :show.sync="warningModal">
+    <CModal title="Warning!" :show.sync="warningModal">
       <template #footer>
-        <button class="btn btn-secondary" @click="onWarningModalCloseClick()">
-          Annulla
-        </button>
-        <button
-          class="btn btn-warning"
-          @click="onWarningModalSubmitClick(globalItem)"
+        <CButton shape="square" size="sm" color="primary" @click="modalClose()">
+          Close
+        </CButton>
+        <CButton
+          shape="square"
+          size="sm"
+          color="primary"
+          @click="deleteProcess()"
         >
-          Conferma
-        </button>
+          Delete
+        </CButton>
       </template>
-      Sei sicuro di voler eliminare il processo?
+      Delete process <strong>{{ selectedProcess.name }}</strong
+      >?
     </CModal>
   </div>
 </template>
 <script>
-// import { axiosIs2 } from "@/http";
 import { mapGetters } from "vuex";
 export default {
   name: "processlist",
   data() {
     return {
-      globalItem: [],
+      selectedProcess: {},
       warningModal: false,
       fields: [
         { key: "id", _style: "width:5%" },
@@ -104,29 +94,18 @@ export default {
     this.$store.dispatch("businessProcess/findAll");
   },
   methods: {
-    deleteProcess(item) {
-      /* var myitem = item;
-      var mystore = this.$store; */
-      this.globalItem = item;
+    editProcess(process) {
+      this.$router.push("/catalogue/process/processedit/" + process.id);
+    },
+    modalOpen(process) {
+      this.selectedProcess = process;
       this.warningModal = true;
-      /* this.$dialog.confirm("Please confirm to continue").then(function() {
-        console.log("Clicked on proceed" + item);
-        mystore.dispatch("businessProcess/delete", myitem.id);
-      }); */
-      /*  .catch(function() {
-          console.log("Clicked on cancel");
-        }); */
     },
-
-    editProcess(item) {
-      this.$router.push("/catalogue/process/processedit/" + item.id);
-    },
-    onWarningModalCloseClick() {
+    modalClose() {
       this.warningModal = false;
     },
-    onWarningModalSubmitClick(item) {
-      console.log("Clicked on proceed" + item);
-      this.$store.dispatch("businessProcess/delete", item.id);
+    deleteProcess() {
+      this.$store.dispatch("businessProcess/delete", this.selectedProcess.id);
       this.warningModal = false;
     }
   }

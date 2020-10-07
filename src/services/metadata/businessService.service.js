@@ -1,4 +1,5 @@
 import { axiosIs2 } from "@/http";
+import { Util } from "../../common";
 import qs from "querystring";
 
 export const businessServiceService = {
@@ -16,7 +17,7 @@ function findAll() {
   return new Promise((resolve, reject) => {
     axiosIs2.get("/referential/statistical/programs?language=en").then(
       response => {
-        var data = response.data ? response.data : [];
+        var data = response.data ? Util.mapKeysToLower(response.data) : [];
         console.log(data);
         resolve(data);
       },
@@ -29,18 +30,16 @@ function findAll() {
 
 function findById(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2
-      .get("/referential/statistical/programs/" + id + "?language=en")
-      .then(
-        response => {
-          var data = response.data ? response.data : {};
-          console.log(data);
-          resolve(data);
-        },
-        error => {
-          reject(error);
-        }
-      );
+    axiosIs2.get("/referential/statistical/programs/" + id).then(
+      response => {
+        var data = response.data ? Util.mapKeysToLower(response.data) : {};
+        console.log(data);
+        resolve(data);
+      },
+      error => {
+        reject(error);
+      }
+    );
   });
 }
 

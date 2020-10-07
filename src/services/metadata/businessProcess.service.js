@@ -1,5 +1,7 @@
 import { axiosIs2 } from "@/http";
-/* import qs from "querystring"; */
+import { config } from "@/common";
+import { util } from "../../common";
+
 const querystring = require("querystring");
 export const businessProcessService = {
   findAll,
@@ -13,8 +15,9 @@ function findAll() {
   return new Promise((resolve, reject) => {
     axiosIs2.get("/processes").then(
       response => {
-        console.log(response.data);
-        resolve(response.data);
+        var data = response.data ? util.mapKeysToLower(response.data) : [];
+        console.log(data);
+        resolve(data);
       },
       error => {
         reject(error);
@@ -25,18 +28,16 @@ function findAll() {
 
 function findById(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2
-      .get("/referential/statistical/standards/" + id + "?language=en")
-      .then(
-        response => {
-          var data = response.data ? response.data : null;
-          console.log(data);
-          resolve(data);
-        },
-        error => {
-          reject(error);
-        }
-      );
+    axiosIs2.get("/referential/statistical/standards/" + id).then(
+      response => {
+        var data = response.data ? util.mapKeysToLower(response.data) : null;
+        console.log(data);
+        resolve(data);
+      },
+      error => {
+        reject(error);
+      }
+    );
   });
 }
 
@@ -48,19 +49,11 @@ function save(formData) {
       }
     };
 
-    /* const requestBody = {
-      name: formData.name,
-      description: formData.description,
-      link: formData.link ? formData.link : "",
-      version: formData.version ? formData.version : "",
-      type: formData.type,
-      localId: formData.localId
-    }; */
-
     axiosIs2.post("/processes", querystring.stringify(formData), config).then(
       response => {
-        console.log(response.data);
-        resolve(response.data);
+        var data = response.data ? util.mapKeysToLower(response.data) : null;
+        console.log(data);
+        resolve(data);
       },
       error => {
         reject(error);
@@ -71,31 +64,13 @@ function save(formData) {
 
 function update(formData) {
   return new Promise((resolve, reject) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    };
-
-    /* const requestBody = {
-      name: formData.name,
-      description: formData.description,
-      link: formData.link ? formData.link : "",
-      version: formData.version ? formData.version : "",
-      type: formData.type,
-      localId: formData.localId
-    }; */
-
     axiosIs2
-      .put(
-        "/processes/" + formData.id + "?language=en",
-        querystring.stringify(formData),
-        config
-      )
+      .put("/processes/" + formData.id, querystring.stringify(formData), config)
       .then(
         response => {
-          //console.log(response.data);
-          resolve(response.data);
+          var data = response.data ? util.mapKeysToLower(response.data) : null;
+          console.log(data);
+          resolve(data);
         },
         error => {
           reject(error);
@@ -106,21 +81,15 @@ function update(formData) {
 
 function _delete(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2.delete("/processes/" + id + "?language=en").then(
+    axiosIs2.delete("/processes/" + id).then(
       response => {
-        console.log(response.data);
-        resolve(response.data);
+        var data = response.data ? util.mapKeysToLower(response.data) : null;
+        console.log(data);
+        resolve(data);
       },
       error => {
         reject(error);
       }
     );
-    /* axiosIs2.delete("/processes/" + id).then(response => {
-      console.log(response);
-      axiosIs2.get("/processes").then(response => {
-        console.log(response);
-        this.processes = response.data;
-      });
-    }); */
   });
 }
