@@ -2,39 +2,29 @@
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <div class="card">
-        <header class="card-header">Edit Process</header>
+        <header class="card-header">New Step</header>
         <CCardBody>
           <div>
             <CRow>
               <CCol sm="9">
-                <CInput
-                  label="Name"
-                  placeholder="Name"
-                  v-model="process.name"
-                />
+                <CInput label="Name" placeholder="Name" v-model="step.name" />
                 <p
                   class="error"
-                  v-if="
-                    !$v.process.name.required && uiState === 'form submitted'
-                  "
+                  v-if="!$v.step.name.required && uiState === 'form submitted'"
                 >
                   This field is required
                 </p>
                 <p
                   class="error"
-                  v-if="
-                    !$v.process.name.minLength && uiState === 'form submitted'
-                  "
+                  v-if="!$v.step.name.minLength && uiState === 'form submitted'"
                 >
                   Field must have at least
-                  {{ $v.process.name.$params.minLength.min }}
+                  {{ $v.step.name.$params.minLength.min }}
                   characters.
                 </p>
                 <p
                   class="error"
-                  v-if="
-                    !$v.process.name.checkName && uiState === 'form submitted'
-                  "
+                  v-if="!$v.step.name.checkName && uiState === 'form submitted'"
                 >
                   invalid character in field name.
                 </p>
@@ -43,55 +33,24 @@
             <CRow>
               <CCol sm="9">
                 <CInput
-                  label="Description"
-                  placeholder="Description"
-                  v-model="process.description"
-                />
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.description.required &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  This field is required
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.description.minLength &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  Field must have at least
-                  {{ $v.process.description.$params.minLength.min }}
-                  characters.
-                </p>
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="9">
-                <CInput
                   label="Label"
                   placeholder="Label"
-                  v-model="process.label"
+                  v-model="step.label"
                 />
                 <p
                   class="error"
-                  v-if="
-                    !$v.process.label.required && uiState === 'form submitted'
-                  "
+                  v-if="!$v.step.label.required && uiState === 'form submitted'"
                 >
                   This field is required
                 </p>
                 <p
                   class="error"
                   v-if="
-                    !$v.process.label.minLength && uiState === 'form submitted'
+                    !$v.step.label.minLength && uiState === 'form submitted'
                   "
                 >
                   Field must have at least
-                  {{ $v.process.label.$params.minLength.min }}
+                  {{ $v.step.label.$params.minLength.min }}
                   characters.
                 </p>
               </CCol>
@@ -99,28 +58,24 @@
             <CRow>
               <CCol sm="9">
                 <CInput
-                  label="Organization"
-                  placeholder="Organization"
-                  v-model="process.organization"
+                  label="Description"
+                  placeholder="Description"
+                  v-model="step.descr"
                 />
                 <p
                   class="error"
-                  v-if="
-                    !$v.process.organization.required &&
-                      uiState === 'form submitted'
-                  "
+                  v-if="!$v.step.descr.required && uiState === 'form submitted'"
                 >
                   This field is required
                 </p>
                 <p
                   class="error"
                   v-if="
-                    !$v.process.organization.minLength &&
-                      uiState === 'form submitted'
+                    !$v.step.descr.minLength && uiState === 'form submitted'
                   "
                 >
                   Field must have at least
-                  {{ $v.process.organization.$params.minLength.min }}
+                  {{ $v.step.descr.$params.minLength.min }}
                   characters.
                 </p>
               </CCol>
@@ -137,7 +92,7 @@
                 @click.prevent="handleSubmit"
                 >Save</CButton
               >
-              <CButton @click="goBusinessProcessList()">Cancel</CButton>
+              <CButton @click="goProcessStepList()">Cancel</CButton>
             </CCol>
           </CRow>
         </CCardFooter>
@@ -160,17 +115,16 @@ export default {
       errore: false,
       formTouched: false,
       empty: true,
-      process: {
+      step: {
         name: "",
-        description: "",
         label: "",
-        organization: ""
+        descr: ""
       },
       errors: []
     };
   },
   validations: {
-    process: {
+    step: {
       id: {},
       name: {
         required,
@@ -181,15 +135,11 @@ export default {
           );
         }
       },
-      description: {
-        required,
-        minLength: minLength(4)
-      },
       label: {
         required,
         minLength: minLength(4)
       },
-      organization: {
+      descr: {
         required,
         minLength: minLength(4)
       }
@@ -198,12 +148,12 @@ export default {
 
   methods: {
     handleSubmit() {
-      this.formTouched = !this.$v.process.$anyDirty;
-      this.errore = this.$v.process.$invalid;
+      this.formTouched = !this.$v.step.$anyDirty;
+      this.errore = this.$v.step.$invalid;
       this.uiState = "form submitted";
       if (this.errore === false) {
         this.$store
-          .dispatch("businessProcess/save", this.process, config)
+          .dispatch("processStep/save", this.step, config)
           .then(response => {
             console.log(response);
             /* this.$router.push("/catalogue/process"); */

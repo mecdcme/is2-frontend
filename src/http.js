@@ -37,7 +37,7 @@ axiosIs2.interceptors.response.use(
       code: error.response.status,
       message: ""
     };
-    // Unauthotized access
+    // Unauthorized access
     if (error.response.status === 401) {
       //User logged
       if ("jwt-auth" in error.response.headers) {
