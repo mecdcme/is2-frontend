@@ -39,7 +39,7 @@
                   color="primary"
                   square
                   size="sm"
-                  @click.prevent="handleDelete(item)"
+                  @click="deleteService(item)"
                   >Elimina</CButton
                 >
               </td>
@@ -48,6 +48,20 @@
         </CCardBody>
       </div>
     </div>
+    <CModal title="Attenzione!" color="warning" :show.sync="warningModal">
+      <template #footer>
+        <button class="btn btn-secondary" @click="onWarningModalCloseClick()">
+          Annulla
+        </button>
+        <button
+          class="btn btn-warning"
+          @click="onWarningModalSubmitClick(globalItem)"
+        >
+          Conferma
+        </button>
+      </template>
+      Sei sicuro di voler eliminare il servizio?
+    </CModal>
   </div>
 </template>
 <script>
@@ -57,6 +71,7 @@ export default {
   data() {
     return {
       services: [],
+      warningModal: false,
       fields: [
         { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:15%" },
@@ -87,15 +102,18 @@ export default {
   },
   methods: {
     deleteService(item) {
-      var index = this.services.indexOf(item);
+      
+      //var index = this.services.indexOf(item);
+      this.globalItem = item;
+      this.warningModal = true;
       //this.services.splice(index, 1);
-      axiosIs2.delete("/services/" + this.services[index].id).then(response => {
+      /*axiosIs2.delete("/services/" + this.services[index].id).then(response => {
         console.log(response);
       });
       axiosIs2.get("/services").then(response => {
         console.log(response);
         this.services = response.data;
-      });
+      });*/
     },
 
     editService(item) {
@@ -104,13 +122,21 @@ export default {
       // this.services.splice(index, 1);
       this.$router.push("/catalogue/service/edit/" + this.services[index].id);
     },
-    handleDelete(item) {
+    onWarningModalCloseClick() {
+      this.warningModal = false;
+    },
+    onWarningModalSubmitClick(item) {
+      console.log("Clicked on proceed" + item);
+      this.$store.dispatch("businessService/delete", item.id);
+      this.warningModal = false;
+    }
+    /*handleDelete(item) {
       console.log(item);
       // Trigger an Alert dialog
       this.$dialog.alert("Request completed!").then(function() {
         console.log("Closed");
       });
-    }
+    }*/
   }
 };
 </script>
