@@ -23,25 +23,13 @@
             pagination
           >
             <template #show_update="{item}">
-              <td class="py-2">
-                <CButton
-                  color="primary"
-                  square
-                  size="sm"
-                  @click="editProcessStep(item)"
-                  >Modifica</CButton
-                >
+              <td>
+                <a href="#" @click="editProcessStep(item)"><edit-icon /></a>
               </td>
             </template>
             <template #show_delete="{item}">
-              <td class="py-2">
-                <CButton
-                  color="primary"
-                  square
-                  size="sm"
-                  @click="deleteProcessStep(item)"
-                  >Elimina</CButton
-                >
+              <td>
+                <a href="#" @click="modalOpen(item)"><delete-icon /></a>
               </td>
             </template>
           </CDataTable>
@@ -68,9 +56,10 @@
 // import { axiosIs2 } from "@/http";
 import { mapGetters } from "vuex";
 export default {
-  name: "processlist",
+  name: "processStepList",
   data() {
     return {
+      selectedProcessStep: {},
       globalItem: [],
       warningModal: false,
       fields: [
@@ -104,20 +93,19 @@ export default {
     this.$store.dispatch("processStep/findAll");
   },
   methods: {
-    deleteProcessStep(item) {
-      this.globalItem = item;
-      this.warningModal = true;
-    },
-
     editProcessStep(item) {
       this.$router.push("/catalogue/step/processstepedit/" + item.id);
+    },
+    modalOpen(step) {
+      this.selectedProcessStep = step;
+      this.warningModal = true;
     },
     onWarningModalCloseClick() {
       this.warningModal = false;
     },
     onWarningModalSubmitClick(item) {
       console.log("Clicked on proceed" + item);
-      this.$store.dispatch("ProcessStep/delete", item.id);
+      this.$store.dispatch("processStep/delete", this.selectedProcessStep.id);
       this.warningModal = false;
     }
   }

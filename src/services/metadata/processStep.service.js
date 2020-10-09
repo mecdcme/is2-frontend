@@ -13,7 +13,7 @@ export const processStepService = {
 
 function findAll() {
   return new Promise((resolve, reject) => {
-    axiosIs2.get("/process_step").then(
+    axiosIs2.get("/process_steps").then(
       response => {
         var data = response.data ? util.mapKeysToLower(response.data) : [];
         console.log(data);
@@ -28,7 +28,7 @@ function findAll() {
 
 function findById(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2.get("/process_step/" + id).then(
+    axiosIs2.get("/process_steps/" + id).then(
       response => {
         var data = response.data ? util.mapKeysToLower(response.data) : null;
         console.log(data);
@@ -44,7 +44,7 @@ function findById(id) {
 function save(formData) {
   return new Promise((resolve, reject) => {
     axiosIs2
-      .post("/process_step", querystring.stringify(formData), config)
+      .post("/process_steps", querystring.stringify(formData), config)
       .then(
         response => {
           var data = response.data ? util.mapKeysToLower(response.data) : null;
@@ -62,7 +62,7 @@ function update(formData) {
   return new Promise((resolve, reject) => {
     axiosIs2
       .put(
-        "/process_step/" + formData.id,
+        "/process_steps/" + formData.id,
         querystring.stringify(formData),
         config
       )
@@ -81,7 +81,7 @@ function update(formData) {
 
 function _delete(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2.delete("/process_step/" + id).then(
+    axiosIs2.delete("/process_steps/" + id).then(
       response => {
         var data = response.data ? util.mapKeysToLower(response.data) : null;
         console.log(data);
