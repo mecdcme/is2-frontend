@@ -102,7 +102,6 @@ export default {
   },
   methods: {
     deleteService(item) {
-      
       //var index = this.services.indexOf(item);
       this.globalItem = item;
       this.warningModal = true;

@@ -118,7 +118,8 @@ export default {
       step: {
         name: "",
         label: "",
-        descr: ""
+        descr: "",
+        business_service_id: "300"
       }
     };
   },
