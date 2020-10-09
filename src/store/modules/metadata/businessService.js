@@ -55,10 +55,11 @@ const actions = {
     businessServiceService.delete(id).then(
       data => {
         console.log(data);
+        dispatch("findAll");
         dispatch("message/success", "Business service deleted!", {
           root: true
         });
-        router.push("/catalogue/service");
+        //router.push("/catalogue/service");
       },
       error => {
         console.log(error);

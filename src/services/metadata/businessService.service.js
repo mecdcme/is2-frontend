@@ -231,11 +231,9 @@ function updateMaintainer(formData) {
   return new Promise((resolve, reject) => {
     axiosIs2
       .put(
-        "close/referential/statistical/programs/" +
-          formData.id +
-          "/maintainer/" +
-          formData.maintainer +
-          "?language=en"
+        "/processes/" + formData.id + "?language=en"
+        /*querystring.stringify(formData),
+        config*/
       )
       .then(
         response => {
@@ -251,9 +249,9 @@ function updateMaintainer(formData) {
 
 function _delete(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2.delete("close/referential/statistical/programs/" + id).then(
+    axiosIs2.delete("/services/" + id + "?language=en").then(
       response => {
-        //console.log(response.data);
+        console.log(response.data);
         resolve(response.data);
       },
       error => {
