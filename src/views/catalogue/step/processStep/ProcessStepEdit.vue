@@ -132,7 +132,7 @@ export default {
   },
   methods: {
     updateBusinessProcess() {
-      this.$store.dispatch("ProcessStep/update", this.step);
+      this.$store.dispatch("processStep/update", this.step);
     },
     goProcessStepList() {
       this.$router.push("/catalogue/processstep");
@@ -142,7 +142,7 @@ export default {
       this.errore = this.$v.step.$invalid;
 
       if (this.errore === false) {
-        this.$store.dispatch("ProcessSteps/update", this.step);
+        this.$store.dispatch("processSteps/update", this.step);
 
         this.uiState = "form submitted";
 
