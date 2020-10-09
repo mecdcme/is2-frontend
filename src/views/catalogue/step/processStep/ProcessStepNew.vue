@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <div class="card">
-        <header class="card-header">New Step</header>
+        <header class="card-header">New Process Step</header>
         <CCardBody>
           <div>
             <CRow>
@@ -119,8 +119,7 @@ export default {
         name: "",
         label: "",
         descr: ""
-      },
-      errors: []
+      }
     };
   },
   validations: {
@@ -163,6 +162,9 @@ export default {
 
         return true;
       }
+    },
+    goProcessStepList() {
+      this.$router.push("/catalogue/processstep");
     }
   }
 };

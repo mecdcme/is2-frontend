@@ -1,8 +1,8 @@
 <template>
-  <div class="row" v-if="process">
+  <div class="row" v-if="step">
     <div class="col-sm-12 col-md-12">
       <div class="card">
-        <header class="card-header">Edit Process</header>
+        <header class="card-header">Edit Process Step</header>
         <form>
           <CCardBody>
             <div>
@@ -13,38 +13,17 @@
               </CRow>
               <CRow>
                 <CCol sm="9">
-                  <CInput
-                    label="Name"
-                    placeholder="Name"
-                    v-model="process.name"
-                  />
-                  <p class="error" v-if="!$v.process.name.required">
+                  <CInput label="Name" placeholder="Name" v-model="step.name" />
+                  <p class="error" v-if="!$v.step.name.required">
                     This field is required
                   </p>
-                  <p class="error" v-if="!$v.process.name.minLength">
+                  <p class="error" v-if="!$v.step.name.minLength">
                     Field must have at least
-                    {{ $v.process.name.$params.minLength.min }}
+                    {{ $v.step.name.$params.minLength.min }}
                     characters.
                   </p>
-                  <p class="error" v-if="!$v.process.name.checkName">
+                  <p class="error" v-if="!$v.step.name.checkName">
                     invalid character in field name.
-                  </p>
-                </CCol>
-              </CRow>
-              <CRow>
-                <CCol sm="9">
-                  <CInput
-                    label="Description"
-                    placeholder="Description"
-                    v-model="process.description"
-                  />
-                  <p class="error" v-if="!$v.process.description.required">
-                    This field is required
-                  </p>
-                  <p class="error" v-if="!$v.process.description.minLength">
-                    Field must have at least
-                    {{ $v.process.description.$params.minLength.min }}
-                    characters.
                   </p>
                 </CCol>
               </CRow>
@@ -53,14 +32,14 @@
                   <CInput
                     label="Label"
                     placeholder="Label"
-                    v-model="process.label"
+                    v-model="step.label"
                   />
-                  <p class="error" v-if="!$v.process.label.required">
+                  <p class="error" v-if="!$v.step.label.required">
                     This field is required
                   </p>
-                  <p class="error" v-if="!$v.process.label.minLength">
+                  <p class="error" v-if="!$v.step.label.minLength">
                     Field must have at least
-                    {{ $v.process.label.$params.minLength.min }}
+                    {{ $v.step.label.$params.minLength.min }}
                     characters.
                   </p>
                 </CCol>
@@ -68,16 +47,16 @@
               <CRow>
                 <CCol sm="9">
                   <CInput
-                    label="Organization"
-                    placeholder="Organization"
-                    v-model="process.organization"
+                    label="Description"
+                    placeholder="Description"
+                    v-model="step.descr"
                   />
-                  <p class="error" v-if="!$v.process.organization.required">
+                  <p class="error" v-if="!$v.step.descr.required">
                     This field is required
                   </p>
-                  <p class="error" v-if="!$v.process.organization.minLength">
+                  <p class="error" v-if="!$v.step.descr.minLength">
                     Field must have at least
-                    {{ $v.process.organization.$params.minLength.min }}
+                    {{ $v.step.descr.$params.minLength.min }}
                     characters.
                   </p>
                 </CCol>
@@ -94,7 +73,7 @@
                   @click.prevent="handleSubmit"
                   >Update</CButton
                 >
-                <CButton @click="goBusinessProcessList()">Cancel</CButton>
+                <CButton @click="goProcessStepList()">Cancel</CButton>
               </CCol>
             </CRow>
           </CCardFooter>
@@ -117,13 +96,11 @@ export default {
       errore: false,
       formTouched: false,
       empty: true,
-      process: {
+      step: {
         name: "",
-        description: "",
         label: "",
-        organization: ""
-      },
-      errors: []
+        descr: ""
+      }
     };
   },
   validations: {
@@ -137,39 +114,35 @@ export default {
           );
         }
       },
-      description: {
-        required,
-        minLength: minLength(4)
-      },
       label: {
         required,
         minLength: minLength(4)
       },
-      organization: {
+      descr: {
         required,
         minLength: minLength(4)
       }
     }
   },
   created() {
-    axiosIs2.get("/processes/" + this.$route.params.id).then(response => {
+    axiosIs2.get("/process_steps/" + this.$route.params.id).then(response => {
       console.log(response);
-      this.process = response.data;
+      this.step = response.data;
     });
   },
   methods: {
     updateBusinessProcess() {
-      this.$store.dispatch("businessProcess/update", this.process);
+      this.$store.dispatch("ProcessStep/update", this.step);
     },
-    goBusinessProcessList() {
-      this.$router.push("/catalogue/process");
+    goProcessStepList() {
+      this.$router.push("/catalogue/processstep");
     },
     handleSubmit() {
-      this.formTouched = !this.$v.process.$anyDirty;
-      this.errore = this.$v.process.$invalid;
+      this.formTouched = !this.$v.step.$anyDirty;
+      this.errore = this.$v.step.$invalid;
 
       if (this.errore === false) {
-        this.$store.dispatch("businessProcess/update", this.process);
+        this.$store.dispatch("ProcessSteps/update", this.step);
 
         this.uiState = "form submitted";
 
