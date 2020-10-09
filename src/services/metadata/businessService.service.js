@@ -15,7 +15,7 @@ export const businessServiceService = {
 
 function findAll() {
   return new Promise((resolve, reject) => {
-    axiosIs2.get("/referential/statistical/programs?language=en").then(
+    axiosIs2.get("/services/").then(
       response => {
         var data = response.data ? util.mapKeysToLower(response.data) : [];
         console.log(data);

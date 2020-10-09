@@ -23,25 +23,13 @@
             pagination
           >
             <template #show_update="{item}">
-              <td class="py-2">
-                <CButton
-                  color="primary"
-                  square
-                  size="sm"
-                  @click="editService(item)"
-                  >Modifica</CButton
-                >
+              <td>
+                <a href="#" @click="editService(item)"><edit-icon /></a>
               </td>
             </template>
             <template #show_delete="{item}">
-              <td class="py-2">
-                <CButton
-                  color="primary"
-                  square
-                  size="sm"
-                  @click="deleteService(item)"
-                  >Elimina</CButton
-                >
+              <td>
+                <a href="#" @click="modalOpen(item)"><delete-icon /></a>
               </td>
             </template>
           </CDataTable>
@@ -50,22 +38,25 @@
     </div>
     <CModal title="Attenzione!" color="warning" :show.sync="warningModal">
       <template #footer>
-        <button class="btn btn-secondary" @click="onWarningModalCloseClick()">
-          Annulla
-        </button>
-        <button
-          class="btn btn-warning"
-          @click="onWarningModalSubmitClick(globalItem)"
+        <CButton shape="square" size="sm" color="primary" @click="modalClose()">
+          Close
+        </CButton>
+        <CButton
+          shape="square"
+          size="sm"
+          color="primary"
+          @click="deleteService()"
         >
-          Conferma
-        </button>
+          Delete
+        </CButton>
       </template>
       Sei sicuro di voler eliminare il servizio?
     </CModal>
   </div>
 </template>
 <script>
-import { axiosIs2 } from "@/http";
+//import { axiosIs2 } from "@/http";
+import { mapGetters } from "vuex";
 export default {
   name: "servicelist",
   data() {
@@ -94,48 +85,31 @@ export default {
       ]
     };
   },
+  computed: {
+    ...mapGetters("businessService", ["businessServices"]),
+    ...mapGetters("businessService", ["businessService"])
+  },
   created() {
-    axiosIs2.get("/services").then(response => {
-      console.log(response);
-      this.services = response.data;
-    });
+    this.$store.dispatch("businessService/findAll");
   },
   methods: {
-    deleteService(item) {
-      //var index = this.services.indexOf(item);
-      this.globalItem = item;
-      this.warningModal = true;
-      //this.services.splice(index, 1);
-      /*axiosIs2.delete("/services/" + this.services[index].id).then(response => {
-        console.log(response);
-      });
-      axiosIs2.get("/services").then(response => {
-        console.log(response);
-        this.services = response.data;
-      });*/
+    deleteService() {           
+      this.$store.dispatch("businessService/delete", this.selectedService.id);
+      this.warningModal = false;      
     },
-
     editService(item) {
       // eslint-disable-next-line no-redeclare
       var index = this.services.indexOf(item);
       // this.services.splice(index, 1);
       this.$router.push("/catalogue/service/edit/" + this.services[index].id);
     },
-    onWarningModalCloseClick() {
-      this.warningModal = false;
+    modalOpen(service) {
+      this.selectedService = service;
+      this.warningModal = true;
     },
-    onWarningModalSubmitClick(item) {
-      console.log("Clicked on proceed" + item);
-      this.$store.dispatch("businessService/delete", item.id);
+    modalClose() {
       this.warningModal = false;
     }
-    /*handleDelete(item) {
-      console.log(item);
-      // Trigger an Alert dialog
-      this.$dialog.alert("Request completed!").then(function() {
-        console.log("Closed");
-      });
-    }*/
   }
 };
 </script>
