@@ -1,157 +1,106 @@
 <template>
   <div class="row">
-    <div class="col-sm-12 col-md-12">
+    <div class="col-sm-12 col-md-6">
       <div class="card">
         <header class="card-header">Edit Process</header>
         <CCardBody>
-          <div>
-            <CRow>
-              <CCol sm="9">
-                <CInput
-                  label="Name"
-                  placeholder="Name"
-                  v-model="process.name"
-                />
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.name.required && uiState === 'form submitted'
-                  "
-                >
-                  This field is required
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.name.minLength && uiState === 'form submitted'
-                  "
-                >
-                  Field must have at least
-                  {{ $v.process.name.$params.minLength.min }}
-                  characters.
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.name.checkName && uiState === 'form submitted'
-                  "
-                >
-                  invalid character in field name.
-                </p>
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="9">
-                <CInput
-                  label="Description"
-                  placeholder="Description"
-                  v-model="process.description"
-                />
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.description.required &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  This field is required
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.description.minLength &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  Field must have at least
-                  {{ $v.process.description.$params.minLength.min }}
-                  characters.
-                </p>
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="9">
-                <CInput
-                  label="Label"
-                  placeholder="Label"
-                  v-model="process.label"
-                />
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.label.required && uiState === 'form submitted'
-                  "
-                >
-                  This field is required
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.label.minLength && uiState === 'form submitted'
-                  "
-                >
-                  Field must have at least
-                  {{ $v.process.label.$params.minLength.min }}
-                  characters.
-                </p>
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="9">
-                <CInput
-                  label="Organization"
-                  placeholder="Organization"
-                  v-model="process.organization"
-                />
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.organization.required &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  This field is required
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.process.organization.minLength &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  Field must have at least
-                  {{ $v.process.organization.$params.minLength.min }}
-                  characters.
-                </p>
-              </CCol>
-            </CRow>
-          </div>
+          <CInput label="Name" placeholder="Name" v-model="process.name" />
+          <p
+            class="error"
+            v-if="!$v.process.name.required && uiState === 'FORM_SUBMITTED'"
+          >
+            This field is required
+          </p>
+          <p
+            class="error"
+            v-if="!$v.process.name.minLength && uiState === 'FORM_SUBMITTED'"
+          >
+            Field must have at least
+            {{ $v.process.name.$params.minLength.min }}
+            characters.
+          </p>
+          <CInput
+            label="Description"
+            placeholder="Description"
+            v-model="process.description"
+          />
+          <p
+            class="error"
+            v-if="
+              !$v.process.description.required && uiState === 'FORM_SUBMITTED'
+            "
+          >
+            This field is required
+          </p>
+          <p
+            class="error"
+            v-if="
+              !$v.process.description.minLength && uiState === 'FORM_SUBMITTED'
+            "
+          >
+            Field must have at least
+            {{ $v.process.description.$params.minLength.min }}
+            characters.
+          </p>
+          <CInput label="Label" placeholder="Label" v-model="process.label" />
+          <p
+            class="error"
+            v-if="!$v.process.label.required && uiState === 'FORM_SUBMITTED'"
+          >
+            This field is required
+          </p>
+          <p
+            class="error"
+            v-if="!$v.process.label.minLength && uiState === 'FORM_SUBMITTED'"
+          >
+            Field must have at least
+            {{ $v.process.label.$params.minLength.min }}
+            characters.
+          </p>
+          <CInput
+            label="Organization"
+            placeholder="Organization"
+            v-model="process.organization"
+          />
+          <p
+            class="error"
+            v-if="
+              !$v.process.organization.required && uiState === 'FORM_SUBMITTED'
+            "
+          >
+            This field is required
+          </p>
+          <p
+            class="error"
+            v-if="
+              !$v.process.organization.minLength && uiState === 'FORM_SUBMITTED'
+            "
+          >
+            Field must have at least
+            {{ $v.process.organization.$params.minLength.min }}
+            characters.
+          </p>
         </CCardBody>
         <CCardFooter>
-          <CRow class="d-flex justify-content-middle">
-            <CCol sm="9">
-              <CButton
-                color="primary"
-                type="submit"
-                value="Submit"
-                @click.prevent="handleSubmit"
-                >Save</CButton
-              >
-              <CButton @click="goBusinessProcessList()">Cancel</CButton>
-            </CCol>
-          </CRow>
+          <CButton
+            shape="square"
+            size="sm"
+            color="primary"
+            style="margin-right:0.3rem"
+            @click.prevent="handleSubmit"
+            >Save</CButton
+          >
+          <CButton shape="square" size="sm" color="light" @click="goBack"
+            >Back</CButton
+          >
         </CCardFooter>
       </div>
     </div>
   </div>
 </template>
 <script>
-// eslint-disable-next-line no-unused-vars
-import { axiosIs2 } from "@/http";
-// eslint-disable-next-line no-unused-vars
-import { required, minLength, between } from "vuelidate/lib/validators";
-/* const querystring = require("querystring"); */
-import { config } from "@/common";
+import { required, minLength } from "vuelidate/lib/validators";
+
 export default {
   name: "ProcessNew",
   data() {
@@ -174,43 +123,33 @@ export default {
       id: {},
       name: {
         required,
-        minLength: minLength(4),
-        checkName(name) {
-          return (
-            /[a-z]/.test(name) && !/[0-9]/.test(name) // checks for a-z
-          );
-        }
+        minLength: minLength(3)
       },
       description: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(3)
       },
       label: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(3)
       },
       organization: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(3)
       }
     }
   },
-
   methods: {
+    goBack() {
+      this.$router.push("/catalogue/process");
+    },
     handleSubmit() {
       this.formTouched = !this.$v.process.$anyDirty;
       this.errore = this.$v.process.$invalid;
-      this.uiState = "form submitted";
+      this.uiState = "FORM_SUBMITTED";
+
       if (this.errore === false) {
-        this.$store
-          .dispatch("businessProcess/save", this.process, config)
-          .then(response => {
-            console.log(response);
-            /* this.$router.push("/catalogue/process"); */
-          });
-
-        //this is where you send the responses
-
+        this.$store.dispatch("businessProcess/save", this.process);
         return true;
       }
     }

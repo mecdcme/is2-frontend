@@ -1,8 +1,8 @@
 <template>
-  <div class="c-subheader-nav mfe-2" v-if="isReferential">
+  <div class="c-subheader-nav mfe-2" v-if="isProcess">
     <router-link
       tag="a"
-      to="/metadata/referential/gsim"
+      to="/catalogue/processstep"
       class="c-subheader-nav-link"
     >
       <gsim-icon />
@@ -16,7 +16,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters("coreui", ["isReferential"])
+    ...mapGetters("coreui", ["isProcess"])
   },
   watch: {
     $route(to) {

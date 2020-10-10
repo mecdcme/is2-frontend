@@ -12,7 +12,12 @@
 
     <ul class="c-sidebar-nav h-100 ps" style="position: relative;">
       <li class="c-sidebar-nav-item">
-        <router-link tag="a" :to="{ name: 'Home' }" class="c-sidebar-nav-link">
+        <router-link
+          tag="a"
+          :to="{ name: 'Home' }"
+          class="c-sidebar-nav-link"
+          :class="{ 'c-active': isHome }"
+        >
           <CIcon name="cil-home" class="c-sidebar-nav-icon" />Home
           <span class="badge badge-primary">Alpha</span>
         </router-link>
@@ -23,6 +28,7 @@
           tag="a"
           :to="{ name: 'BusinessServiceList' }"
           class="c-sidebar-nav-link"
+          :class="{ 'c-active': isService }"
         >
           <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Service
         </router-link>
@@ -32,6 +38,7 @@
           tag="a"
           :to="{ name: 'BusinessProcessList' }"
           class="c-sidebar-nav-link"
+          :class="{ 'c-active': isProcess }"
         >
           <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Process
         </router-link>
@@ -41,6 +48,7 @@
           tag="a"
           :to="{ name: 'WorkSessionList' }"
           class="c-sidebar-nav-link"
+          :class="{ 'c-active': isWorkSession }"
         >
           <CIcon name="cil-layers" class="c-sidebar-nav-icon" /> Session
         </router-link>
@@ -56,7 +64,11 @@ export default {
   computed: {
     ...mapGetters("coreui", {
       show: "sidebarShow",
-      minimize: "sidebarMinimize"
+      minimize: "sidebarMinimize",
+      isHome: "isHome",
+      isService: "isService",
+      isProcess: "isProcess",
+      isWorkSession: "isWorkSession"
     })
   }
 };

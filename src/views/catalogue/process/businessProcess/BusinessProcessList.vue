@@ -38,14 +38,14 @@
     </div>
     <CModal title="Warning!" :show.sync="warningModal">
       <template #footer>
-        <CButton shape="square" size="sm" color="primary" @click="modalClose()">
+        <CButton shape="square" size="sm" color="light" @click="modalClose">
           Close
         </CButton>
         <CButton
           shape="square"
           size="sm"
           color="primary"
-          @click="deleteProcess()"
+          @click="deleteProcess"
         >
           Delete
         </CButton>
@@ -56,6 +56,8 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import { Context } from "@/common";
+
 export default {
   name: "processlist",
   data() {
@@ -89,9 +91,6 @@ export default {
     ...mapGetters("businessProcess", ["businessProcesses"]),
     ...mapGetters("businessProcess", ["businessProcess"])
   },
-  created() {
-    this.$store.dispatch("businessProcess/findAll");
-  },
   methods: {
     editProcess(process) {
       this.$router.push("/catalogue/process/processedit/" + process.id);
@@ -107,17 +106,10 @@ export default {
       this.$store.dispatch("businessProcess/delete", this.selectedProcess.id);
       this.warningModal = false;
     }
+  },
+  created() {
+    this.$store.dispatch("coreui/setContext", Context.Process);
+    this.$store.dispatch("businessProcess/findAll");
   }
 };
 </script>
-
-<style>
-.card-header-actions {
-  margin-right: 0;
-}
-.card-header-actions .material-design-icon > .material-design-icon__svg {
-  width: 1.2rem;
-  height: 1.2rem;
-  bottom: auto;
-}
-</style>

@@ -28,7 +28,7 @@ function findAll() {
 
 function findById(id) {
   return new Promise((resolve, reject) => {
-    axiosIs2.get("/referential/statistical/standards/" + id).then(
+    axiosIs2.get("/processes/" + id).then(
       response => {
         var data = response.data ? util.mapKeysToLower(response.data) : null;
         console.log(data);

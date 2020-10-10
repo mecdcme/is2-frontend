@@ -24,7 +24,7 @@
       "id": 1,
       "name": "Prob",
       "description": "Probabilistic record linkage",
-      "label": "PRLo",
+      "label": "PRL",
       "organization": "Istatooo"
     },
     {
@@ -32,14 +32,14 @@
       "name": "Deterministic record linkage",
       "description": "Deterministic record linkage",
       "label": "DRLOOO",
-      "organization": "Istatgggg"
+      "organization": "Istat"
     },
     {
       "id": 3,
       "name": "Probabilistic record linkage with blocking",
       "description": "Probabilistic record linkage with blocking",
       "label": "PRLBlockELLO",
-      "organization": "Istatello"
+      "organization": "Istat"
     },
     {
       "id": 4,
@@ -81,215 +81,208 @@
   ],
   "business_functions": [
     {
-      "ID": 1,
-      "NAME": "Record Linkage",
-      "DESCR": "The purpose of record linkage is to identify the same real world entity that can be differently represented in data sources, even if unique identifiers are not available or are affected by errors.",
-      "LABEL": "RL",
-      "ACTIVE": 1
+      "id": 1,
+      "name": "Record Linkage",
+      "descr": "The purpose of record linkage is to identify the same real world entity that can be differently represented in data sources, even if unique identifiers are not available or are affected by errors.",
+      "label": "RL",
+      "active": 1
     },
     {
-      "ID": 2,
-      "NAME": "Data Editing",
-      "DESCR": "Data editing is the process of reviewing the data for consistency, detection of errors and outliers and correction of errors, in order to improve the quality, accuracy and adequacy of the data and make it suitable for the purpose for which it was collected.",
-      "LABEL": "EDIT",
-      "ACTIVE": 1
+      "id": 2,
+      "name": "Data Editing",
+      "descr": "Data editing is the process of reviewing the data for consistency, detection of errors and outliers and correction of errors, in order to improve the quality, accuracy and adequacy of the data and make it suitable for the purpose for which it was collected.",
+      "label": "EDIT",
+      "active": 1
     },
     {
-      "ID": 3,
-      "NAME": "Data Validation",
-      "DESCR": "Data validation is the process of ensuring data have undergone data cleansing to ensure they have data quality, that is, that they are both correct and useful. It uses routines, often called \"validation rules\", that check for correctness, meaningfulness, and security of data that are input to the system.",
-      "LABEL": "VALIDATE",
-      "ACTIVE": 1
+      "id": 3,
+      "name": "Data Validation",
+      "descr": "Data validation is the process of ensuring data have undergone data cleansing to ensure they have data quality, that is, that they are both correct and useful. It uses routines, often called \"validation rules\", that check for correctness, meaningfulness, and security of data that are input to the system.",
+      "label": "VALidATE",
+      "active": 1
     }
   ],
   "business_processes": [
     {
-      "ID": 1,
-      "NAME": "Probabilistic Record Linkage",
-      "DESCR": "Probabilistic Record Linkage",
-      "LABEL": "PRL",
+      "id": 1,
+      "name": "Probabilistic Record Linkage",
+      "descr": "Probabilistic Record Linkage",
+      "label": "PRL",
       "ORDER_CODE": 1,
-      "PARENT": null
+      "parent": null
     },
     {
-      "ID": 2,
-      "NAME": "Deterministic Record Linkage",
-      "DESCR": "Deterministic Record Linkage",
-      "LABEL": "DRL",
+      "id": 2,
+      "name": "Deterministic Record Linkage",
+      "descr": "Deterministic Record Linkage",
+      "label": "DRL",
       "ORDER_CODE": 2,
-      "PARENT": null
+      "parent": null
     },
     {
-      "ID": 3,
-      "NAME": "R data validation",
-      "DESCR": "R data validation",
-      "LABEL": "ValidateR",
+      "id": 3,
+      "name": "R data validation",
+      "descr": "R data validation",
+      "label": "ValidateR",
       "ORDER_CODE": 1,
-      "PARENT": null
+      "parent": null
     },
     {
-      "ID": 4,
-      "NAME": "Data validation Van der Loo",
-      "DESCR": "Data validation Van der Loo",
-      "LABEL": "VanDerLoo",
+      "id": 4,
+      "name": "Data validation Van der Loo",
+      "descr": "Data validation Van der Loo",
+      "label": "VanDerLoo",
       "ORDER_CODE": 1,
-      "PARENT": 3
+      "parent": 3
     },
     {
-      "ID": 5,
-      "NAME": "Probabilistic Record Linkage MultiStep",
-      "DESCR": "Probabilistic Record Linkage MultiStep",
-      "LABEL": "PRL-MS",
+      "id": 5,
+      "name": "Probabilistic Record Linkage MultiStep",
+      "descr": "Probabilistic Record Linkage MultiStep",
+      "label": "PRL-MS",
       "ORDER_CODE": 3,
-      "PARENT": null
+      "parent": null
     },
     {
-      "ID": 6,
-      "NAME": "Probabilistic Record Linkage MultiStep",
-      "DESCR": "Probabilistic Record Linkage MultiStep",
-      "LABEL": "PRL-MS1",
+      "id": 6,
+      "name": "Probabilistic Record Linkage MultiStep",
+      "descr": "Probabilistic Record Linkage MultiStep",
+      "label": "PRL-MS1",
       "ORDER_CODE": 4,
-      "PARENT": 5
+      "parent": 5
     },
     {
-      "ID": 70,
-      "NAME": "Contingency Table",
-      "DESCR": "Calculate contingency table",
-      "LABEL": "CrossTable",
+      "id": 70,
+      "name": "Contingency Table",
+      "descr": "Calculate contingency table",
+      "label": "CrossTable",
       "ORDER_CODE": 1,
-      "PARENT": 1
+      "parent": 1
     },
     {
-      "ID": 71,
-      "NAME": "Fellegi Sunter",
-      "DESCR": "Fellegi Sunter algorithm",
-      "LABEL": "FellegiSunter",
+      "id": 71,
+      "name": "Fellegi Sunter",
+      "descr": "Fellegi Sunter algorithm",
+      "label": "FellegiSunter",
       "ORDER_CODE": 2,
-      "PARENT": 1
+      "parent": 1
     },
     {
-      "ID": 72,
-      "NAME": "Matching Table",
-      "DESCR": "Matching records",
-      "LABEL": "MatchingTable",
+      "id": 72,
+      "name": "Matching Table",
+      "descr": "Matching records",
+      "label": "MatchingTable",
       "ORDER_CODE": 3,
-      "PARENT": 1
+      "parent": 1
     },
     {
-      "ID": 80,
-      "NAME": "Selezione errori influenti",
-      "DESCR": "Esegue la stima, predizione e valuta gli errori influenti in due processi successivi",
-      "LABEL": "Selezione2P",
+      "id": 80,
+      "name": "Selezione errori influenti",
+      "descr": "Esegue la stima, predizione e valuta gli errori influenti in due processi successivi",
+      "label": "Selezione2P",
       "ORDER_CODE": 1,
-      "PARENT": null
+      "parent": null
     },
     {
-      "ID": 110,
-      "NAME": "Stima e predizione modello",
-      "DESCR": "Escuzione del processo di stima e predizione del modello",
-      "LABEL": "Estimates",
+      "id": 110,
+      "name": "Stima e predizione modello",
+      "descr": "Escuzione del processo di stima e predizione del modello",
+      "label": "Estimates",
       "ORDER_CODE": 1,
-      "PARENT": 80
+      "parent": 80
     },
     {
-      "ID": 130,
-      "NAME": "Identificazione errori influenti",
-      "DESCR": "Esecuzione del processo di identificazione errori influenti",
-      "LABEL": "Selection",
+      "id": 130,
+      "name": "Identificazione errori influenti",
+      "descr": "Esecuzione del processo di identificazione errori influenti",
+      "label": "Selection",
       "ORDER_CODE": 2,
-      "PARENT": 80
+      "parent": 80
     }
   ],
   "business_services": [
     {
-      "ID": 100,
-      "NAME": "Selective editing",
-      "DESCR": "Selective editing is a general approach for the detection of influential errors. It is based on the idea of looking for influential errors with respect to the main results in order to focus the most accurate treatment on the corresponding subset of units to limit the costs of interactive editing, while maintaining the desired level of quality of estimates [GSDEM 2.0]",
-      "GSBPM_PROCESS_ID": 53
+      "id": 100,
+      "name": "Selective editing",
+      "descr": "Selective editing is a general approach for the detection of influential errors. It is based on the idea of looking for influential errors with respect to the main results in order to focus the most accurate treatment on the corresponding subset of units to limit the costs of interactive editing, while maintaining the desired level of quality of estimates [GSDEM 2.0]",
+      "gsbpm_process_id": 53
     },
     {
-      "ID": 200,
-      "NAME": "Record linkage",
-      "DESCR": "The purpose of record linkage is to identify the same real world entity that can be differently represented in data sources, even if unique identifiers are not available or are affected by errors.",
-      "GSBPM_PROCESS_ID": 51
+      "id": 200,
+      "name": "Record linkage",
+      "descr": "The purpose of record linkage is to identify the same real world entity that can be differently represented in data sources, even if unique identifiers are not available or are affected by errors.",
+      "gsbpm_process_id": 51
     },
     {
-      "ID": 300,
-      "NAME": "Data validation",
-      "DESCR": "An activity aimed at verifying whether the value of a data item comes from the given (finite or infinite) set of acceptable values [OECD]",
-      "GSBPM_PROCESS_ID": 53
+      "id": 300,
+      "name": "Data validation",
+      "descr": "An activity aimed at verifying whether the value of a data item comes from the given (finite or infinite) set of acceptable values [OECD]",
+      "gsbpm_process_id": 53
     }
   ],
   "process_steps": [
     {
-      "ID": 4,
-      "NAME": "VALIDATE",
-      "LABEL": "VALIDATE",
-      "DESCR": "Validate dataset with ruleset",
-      "BUSINESS_SERVICE_ID": 300
+      "id": 10,
+      "name": "MLEST",
+      "label": "MLEST",
+      "descr": "This function performs the maximum likelihood estimates of the parameters of a contamination model by ECM algorithm and it provides the expected values of the \"true\" data for all units that were used for the estimation",
+      "business_service_id": "100"
     },
     {
-      "ID": 10,
-      "NAME": "MLEST",
-      "LABEL": "MLEST",
-      "DESCR": "This function performs the maximum likelihood estimates of the parameters of a contamination model by ECM algorithm and it provides the expected values of the \"true\" data for all units that were used for the estimation",
-      "BUSINESS_SERVICE_ID": 100
+      "id": 15,
+      "name": "MLEST_STRATA",
+      "label": "MLEST_STRATA",
+      "descr": "MLEST with stratification",
+      "business_service_id": 100
     },
     {
-      "ID": 15,
-      "NAME": "MLEST_STRATA",
-      "LABEL": "MLEST_STRATA",
-      "DESCR": "MLEST with stratification",
-      "BUSINESS_SERVICE_ID": 100
+      "id": 20,
+      "name": "PREDY",
+      "label": "PREDY",
+      "descr": "On the basis of a set of contamination model parameters, and a set of observed data, it calculates the expected values of the corresponding real data. Missing values for the variables response as well as are allowed, but not for covariates",
+      "business_service_id": 100
     },
     {
-      "ID": 20,
-      "NAME": "PREDY",
-      "LABEL": "PREDY",
-      "DESCR": "On the basis of a set of contamination model parameters, and a set of observed data, it calculates the expected values of the corresponding real data. Missing values for the variables response as well as are allowed, but not for covariates",
-      "BUSINESS_SERVICE_ID": 100
+      "id": 25,
+      "name": "PREDY_STRATA",
+      "label": "PREDY_STRATA",
+      "descr": "PREDY with stratification",
+      "business_service_id": 100
     },
     {
-      "ID": 25,
-      "NAME": "PREDY_STRATA",
-      "LABEL": "PREDY_STRATA",
-      "DESCR": "PREDY with stratification",
-      "BUSINESS_SERVICE_ID": 100
+      "id": 30,
+      "name": "SELEDIT",
+      "label": "SELEDIT",
+      "descr": "This function performs Selective Editing. On the basis of a set of observed data and the corresponding predictions for the true data, it selects the units required for interactive editing",
+      "business_service_id": 100
     },
     {
-      "ID": 30,
-      "NAME": "SELEDIT",
-      "LABEL": "SELEDIT",
-      "DESCR": "This function performs Selective Editing. On the basis of a set of observed data and the corresponding predictions for the true data, it selects the units required for interactive editing",
-      "BUSINESS_SERVICE_ID": 100
+      "id": 35,
+      "name": "SELEDIT_STRATA",
+      "label": "SELEDIT_STRATA",
+      "descr": "SELEDIT with stratification",
+      "business_service_id": 100
     },
     {
-      "ID": 35,
-      "NAME": "SELEDIT_STRATA",
-      "LABEL": "SELEDIT_STRATA",
-      "DESCR": "SELEDIT with stratification",
-      "BUSINESS_SERVICE_ID": 100
+      "id": 70,
+      "name": "CONTINGENCY_TABLE",
+      "label": "CONTINGENCY_TABLE",
+      "descr": "The first step of the probabilistic procedure consists of computing the comparison vector, given by the result of the function on the k matching variables, for all the pairs in the space. Indeed, starting from the vector distribution among the pairs (reported in the contingency table) the goal is the estimation of the probability distribution of the unknown random variable “link status”, which assigns each pair to the set M or to the set U. The comparison vector considered in RELAIS is a binary one, i.e. for each matching variable it reports the equality (corresponding to value 1) or the inequality (corresponding to value 0) between the units.",
+      "business_service_id": 200
     },
     {
-      "ID": 70,
-      "NAME": "CONTINGENCY_TABLE",
-      "LABEL": "CONTINGENCY_TABLE",
-      "DESCR": "The first step of the probabilistic procedure consists of computing the comparison vector, given by the result of the function on the k matching variables, for all the pairs in the space. Indeed, starting from the vector distribution among the pairs (reported in the contingency table) the goal is the estimation of the probability distribution of the unknown random variable “link status”, which assigns each pair to the set M or to the set U. The comparison vector considered in RELAIS is a binary one, i.e. for each matching variable it reports the equality (corresponding to value 1) or the inequality (corresponding to value 0) between the units.",
-      "BUSINESS_SERVICE_ID": 200
+      "id": 71,
+      "name": "FELLEGI_SUNTER",
+      "label": "FELLEGI_SUNTER",
+      "descr": "The Fellegi and Sunter method is a probabilistic approach to solve record linkage problem based on decision model.  According to the method, given two (or more) sources of data, all pairs coming from the Cartesian product of the two sources has to be classified in three independent and mutually exclusive subsets: the set of matches, the set of non-matches and the set of pairs requiring manual review. In order to classify the pairs, the comparisons on common attributes are used to estimate for each pair the probabilities to belong to both the set of matches and the set of non-matches. The pair classification criteria is based on the ratio between such conditional probabilities. The decision model aims to minimize both the misclassification errors and the probability of classifying a pair as belonging to the subset of pairs requiring manual review",
+      "business_service_id": 200
     },
     {
-      "ID": 71,
-      "NAME": "FELLEGI_SUNTER",
-      "LABEL": "FELLEGI_SUNTER",
-      "DESCR": "The Fellegi and Sunter method is a probabilistic approach to solve record linkage problem based on decision model.  According to the method, given two (or more) sources of data, all pairs coming from the Cartesian product of the two sources has to be classified in three independent and mutually exclusive subsets: the set of matches, the set of non-matches and the set of pairs requiring manual review. In order to classify the pairs, the comparisons on common attributes are used to estimate for each pair the probabilities to belong to both the set of matches and the set of non-matches. The pair classification criteria is based on the ratio between such conditional probabilities. The decision model aims to minimize both the misclassification errors and the probability of classifying a pair as belonging to the subset of pairs requiring manual review",
-      "BUSINESS_SERVICE_ID": 200
-    },
-    {
-      "ID": 72,
-      "NAME": "MATCHING_TABLE",
-      "LABEL": "MATCHING_TABLE",
-      "DESCR": "Create result matching table",
-      "BUSINESS_SERVICE_ID": 200
+      "id": 72,
+      "name": "MATCHING_TABLE",
+      "label": "MATCHING_TABLE",
+      "descr": "Create result matching table",
+      "business_service_id": 200
     }
   ]
 }

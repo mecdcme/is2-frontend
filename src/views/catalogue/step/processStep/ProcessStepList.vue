@@ -24,7 +24,7 @@
           >
             <template #show_update="{item}">
               <td>
-                <a href="#" @click="editProcessStep(item)"><edit-icon /></a>
+                <a href="#" @click="editStep(item)"><edit-icon /></a>
               </td>
             </template>
             <template #show_delete="{item}">
@@ -36,37 +36,33 @@
         </CCardBody>
       </div>
     </div>
-    <CModal title="Attenzione!" color="warning" :show.sync="warningModal">
+    <CModal title="Warning!" :show.sync="warningModal">
       <template #footer>
-        <button class="btn btn-secondary" @click="onWarningModalCloseClick()">
-          Annulla
-        </button>
-        <button
-          class="btn btn-warning"
-          @click="onWarningModalSubmitClick(globalItem)"
-        >
-          Conferma
-        </button>
+        <CButton shape="square" size="sm" color="light" @click="modalClose">
+          Close
+        </CButton>
+        <CButton shape="square" size="sm" color="primary" @click="deleteStep">
+          Delete
+        </CButton>
       </template>
-      Sei sicuro di voler eliminare il processo?
+      Delete process '{{ selectedProcessStep.name }}'?
     </CModal>
   </div>
 </template>
 <script>
-// import { axiosIs2 } from "@/http";
 import { mapGetters } from "vuex";
+
 export default {
   name: "processStepList",
   data() {
     return {
       selectedProcessStep: {},
-      globalItem: [],
       warningModal: false,
       fields: [
         { key: "id", _style: "width:5%" },
-        { key: "name", _style: "width:15%" },
-        { key: "label", _style: "width:20%;" },
-        { key: "descr", _style: "width:15%;" },
+        { key: "name", _style: "width:10%" },
+        { key: "label", _style: "width:10%;" },
+        { key: "descr", _style: "width:25%;" },
         /* { key: "organization", _style: "width:10%;" }, */
         {
           key: "show_update",
@@ -93,32 +89,20 @@ export default {
     this.$store.dispatch("processStep/findAll");
   },
   methods: {
-    editProcessStep(item) {
-      this.$router.push("/catalogue/step/processstepedit/" + item.id);
+    editStep(step) {
+      this.$router.push("/catalogue/step/processstepedit/" + step.id);
     },
     modalOpen(step) {
       this.selectedProcessStep = step;
       this.warningModal = true;
     },
-    onWarningModalCloseClick() {
+    modalClose() {
       this.warningModal = false;
     },
-    onWarningModalSubmitClick(item) {
-      console.log("Clicked on proceed" + item);
+    deleteStep() {
       this.$store.dispatch("processStep/delete", this.selectedProcessStep.id);
       this.warningModal = false;
     }
   }
 };
 </script>
-
-<style>
-.card-header-actions {
-  margin-right: 0;
-}
-.card-header-actions .material-design-icon > .material-design-icon__svg {
-  width: 1.2rem;
-  height: 1.2rem;
-  bottom: auto;
-}
-</style>

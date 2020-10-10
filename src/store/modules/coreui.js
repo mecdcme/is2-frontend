@@ -5,9 +5,10 @@ const state = {
   sidebarMinimize: false,
   context: "",
   isLoading: false,
-  isReferential: false,
-  isStructural: false,
+  isHome: false,
+  isService: false,
   isProcess: false,
+  isWorkSession: false,
   breadcrumbs: [
     {
       path: "metadata",
@@ -31,24 +32,26 @@ const mutations = {
   SET_CONTEXT(state, context) {
     state.context = context;
     switch (context) {
-      case Context.Referential:
-        state.isReferential = true;
-        break;
-      case Context.Structural:
-        state.isStructural = true;
+      case Context.Service:
+        state.isService = true;
         break;
       case Context.Process:
         state.isProcess = true;
         break;
+      case Context.WorkSession:
+        state.isWorkSession = true;
+        break;
       default:
+        state.isHome = true;
         break;
     }
   },
   CLEAR_CONTEXT(state) {
     state.context = "";
-    state.isReferential = false;
+    state.isHome = false;
+    state.isService = false;
     state.isProcess = false;
-    state.isStructural = false;
+    state.isWorksession = false;
   },
   CREATE_BREADCRUMBS(state, breadcrumbs) {
     state.breadcrumbs = breadcrumbs;
@@ -69,6 +72,7 @@ const actions = {
     commit("SET_CONTEXT", isLoading);
   },
   setContext({ commit }, context) {
+    commit("CLEAR_CONTEXT");
     commit("SET_CONTEXT", context);
   },
   clearContext({ commit }) {
@@ -114,14 +118,17 @@ const getters = {
   isLoading: state => {
     return state.isLoading;
   },
-  isReferential: state => {
-    return state.isReferential;
+  isHome: state => {
+    return state.isHome;
   },
-  isStructural: state => {
-    return state.isStructural;
+  isService: state => {
+    return state.isService;
   },
   isProcess: state => {
     return state.isProcess;
+  },
+  isWorkSession: state => {
+    return state.isWorkSession;
   },
   breadcrumbs: state => {
     return state.breadcrumbs;

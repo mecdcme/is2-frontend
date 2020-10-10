@@ -51,8 +51,13 @@
 </template>
 
 <script>
+import { Context } from "@/common";
+
 export default {
-  name: "Metadata"
+  name: "Metadata",
+  created() {
+    this.$store.dispatch("coreui/setContext", Context.Home);
+  }
 };
 </script>
 
