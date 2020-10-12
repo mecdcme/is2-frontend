@@ -1,6 +1,5 @@
 import { axiosIs2 } from "@/http";
 import { config } from "@/common";
-import { util } from "../../common";
 
 const querystring = require("querystring");
 export const businessProcessService = {
@@ -15,8 +14,8 @@ function findAll() {
   return new Promise((resolve, reject) => {
     axiosIs2.get("/processes").then(
       response => {
-        var data = response.data ? util.mapKeysToLower(response.data) : [];
-        console.log(data);
+        var data = response.data ? response.data : [];
+        //console.log(data);
         resolve(data);
       },
       error => {
@@ -30,8 +29,8 @@ function findById(id) {
   return new Promise((resolve, reject) => {
     axiosIs2.get("/processes/" + id).then(
       response => {
-        var data = response.data ? util.mapKeysToLower(response.data) : null;
-        console.log(data);
+        var data = response.data ? response.data : {};
+        //console.log(data);
         resolve(data);
       },
       error => {
@@ -43,16 +42,10 @@ function findById(id) {
 
 function save(formData) {
   return new Promise((resolve, reject) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    };
-
     axiosIs2.post("/processes", querystring.stringify(formData), config).then(
       response => {
-        var data = response.data ? util.mapKeysToLower(response.data) : null;
-        console.log(data);
+        var data = response.data ? response.data : {};
+        //console.log(data);
         resolve(data);
       },
       error => {
@@ -68,8 +61,8 @@ function update(formData) {
       .put("/processes/" + formData.id, querystring.stringify(formData), config)
       .then(
         response => {
-          var data = response.data ? util.mapKeysToLower(response.data) : null;
-          console.log(data);
+          var data = response.data ? response.data : {};
+          //console.log(data);
           resolve(data);
         },
         error => {
@@ -83,8 +76,8 @@ function _delete(id) {
   return new Promise((resolve, reject) => {
     axiosIs2.delete("/processes/" + id).then(
       response => {
-        var data = response.data ? util.mapKeysToLower(response.data) : null;
-        console.log(data);
+        var data = response.data ? response.data : {};
+        //console.log(data);
         resolve(data);
       },
       error => {

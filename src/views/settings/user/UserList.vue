@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-sm-6 col-md-6">
+    <div class="col-sm-12 col-md-12">
       <div class="card ">
         <header class="card-header">
           Users
@@ -83,9 +83,6 @@ export default {
   computed: {
     ...mapGetters("user", ["users"])
   },
-  created() {
-    this.$store.dispatch("user/findAll");
-  },
   methods: {
     userDelete(id) {
       this.$router.push("/settings/users/UserDelete/" + id);
@@ -96,6 +93,9 @@ export default {
     userAdd() {
       this.$router.push("/settings/users/UserAdd/");
     }
+  },
+  created() {
+    this.$store.dispatch("user/findAll");
   }
 };
 </script>

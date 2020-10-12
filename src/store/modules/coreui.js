@@ -32,6 +32,9 @@ const mutations = {
   SET_CONTEXT(state, context) {
     state.context = context;
     switch (context) {
+      case Context.Home:
+        state.isHome = true;
+        break;
       case Context.Service:
         state.isService = true;
         break;
@@ -42,7 +45,6 @@ const mutations = {
         state.isWorkSession = true;
         break;
       default:
-        state.isHome = true;
         break;
     }
   },
@@ -51,13 +53,10 @@ const mutations = {
     state.isHome = false;
     state.isService = false;
     state.isProcess = false;
-    state.isWorksession = false;
+    state.isWorkSession = false;
   },
   CREATE_BREADCRUMBS(state, breadcrumbs) {
     state.breadcrumbs = breadcrumbs;
-  },
-  set(state, [variable, value]) {
-    state[variable] = value;
   }
 };
 

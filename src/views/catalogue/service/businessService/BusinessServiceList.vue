@@ -54,9 +54,11 @@
     </CModal>
   </div>
 </template>
+
 <script>
-//import { axiosIs2 } from "@/http";
 import { mapGetters } from "vuex";
+import { Context } from "@/common";
+
 export default {
   name: "servicelist",
   data() {
@@ -89,13 +91,10 @@ export default {
     ...mapGetters("businessService", ["businessServices"]),
     ...mapGetters("businessService", ["businessService"])
   },
-  created() {
-    this.$store.dispatch("businessService/findAll");
-  },
   methods: {
-    deleteService() {           
+    deleteService() {
       this.$store.dispatch("businessService/delete", this.selectedService.id);
-      this.warningModal = false;      
+      this.warningModal = false;
     },
     editService(item) {
       // eslint-disable-next-line no-redeclare
@@ -110,17 +109,10 @@ export default {
     modalClose() {
       this.warningModal = false;
     }
+  },
+  created() {
+    this.$store.dispatch("businessService/findAll");
+    this.$store.dispatch("coreui/setContext", Context.Service);
   }
 };
 </script>
-
-<style>
-.card-header-actions {
-  margin-right: 0;
-}
-.card-header-actions .material-design-icon > .material-design-icon__svg {
-  width: 1.2rem;
-  height: 1.2rem;
-  bottom: auto;
-}
-</style>

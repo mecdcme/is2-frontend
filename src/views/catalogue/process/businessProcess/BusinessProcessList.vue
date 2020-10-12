@@ -24,7 +24,7 @@
           >
             <template #show_update="{item}">
               <td>
-                <a href="#" @click="editProcess(item)"><edit-icon /></a>
+                <a href="#" @click="processEdit(item)"><edit-icon /></a>
               </td>
             </template>
             <template #show_delete="{item}">
@@ -45,7 +45,7 @@
           shape="square"
           size="sm"
           color="primary"
-          @click="deleteProcess"
+          @click="processDelete"
         >
           Delete
         </CButton>
@@ -92,18 +92,18 @@ export default {
     ...mapGetters("businessProcess", ["businessProcess"])
   },
   methods: {
-    editProcess(process) {
+    processEdit(process) {
       this.$router.push("/catalogue/process/processedit/" + process.id);
+    },
+    processDelete() {
+      this.$store.dispatch("businessProcess/delete", this.selectedProcess.id);
+      this.warningModal = false;
     },
     modalOpen(process) {
       this.selectedProcess = process;
       this.warningModal = true;
     },
     modalClose() {
-      this.warningModal = false;
-    },
-    deleteProcess() {
-      this.$store.dispatch("businessProcess/delete", this.selectedProcess.id);
       this.warningModal = false;
     }
   },

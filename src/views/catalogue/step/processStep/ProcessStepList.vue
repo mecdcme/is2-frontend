@@ -24,7 +24,7 @@
           >
             <template #show_update="{item}">
               <td>
-                <a href="#" @click="editStep(item)"><edit-icon /></a>
+                <a href="#" @click="stepEdit(item)"><edit-icon /></a>
               </td>
             </template>
             <template #show_delete="{item}">
@@ -41,11 +41,11 @@
         <CButton shape="square" size="sm" color="light" @click="modalClose">
           Close
         </CButton>
-        <CButton shape="square" size="sm" color="primary" @click="deleteStep">
+        <CButton shape="square" size="sm" color="primary" @click="stepDelete">
           Delete
         </CButton>
       </template>
-      Delete process '{{ selectedProcessStep.name }}'?
+      Delete step '{{ selectedStep.name }}'?
     </CModal>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
   name: "processStepList",
   data() {
     return {
-      selectedProcessStep: {},
+      selectedStep: {},
       warningModal: false,
       fields: [
         { key: "id", _style: "width:5%" },
@@ -82,27 +82,26 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("processStep", ["processSteps"]),
-    ...mapGetters("processStep", ["processStep"])
-  },
-  created() {
-    this.$store.dispatch("processStep/findAll");
+    ...mapGetters("processStep", ["processSteps"])
   },
   methods: {
-    editStep(step) {
-      this.$router.push("/catalogue/step/processstepedit/" + step.id);
+    stepEdit(step) {
+      this.$router.push("/components/step/edit/" + step.id);
+    },
+    stepDelete() {
+      this.$store.dispatch("processStep/delete", this.selectedStep.id);
+      this.warningModal = false;
     },
     modalOpen(step) {
-      this.selectedProcessStep = step;
+      this.selectedStep = step;
       this.warningModal = true;
     },
     modalClose() {
       this.warningModal = false;
-    },
-    deleteStep() {
-      this.$store.dispatch("processStep/delete", this.selectedProcessStep.id);
-      this.warningModal = false;
     }
+  },
+  created() {
+    this.$store.dispatch("processStep/findAll");
   }
 };
 </script>

@@ -25,7 +25,7 @@
       "name": "Prob",
       "description": "Probabilistic record linkage",
       "label": "PRL",
-      "organization": "Istatooo"
+      "organization": "Istat"
     },
     {
       "id": 2,
@@ -38,7 +38,7 @@
       "id": 3,
       "name": "Probabilistic record linkage with blocking",
       "description": "Probabilistic record linkage with blocking",
-      "label": "PRLBlockELLO",
+      "label": "PRLblocking",
       "organization": "Istat"
     },
     {
@@ -283,6 +283,13 @@
       "label": "MATCHING_TABLE",
       "descr": "Create result matching table",
       "business_service_id": 200
+    },
+    {
+      "name": "ciao",
+      "label": "bello",
+      "descr": "de casetta2",
+      "business_service_id": "300",
+      "id": 73
     }
   ]
 }

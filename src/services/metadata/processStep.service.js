@@ -1,6 +1,5 @@
 import { axiosIs2 } from "@/http";
 import { config } from "@/common";
-import { util } from "../../common";
 
 const querystring = require("querystring");
 export const processStepService = {
@@ -15,8 +14,8 @@ function findAll() {
   return new Promise((resolve, reject) => {
     axiosIs2.get("/process_steps").then(
       response => {
-        var data = response.data ? util.mapKeysToLower(response.data) : [];
-        console.log(data);
+        var data = response.data ? response.data : [];
+        //console.log(data);
         resolve(data);
       },
       error => {
@@ -30,8 +29,8 @@ function findById(id) {
   return new Promise((resolve, reject) => {
     axiosIs2.get("/process_steps/" + id).then(
       response => {
-        var data = response.data ? util.mapKeysToLower(response.data) : null;
-        console.log(data);
+        var data = response.data ? response.data : {};
+        //console.log(data);
         resolve(data);
       },
       error => {
@@ -47,8 +46,8 @@ function save(formData) {
       .post("/process_steps", querystring.stringify(formData), config)
       .then(
         response => {
-          var data = response.data ? util.mapKeysToLower(response.data) : null;
-          console.log(data);
+          var data = response.data ? response.data : {};
+          //console.log(data);
           resolve(data);
         },
         error => {
@@ -68,8 +67,8 @@ function update(formData) {
       )
       .then(
         response => {
-          var data = response.data ? util.mapKeysToLower(response.data) : null;
-          console.log(data);
+          var data = response.data ? response.data : {};
+          //console.log(data);
           resolve(data);
         },
         error => {
@@ -83,8 +82,8 @@ function _delete(id) {
   return new Promise((resolve, reject) => {
     axiosIs2.delete("/process_steps/" + id).then(
       response => {
-        var data = response.data ? util.mapKeysToLower(response.data) : null;
-        console.log(data);
+        var data = response.data ? response.data : {};
+        //console.log(data);
         resolve(data);
       },
       error => {

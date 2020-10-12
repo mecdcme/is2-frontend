@@ -35,13 +35,18 @@
               name: 'UserList'
             }"
           >
-            <span class="pl-1"><users-icon class="pr-3" />Users</span>
+            <span class="pl-1"><users-icon class="pr-4" />Users</span>
           </router-link>
         </CDropdownItem>
         <CDropdownItem>
-          <span class="pl-1"
-            ><server-icon class="pr-3" />Server</span
-          ></CDropdownItem
+          <router-link
+            tag="a"
+            :to="{
+              name: 'Components'
+            }"
+          >
+            <span class="pl-1"><block-icon class="pr-4" />Components</span>
+          </router-link></CDropdownItem
         >
       </CDropdown>
     </CHeaderNav>

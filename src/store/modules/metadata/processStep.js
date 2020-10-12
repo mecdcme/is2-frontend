@@ -3,7 +3,7 @@ import { processStepService } from "@/services";
 
 const state = {
   processSteps: [],
-  processStep: []
+  processStep: {}
 };
 
 const mutations = {
@@ -20,7 +20,7 @@ const actions = {
     processStepService.findAll().then(
       data => {
         commit("SET_PROCESS_STEPS", data);
-        commit("SET_PROCESS_STEP", null); //clear statistical process
+        commit("SET_PROCESS_STEP", null); //clear process step
       },
       error => {
         console.log(error);
@@ -41,10 +41,10 @@ const actions = {
     processStepService.save(formData).then(
       data => {
         console.log(data);
-        dispatch("message/success", "Business process saved!", {
+        dispatch("message/success", "Process step saved!", {
           root: true
         });
-        router.push("/catalogue/processstep");
+        router.push("/components/step");
       },
       error => {
         console.log(error);
@@ -56,7 +56,7 @@ const actions = {
       data => {
         console.log(data);
         dispatch("findAll");
-        dispatch("message/success", "Business process deleted!", {
+        dispatch("message/success", "Process step deleted!", {
           root: true
         });
       },
@@ -69,10 +69,10 @@ const actions = {
     processStepService.update(formData).then(
       data => {
         console.log(data);
-        dispatch("message/success", "Business process updated!", {
+        dispatch("message/success", "Process step updated!", {
           root: true
         });
-        router.push("/catalogue/processstep");
+        router.push("/components/step");
       },
       error => {
         console.log(error);

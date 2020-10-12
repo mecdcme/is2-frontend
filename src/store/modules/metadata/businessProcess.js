@@ -20,7 +20,7 @@ const actions = {
     businessProcessService.findAll().then(
       data => {
         commit("SET_BUSINESS_PROCESSES", data);
-        commit("SET_BUSINESS_PROCESS", null); //clear statistical process
+        commit("SET_BUSINESS_PROCESS", null); //clear business process
       },
       error => {
         console.log(error);

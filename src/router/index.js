@@ -110,31 +110,37 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/processstep",
+        path: "catalogue/session",
+        name: "WorkSessionList",
+        component: () =>
+          import("../views/catalogue/workSession/WorkSessionList"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "components",
+        name: "Components",
+        component: () => import("../views/catalogue/Components"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "components/step",
         name: "ProcessStepList",
         component: () =>
           import("../views/catalogue/step/processStep/ProcessStepList"),
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/step/processstepedit/:id",
+        path: "components/step/edit/:id",
         name: "ProcessStepEdit",
         component: () =>
           import("../views/catalogue/step/processStep/ProcessStepEdit"),
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/step/processstepnew",
+        path: "components/step/new",
         name: "ProcessStepNew",
         component: () =>
-          import("../views/catalogue/step/processStep/ProcessStepNew"),
-        meta: { authorize: [] }
-      },
-      {
-        path: "catalogue/session",
-        name: "WorkSessionList",
-        component: () =>
-          import("../views/catalogue/workSession/WorkSessionList"),
+          import("../views/catalogue/step/processStep/ProcessStepAdd"),
         meta: { authorize: [] }
       },
       {

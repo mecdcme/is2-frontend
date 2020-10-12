@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-sm-12 col-md-12">
+    <div class="col-sm-12 col-md-6">
       <div class="card">
         <header class="card-header">New Process Step</header>
         <CCardBody>
@@ -78,8 +78,8 @@ export default {
   name: "ProcessNew",
   data() {
     return {
-      uiState: "submit not clicked",
-      errore: false,
+      uiState: "SUBMIT_NOT_CLICKED",
+      error: false,
       formTouched: false,
       empty: true,
       step: {
@@ -109,14 +109,14 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push("/catalogue/processstep");
+      this.$router.push("/components/step");
     },
     handleSubmit() {
       this.formTouched = !this.$v.step.$anyDirty;
-      this.errore = this.$v.step.$invalid;
+      this.error = this.$v.step.$invalid;
       this.uiState = "FORM_SUBMITTED";
 
-      if (this.errore === false) {
+      if (this.error === false) {
         this.$store.dispatch("processStep/save", this.step);
         return true;
       }

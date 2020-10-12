@@ -78,7 +78,7 @@ export default {
     step: {
       name: {
         required,
-        minLength: minLength(4)
+        minLength: minLength(3)
       },
       label: {
         required,
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push("/catalogue/processstep");
+      this.$router.push("/components/step");
     },
     handleSubmit() {
       this.formTouched = !this.$v.step.$anyDirty;
