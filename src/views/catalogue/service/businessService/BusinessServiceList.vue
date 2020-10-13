@@ -12,7 +12,7 @@
         </header>
         <CCardBody>
           <CDataTable
-            :items="services"
+            :items="businessServices"
             :fields="fields"
             column-filter
             table-filter
