@@ -24,12 +24,19 @@
           >
             <template #show_update="{item}">
               <td>
-                <a href="#" @click="processEdit(item)"><edit-icon /></a>
+                <router-link
+                  tag="a"
+                  :to="{ name: 'BusinessProcessEdit', params: { id: item.id } }"
+                >
+                  <edit-icon />
+                </router-link>
               </td>
             </template>
             <template #show_delete="{item}">
               <td>
-                <a href="#" @click="modalOpen(item)"><delete-icon /></a>
+                <span class="icon-link" @click="modalOpen(item)"
+                  ><delete-icon
+                /></span>
               </td>
             </template>
           </CDataTable>
@@ -92,9 +99,6 @@ export default {
     ...mapGetters("businessProcess", ["businessProcess"])
   },
   methods: {
-    processEdit(process) {
-      this.$router.push("/catalogue/process/processedit/" + process.id);
-    },
     processDelete() {
       this.$store.dispatch("businessProcess/delete", this.selectedProcess.id);
       this.warningModal = false;

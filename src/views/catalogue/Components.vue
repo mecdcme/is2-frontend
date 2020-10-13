@@ -30,6 +30,19 @@
         </div>
       </div>
     </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="card">
+        <header class="card-header">
+          <span>Parameters</span>
+        </header>
+        <div class="card-body">
+          This section contains the list of parameters available in the catalogue.
+          <p class="section-link section-link-disabled">
+            <span>Go to parameters <chevron-right-icon /></span>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

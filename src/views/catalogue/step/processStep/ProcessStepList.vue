@@ -24,12 +24,19 @@
           >
             <template #show_update="{item}">
               <td>
-                <a href="#" @click="stepEdit(item)"><edit-icon /></a>
+                <router-link
+                  tag="a"
+                  :to="{ name: 'ProcessStepEdit', params: { id: item.id } }"
+                >
+                  <edit-icon />
+                </router-link>
               </td>
             </template>
             <template #show_delete="{item}">
               <td>
-                <a href="#" @click="modalOpen(item)"><delete-icon /></a>
+                <span class="icon-link" @click="modalOpen(item)"
+                  ><delete-icon
+                /></span>
               </td>
             </template>
           </CDataTable>
@@ -85,9 +92,6 @@ export default {
     ...mapGetters("processStep", ["processSteps"])
   },
   methods: {
-    stepEdit(step) {
-      this.$router.push("/components/step/edit/" + step.id);
-    },
     stepDelete() {
       this.$store.dispatch("processStep/delete", this.selectedStep.id);
       this.warningModal = false;

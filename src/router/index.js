@@ -92,7 +92,7 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/process/processedit/:id",
+        path: "catalogue/process/edit/:id",
         name: "BusinessProcessEdit",
         component: () =>
           import(
@@ -101,7 +101,7 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/process/processnew",
+        path: "catalogue/process/add",
         name: "BusinessProcessNew",
         component: () =>
           import(
@@ -137,7 +137,7 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "components/step/new",
+        path: "components/step/add",
         name: "ProcessStepNew",
         component: () =>
           import("../views/catalogue/step/processStep/ProcessStepAdd"),
@@ -150,19 +150,19 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "settings/users/UserEdit/:id",
+        path: "settings/users/edit/:id",
         name: "UserEdit",
         component: () => import("../views/settings/user/UserEdit"),
         meta: { authorize: [] }
       },
       {
-        path: "settings/users/UserDelete/:id",
+        path: "settings/users/delete/:id",
         name: "UserDelete",
         component: () => import("../views/settings/user/UserDelete"),
         meta: { authorize: [] }
       },
       {
-        path: "settings/users/UserAdd/",
+        path: "settings/users/add/",
         name: "UserAdd",
         component: () => import("../views/settings/user/UserAdd"),
         meta: { authorize: [] }
