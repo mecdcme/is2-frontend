@@ -8,17 +8,16 @@ import { iconsSet as icons } from "@/assets/icons/icons.js";
 import Vuelidate from "vuelidate";
 import vSelect from "vue-select";
 import VueSpinners from "vue-spinners";
-import VuejsDialog from "vuejs-dialog";
-
-import "vuejs-dialog/dist/vuejs-dialog.min.css";
+import FlowChart from "flowchart-vue";
 
 import "@/assets/icons/materialIcons";
+
 Vue.config.productionTip = false;
 
 Vue.use(CoreuiVue);
 Vue.use(Vuelidate);
 Vue.use(VueSpinners);
-Vue.use(VuejsDialog);
+Vue.use(FlowChart);
 
 Vue.component("v-select", vSelect);
 
