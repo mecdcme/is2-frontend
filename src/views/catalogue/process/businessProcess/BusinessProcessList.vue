@@ -70,33 +70,11 @@ export default {
   data() {
     return {
       selectedProcess: {},
-      warningModal: false,
-      fields: [
-        { key: "id", _style: "width:5%" },
-        { key: "name", _style: "width:15%" },
-        { key: "description", _style: "width:15%;" },
-        { key: "label", _style: "width:20%;" },
-        { key: "organization", _style: "width:10%;" },
-        {
-          key: "show_update",
-          label: "",
-          _style: "width:1%",
-          sorter: false,
-          filter: false
-        },
-        {
-          key: "show_delete",
-          label: "",
-          _style: "width:1%",
-          sorter: false,
-          filter: false
-        }
-      ]
+      warningModal: false
     };
   },
   computed: {
-    ...mapGetters("businessProcess", ["businessProcesses"]),
-    ...mapGetters("businessProcess", ["businessProcess"])
+    ...mapGetters("businessProcess", ["businessProcesses"])
   },
   methods: {
     processDelete() {

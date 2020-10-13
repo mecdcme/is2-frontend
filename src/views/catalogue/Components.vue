@@ -36,7 +36,8 @@
           <span>Parameters</span>
         </header>
         <div class="card-body">
-          This section contains the list of parameters available in the catalogue.
+          This section contains the list of parameters available in the
+          catalogue.
           <p class="section-link section-link-disabled">
             <span>Go to parameters <chevron-right-icon /></span>
           </p>
