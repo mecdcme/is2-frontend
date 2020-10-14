@@ -1,6 +1,6 @@
 import { axiosIs2 } from "@/http";
 import { util } from "../../common";
-import qs from "querystring";
+const querystring = require("querystring");
 
 export const businessServiceService = {
   findAll,
@@ -45,7 +45,7 @@ function findById(id) {
 
 function save(formData) {
   return new Promise((resolve, reject) => {
-    axiosIs2.post("/services", querystring.stringify(formData), config).then(
+    axiosIs2.post("/services", querystring.stringify(formData)).then(
       response => {
         var data = response.data ? response.data : {};
         //console.log(data);
@@ -61,7 +61,7 @@ function save(formData) {
 function update(formData) {
   return new Promise((resolve, reject) => {
     axiosIs2
-      .put("/services/" + formData.id, querystring.stringify(formData), config)
+      .put("/services/" + formData.id, querystring.stringify(formData))
       .then(
         response => {
           var data = response.data ? response.data : {};
@@ -75,7 +75,7 @@ function update(formData) {
   });
 }
 
-function updateLegislativeReference(formData) {
+/* function updateLegislativeReference(formData) {
   return new Promise((resolve, reject) => {
     axiosIs2
       .put(
@@ -95,7 +95,7 @@ function updateLegislativeReference(formData) {
         }
       );
   });
-}
+} */
 
 function updateOwner(formData) {
   return new Promise((resolve, reject) => {

@@ -144,6 +144,13 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "components/flow",
+        name: "ProcessFlow",
+        component: () =>
+          import("../views/catalogue/flow/processFlow/ProcessFlow"),
+        meta: { authorize: [] }
+      },
+      {
         path: "settings/users",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),
