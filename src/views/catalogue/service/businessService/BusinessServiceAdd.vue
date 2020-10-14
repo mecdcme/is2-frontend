@@ -104,13 +104,13 @@
           <CRow class="d-flex justify-content-middle">
             <CCol sm="9">
               <CButton
-                color="primary"
-                type="submit"
-                value="Submit"
-                @click.prevent="handleSubmit"
-                >Save</CButton
-              >
-              <CButton @click="goBusinessServiceList()">Cancel</CButton>
+            shape="square"
+            size="sm"
+            color="primary"
+            style="margin-right:0.3rem"
+            @click.prevent="handleSubmit">Save
+            </CButton>
+              <CButton shape="square" size="sm" color="light" @click="goBack">Back</CButton>
             </CCol>
           </CRow>
         </CCardFooter>
@@ -165,6 +165,9 @@ export default {
   },
 
   methods: {
+    goBack() {
+      this.$router.push("/catalogue/service");
+    },
     handleSubmit() {
       this.formTouched = !this.$v.service.$anyDirty;
       this.errore = this.$v.service.$invalid;
