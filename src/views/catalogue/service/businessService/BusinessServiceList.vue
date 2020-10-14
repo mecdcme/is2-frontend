@@ -24,7 +24,12 @@
           >
             <template #show_update="{item}">
               <td>
-                <a href="#" @click="editService(item)"><edit-icon /></a>
+                <router-link
+                  tag="a"
+                  :to="{ name: 'BusinessServiceEdit', params: { id: item.id } }"
+                >
+                  <edit-icon />
+                </router-link>
               </td>
             </template>
             <template #show_delete="{item}">
