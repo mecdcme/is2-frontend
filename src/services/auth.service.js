@@ -37,7 +37,6 @@ function login({ username, password }) {
 
 function register({ username, email, fullname, password }) {
   return new Promise((resolve, reject) => {
-
     const requestBody = {
       username: username,
       email: email,
