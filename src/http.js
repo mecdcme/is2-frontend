@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "@/store";
 
 const axiosAuth = axios.create({
-  baseURL: process.env.VUE_APP_DEV_SERVER + "/security"
+  baseURL: process.env.VUE_APP_DEV_SERVER + "/api/"
 });
 
 const axiosIs2 = axios.create({
@@ -39,30 +39,8 @@ axiosIs2.interceptors.response.use(
     };
     // Unauthorized access
     if (error.response.status === 401) {
-      //User logged
-      if ("jwt-auth" in error.response.headers) {
-        //redirect to login page
-        store.dispatch("error/multipleLogin");
-      } else {
-        //unauthorized
-        store.dispatch("error/unauthorized", err);
-      }
-    } else if (error.response.status === 400) {
-      //Bad request
-      err.message = error.response.data.message;
-      store.dispatch("error/serverError", err);
-    } else if (error.response.status === 500) {
-      if (error.response.data.message.includes("AuthenticatedFilter")) {
-        //redirect to login page
-        store.dispatch("error/tokenExpired");
-      } else {
-        //internal server error
-        err.message = error.response.data.message;
-        store.dispatch("error/serverError", err);
-      }
-    } else {
-      err.message = "Sorry, something went wrong!";
-      store.dispatch("error/serverError", err);
+      //unauthorized
+      store.dispatch("error/unauthorized", err);
     }
     return Promise.reject(error);
   }

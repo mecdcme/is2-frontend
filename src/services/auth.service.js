@@ -1,4 +1,5 @@
 import { axiosAuth } from "@/http";
+import { config } from "@/common";
 import qs from "querystring";
 
 export const authService = {
@@ -8,25 +9,17 @@ export const authService = {
 
 function login({ username, password }) {
   return new Promise((resolve, reject) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    };
-
     const requestBody = {
       username: username,
-      password: password,
-      language: "ENG"
+      password: password
     };
 
-    axiosAuth.post("/signin", qs.stringify(requestBody), config).then(
+    axiosAuth.post("/login", qs.stringify(requestBody), config).then(
       response => {
-        console.log(response);
-        const token = response.headers["jwt-auth"];
+        console.log(response.data);
+        const token = response.data.accessToken;
         const data = {
-          token: token,
-          user: response.data
+          token: token
         };
         resolve(data);
       },
@@ -44,11 +37,6 @@ function login({ username, password }) {
 
 function register({ username, email, fullname, password }) {
   return new Promise((resolve, reject) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    };
 
     const requestBody = {
       username: username,
