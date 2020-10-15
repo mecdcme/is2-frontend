@@ -173,13 +173,15 @@ export default {
       this.connectionDialog = true;
     },
     nodeModalOk() {
-      this.warningModal = true;
+      this.nodeForm.target.type = this.type.value();
+      this.nodeDialog = false;
     },
     nodeModalClose() {
       this.nodeDialog = false;
     },
     connectionModalOk() {
-      this.warningModal = true;
+      this.connectionForm.target = this.type.value();
+      this.connectionDialog = false;
     },
     connectionModalClose() {
       this.connectionDialog = false;
