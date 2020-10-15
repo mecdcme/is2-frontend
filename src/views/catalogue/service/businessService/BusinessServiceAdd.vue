@@ -104,13 +104,16 @@
           <CRow class="d-flex justify-content-middle">
             <CCol sm="9">
               <CButton
-            shape="square"
-            size="sm"
-            color="primary"
-            style="margin-right:0.3rem"
-            @click.prevent="handleSubmit">Save
-            </CButton>
-              <CButton shape="square" size="sm" color="light" @click="goBack">Back</CButton>
+                shape="square"
+                size="sm"
+                color="primary"
+                style="margin-right:0.3rem"
+                @click.prevent="handleSubmit"
+                >Save
+              </CButton>
+              <CButton shape="square" size="sm" color="light" @click="goBack"
+                >Back</CButton
+              >
             </CCol>
           </CRow>
         </CCardFooter>
