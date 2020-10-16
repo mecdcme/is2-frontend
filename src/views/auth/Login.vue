@@ -4,13 +4,11 @@
       <CRow class="justify-content-center">
         <CCol sm="6" md="8" lg="6">
           <div class="card-group">
-            <div
-              class="card text-white bg-gradient-primary py-2 d-md-down-none"
-            >
+            <div class="card text-white bg-gradient-primary d-md-down-none">
               <div class="card-body text-center">
-                <div class="mb-2">
+                <div class="mt-2">
                   <h2>IS<sup>2</sup> Workbench</h2>
-                  <p style="margin-bottom:8.6rem">
+                  <p style="margin-bottom:5rem">
                     Welcome to an open source environment that offers a set of
                     statistical services to process your data. Services are
                     classified according to GSBPM standard and can be chained in
@@ -64,7 +62,11 @@
                   </div>
                   <CRow>
                     <CCol col="12">
-                      <CButton color="primary" @click.prevent="handleSubmit"
+                      <CButton
+                        shape="square"
+                        size="sm"
+                        color="primary"
+                        @click.prevent="handleSubmit"
                         >Sign in</CButton
                       >
                     </CCol>

@@ -41,6 +41,7 @@
         <header class="card-header">Work session</header>
         <div class="card-body">
           This section contains the work sessions created by authenticated user.
+          To access your work sessions you should be logged into the system.
           <p class="section-link section-link-disabled">
             <span>Go to work session section <chevron-right-icon /></span>
           </p>
