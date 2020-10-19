@@ -1,117 +1,135 @@
 <template>
-  <div id="app">
-    <button
-      type="button"
-      @click="
-        $refs.chart.add({
-          id: +new Date(),
-          x: 10,
-          y: 10,
-          name: 'New',
-          type: 'operation',
-          approvers: []
-        })
-      "
-    >
-      Add
-    </button>
-    <button type="button" @click="$refs.chart.remove()">
-      Del
-    </button>
-    <button type="button" @click="$refs.chart.editCurrent()">
-      Edit
-    </button>
-    <button type="button" @click="$refs.chart.save()">
-      Save
-    </button>
-    <flowchart
-      :nodes="nodes"
-      :connections="connections"
-      @editnode="handleEditNode"
-      @dblclick="handleDblClick"
-      @editconnection="handleEditConnection"
-      @save="handleChartSave"
-      ref="chart"
-    >
-    </flowchart>
-    <CModal style="width: 320px;" :show.sync="nodeDialog">
-      <div class="header"><span>Edit</span></div>
-      <div class="body">
-        <label for="name">Name</label
-        ><input id="name" class="form-control" v-model="nodeName" />
-        <label for="type">Type</label>
-        <select id="type" class="form-control" v-model="nodeType"
-          ><option value="start"> Start </option
-          ><option value="end"> End </option
-          ><option value="operation">
-            Operation
-          </option></select
-        ><label for="approver">Approver</label
-        ><select id="approver" class="form-control"
-          ><option value="1"> Joyce </option
-          ><option value="2"> Allen </option
-          ><option value="3">
-            Teresa
-          </option></select
-        >
+  <div class="container">
+    <div class="row">
+      <div class="c-sidebar c-sidebar-dark c-sidebar-show col">
+        <ul class="c-sidebar-nav">
+          <li class="c-sidebar-nav-title">Process Step List</li>
+        </ul>
+        <ul class="c-sidebar-nav">
+          <li v-for="item in processSteps" :key="item.name">
+            {{ item.name }}
+          </li>
+        </ul>
+        <button class="c-sidebar-minimizer" type="button"></button>
       </div>
-      <template #footer>
-        <CButton
-          shape="square"
-          size="sm"
-          color="light"
-          @click="nodeModalClose()"
+      <div id="app" class="col">
+        <button
+          type="button"
+          @click="
+            $refs.chart.add({
+              id: +new Date(),
+              x: 10,
+              y: 10,
+              name: 'New',
+              type: 'operation',
+              approvers: []
+            })
+          "
         >
-          Close
-        </CButton>
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          @click="nodeModalOk()"
+          Add
+        </button>
+        <button type="button" @click="$refs.chart.remove()">
+          Del
+        </button>
+        <button type="button" @click="$refs.chart.editCurrent()">
+          Edit
+        </button>
+        <button type="button" @click="$refs.chart.save()">
+          Save
+        </button>
+        <flowchart
+          :nodes="nodes"
+          :connections="connections"
+          @editnode="handleEditNode"
+          @dblclick="handleDblClick"
+          @save="handleChartSave"
+          ref="chart"
         >
-          Update
-        </CButton>
-      </template>
-    </CModal>
-    <CModal style="width: 320px;" :show.sync="connectionDialog">
-      <div class="header"><span>Edit</span></div>
-      <div class="body">
-        <label for="name">Name</label
-        ><input id="name" class="form-control" v-model="connectionName" /><label
-          for="type"
-          >Type</label
-        ><select id="type" class="form-control" v-model="connectionType"
-          ><option value="pass"> Pass </option
-          ><option value="reject">
-            Reject
-          </option></select
-        >
+          <!-- @editconnection="handleEditConnection" -->
+        </flowchart>
+        <CModal style="width: 320px;" :show.sync="nodeDialog">
+          <div class="header"><span>Edit</span></div>
+          <div class="body">
+            <label for="name">Name</label
+            ><input id="name" class="form-control" v-model="nodeName" />
+            <label for="type">Type</label>
+            <select id="type" class="form-control" v-model="nodeType"
+              ><option value="start"> Start </option
+              ><option value="end"> End </option
+              ><option value="operation">
+                Operation
+              </option></select
+            ><label for="approver">Approver</label
+            ><select id="approver" class="form-control"
+              ><option value="1"> Joyce </option
+              ><option value="2"> Allen </option
+              ><option value="3">
+                Teresa
+              </option></select
+            >
+          </div>
+          <template #footer>
+            <CButton
+              shape="square"
+              size="sm"
+              color="light"
+              @click="nodeModalClose()"
+            >
+              Close
+            </CButton>
+            <CButton
+              shape="square"
+              size="sm"
+              color="primary"
+              @click="nodeModalOk()"
+            >
+              Update
+            </CButton>
+          </template>
+        </CModal>
+        <CModal style="width: 320px;" :show.sync="connectionDialog">
+          <div class="header"><span>Edit</span></div>
+          <div class="body">
+            <label for="name">Name</label
+            ><input
+              id="name"
+              class="form-control"
+              v-model="connectionName"
+            /><label for="type">Type</label
+            ><select id="type" class="form-control" v-model="connectionType"
+              ><option value="pass"> Pass </option
+              ><option value="reject">
+                Reject
+              </option></select
+            >
+          </div>
+          <template #footer>
+            <CButton
+              shape="square"
+              size="sm"
+              color="light"
+              @click="connectionModalClose()"
+            >
+              Close
+            </CButton>
+            <CButton
+              shape="square"
+              size="sm"
+              color="primary"
+              @click="connectionModalOk()"
+            >
+              Update
+            </CButton>
+          </template>
+        </CModal>
       </div>
-      <template #footer>
-        <CButton
-          shape="square"
-          size="sm"
-          color="light"
-          @click="connectionModalClose()"
-        >
-          Close
-        </CButton>
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          @click="connectionModalOk()"
-        >
-          Update
-        </CButton>
-      </template>
-    </CModal>
+    </div>
   </div>
 </template>
 <script>
 import Vue from "vue";
 import FlowChart from "flowchart-vue";
+import { mapGetters } from "vuex";
 Vue.use(FlowChart);
 
 export default {
@@ -140,6 +158,7 @@ export default {
           type: "pass"
         }
       ],
+      steps: "",
       nodeForm: { target: null },
       connectionForm: { target: null, operation: null },
       nodeDialog: false,
@@ -149,6 +168,9 @@ export default {
       connectionName: "",
       connectionType: ""
     };
+  },
+  computed: {
+    ...mapGetters("processStep", ["processSteps"])
   },
   methods: {
     /* handleChartSave(nodes, connections) {
@@ -197,6 +219,9 @@ export default {
     },
     connectionModalClose() {
       this.connectionDialog = false;
+    },
+    created() {
+      this.$store.dispatch("processStep/findAll");
     }
   }
 };
