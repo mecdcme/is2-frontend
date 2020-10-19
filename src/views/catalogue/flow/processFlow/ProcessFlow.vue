@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="card">
     <div class="row">
       <div class="c-sidebar c-sidebar-dark c-sidebar-show col">
         <ul class="c-sidebar-nav">
           <li class="c-sidebar-nav-title">Process Step List</li>
         </ul>
         <ul class="c-sidebar-nav">
-          <li v-for="item in processSteps" :key="item.name">
+          <li v-for="item in processSteps" :key="item.id">
             {{ item.name }}
           </li>
         </ul>
