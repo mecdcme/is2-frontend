@@ -42,18 +42,18 @@
           :connections="connections"
           @editnode="handleEditNode"
           @dblclick="handleDblClick"
-          @save="handleChartSave"
+          @editconnection="handleEditConnection"
           ref="chart"
         >
-          <!-- @editconnection="handleEditConnection" -->
+          <!-- @save="handleChartSave" -->
         </flowchart>
         <CModal style="width: 320px;" :show.sync="nodeDialog">
           <div class="header"><span>Edit</span></div>
           <div class="body">
-            <label for="name">Name</label
-            ><input id="name" class="form-control" v-model="nodeName" />
-            <label for="type">Type</label>
-            <select id="type" class="form-control" v-model="nodeType"
+            <label for="nname">Name</label
+            ><input id="nname" class="form-control" v-model="nodeName" />
+            <label for="ntype">Type</label>
+            <select id="ntype" class="form-control" v-model="nodeType"
               ><option value="start"> Start </option
               ><option value="end"> End </option
               ><option value="operation">
@@ -90,13 +90,13 @@
         <CModal style="width: 320px;" :show.sync="connectionDialog">
           <div class="header"><span>Edit</span></div>
           <div class="body">
-            <label for="name">Name</label
+            <label for="cname">Name</label
             ><input
-              id="name"
+              id="cname"
               class="form-control"
               v-model="connectionName"
-            /><label for="type">Type</label
-            ><select id="type" class="form-control" v-model="connectionType"
+            /><label for="ctype">Type</label
+            ><select id="ctype" class="form-control" v-model="connectionType"
               ><option value="pass"> Pass </option
               ><option value="reject">
                 Reject
@@ -158,7 +158,7 @@ export default {
           type: "pass"
         }
       ],
-      steps: "",
+      steps: [],
       nodeForm: { target: null },
       connectionForm: { target: null, operation: null },
       nodeDialog: false,
