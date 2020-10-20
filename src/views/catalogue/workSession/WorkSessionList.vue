@@ -1,20 +1,14 @@
 <template>
-  <div class="row">
-    <div class="col-sm-6 col-md-4">
-      <div class="card ">
-        <header class="card-header">
-          Work sessions
-        </header>
-        <div class="card-body">
-          Buh!
-        </div>
-      </div>
-    </div>
-  </div>
+  <data-upload />
 </template>
 
 <script>
-export default {};
+import DataUpload from "@/components/DataUpload";
+export default {
+  components: {
+    "data-upload": DataUpload
+  }
+};
 </script>
 
 <style></style>

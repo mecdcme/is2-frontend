@@ -1,46 +1,67 @@
 <template>
-  <div class="row">
-    <div class="col-sm-6 col-md-4">
-      <div class="card">
-        <header class="card-header">
-          <span>Process steps</span>
-          <span class="badge float-right badge-success">New</span>
-        </header>
-        <div class="card-body">
-          This section contains the list of process steps available in the
-          catalogue.
-          <p class="section-link">
-            <router-link tag="a" :to="{ name: 'ProcessStepList' }"
-              ><span>Go to process steps <chevron-right-icon /></span>
-            </router-link>
-          </p>
+  <div>
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="card">
+          <header class="card-header">
+            <span>Process steps</span>
+            <span class="badge float-right badge-success">New</span>
+          </header>
+          <div class="card-body">
+            This section contains the list of process steps available in the
+            catalogue.
+            <p class="section-link">
+              <router-link tag="a" :to="{ name: 'ProcessStepList' }"
+                ><span>Go to process steps <chevron-right-icon /></span>
+              </router-link>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="card">
+          <header class="card-header">
+            <span>Roles</span>
+          </header>
+          <div class="card-body">
+            This section contains the list of roles available in the catalogue.
+            <p class="section-link section-link-disabled">
+              <span>Go to roles <chevron-right-icon /></span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="card">
+          <header class="card-header">
+            <span>Parameters</span>
+          </header>
+          <div class="card-body">
+            This section contains the list of parameters available in the
+            catalogue.
+            <p class="section-link section-link-disabled">
+              <span>Go to parameters <chevron-right-icon /></span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-md-4">
-      <div class="card">
-        <header class="card-header">
-          <span>Roles</span>
-        </header>
-        <div class="card-body">
-          This section contains the list of roles available in the catalogue.
-          <p class="section-link section-link-disabled">
-            <span>Go to roles <chevron-right-icon /></span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-      <div class="card">
-        <header class="card-header">
-          <span>Parameters</span>
-        </header>
-        <div class="card-body">
-          This section contains the list of parameters available in the
-          catalogue.
-          <p class="section-link section-link-disabled">
-            <span>Go to parameters <chevron-right-icon /></span>
-          </p>
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="card">
+          <header class="card-header">
+            <span>Workflow</span>
+            <span class="badge float-right badge-success">New</span>
+          </header>
+          <div class="card-body">
+            This section allows to test the workflow component. Enjoy the
+            wonderful wizard!
+            <p class="section-link">
+              <router-link tag="a" :to="{ name: 'WorkFlow' }"
+                ><span>Go to work flow <chevron-right-icon /></span>
+              </router-link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

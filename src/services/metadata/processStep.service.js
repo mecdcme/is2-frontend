@@ -1,7 +1,5 @@
 import { axiosIs2 } from "@/http";
-import { config } from "@/common";
 
-const querystring = require("querystring");
 export const processStepService = {
   findAll,
   findById,
@@ -42,39 +40,31 @@ function findById(id) {
 
 function save(formData) {
   return new Promise((resolve, reject) => {
-    axiosIs2
-      .post("/process_steps", querystring.stringify(formData), config)
-      .then(
-        response => {
-          var data = response.data ? response.data : {};
-          //console.log(data);
-          resolve(data);
-        },
-        error => {
-          reject(error);
-        }
-      );
+    axiosIs2.post("/process_steps", formData).then(
+      response => {
+        var data = response.data ? response.data : {};
+        //console.log(data);
+        resolve(data);
+      },
+      error => {
+        reject(error);
+      }
+    );
   });
 }
 
 function update(formData) {
   return new Promise((resolve, reject) => {
-    axiosIs2
-      .put(
-        "/process_steps/" + formData.id,
-        querystring.stringify(formData),
-        config
-      )
-      .then(
-        response => {
-          var data = response.data ? response.data : {};
-          //console.log(data);
-          resolve(data);
-        },
-        error => {
-          reject(error);
-        }
-      );
+    axiosIs2.put("/process_steps/" + formData.id, formData).then(
+      response => {
+        var data = response.data ? response.data : {};
+        //console.log(data);
+        resolve(data);
+      },
+      error => {
+        reject(error);
+      }
+    );
   });
 }
 

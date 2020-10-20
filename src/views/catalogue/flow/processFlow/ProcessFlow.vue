@@ -219,10 +219,10 @@ export default {
     },
     connectionModalClose() {
       this.connectionDialog = false;
-    },
-    created() {
-      this.$store.dispatch("processStep/findAll");
     }
+  },
+  created() {
+    this.$store.dispatch("processStep/findAll");
   }
 };
 </script>
