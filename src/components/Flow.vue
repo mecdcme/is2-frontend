@@ -39,6 +39,7 @@
         @editconnection="handleEditConnection"
         @dblclick="handleDblClick"
         @save="handleChartSave"
+        :render="render"
         ref="chart"
       >
       </flowchart>
@@ -112,6 +113,8 @@
   </CCard>
 </template>
 <script>
+import { render } from "@/common";
+
 export default {
   name: "App",
   props: {
@@ -137,6 +140,7 @@ export default {
     };
   },
   methods: {
+    render,
     addNode() {
       this.$refs.chart.add({
         id: +new Date(),
@@ -144,7 +148,7 @@ export default {
         y: 10,
         name: "Step",
         type: "operation",
-        approvers: [{ id: 1, name: "ml.est" }]
+        descr: "ml.est"
       });
     },
     handleDblClick(position) {
@@ -154,7 +158,7 @@ export default {
         y: position.y,
         name: "Step",
         type: "operation",
-        approvers: [{ id: 2, name: "pred.y" }]
+        descr: "ml.est"
       });
     },
     handleEditNode(node) {
