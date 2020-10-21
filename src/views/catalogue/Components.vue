@@ -58,7 +58,7 @@
             wonderful wizard!
             <p class="section-link">
               <router-link tag="a" :to="{ name: 'WorkFlow' }"
-                ><span>Go to work flow <chevron-right-icon /></span>
+                ><span>Go to workflow <chevron-right-icon /></span>
               </router-link>
             </p>
           </div>

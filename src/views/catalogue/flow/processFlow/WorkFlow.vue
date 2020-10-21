@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row" v-if="processes">
       <div class="col-sm-12 col-md-6">
         <CCard>
           <CCardHeader>
@@ -41,38 +41,25 @@ export default {
   },
   data: function() {
     return {
-      process: {},
+      process: null,
       nodes: [],
       connections: []
     };
   },
   computed: {
-    ...mapGetters("businessProcess", ["businessProcesses"]),
-    processes() {
-      var procs = [];
-      if (this.businessProcesses) {
-        this.businessProcesses.forEach(element => {
-          procs.push({
-            id: element.id,
-            name: element.name,
-            graph: element.graph ? element.graph : {}
-          });
-        });
-      }
-      return procs;
-    }
+    ...mapGetters("businessProcess", { processes: "businessProcesses" })
   },
   methods: {
     handleSelectInput() {
       //if process has a graph
-      if (this.process) {
+      if (this.process != null && this.process.graph) {
         this.nodes = this.process.graph.nodes;
         this.connections = this.process.graph.connections;
       }
     },
     handleSaveGraph(graph) {
       //check if process is selected
-      if (this.process != null && Object.keys(this.process).length === 0) {
+      if (this.process != null) {
         alert("Please select a process!");
       } else {
         this.process.graph = graph;

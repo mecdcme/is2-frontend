@@ -23,107 +23,16 @@
     {
       "id": 1,
       "name": "Prob",
-      "graph": {
-        "nodes": [
-          {
-            "id": 1603189006845,
-            "x": 10,
-            "y": 100,
-            "name": "Step",
-            "type": "operation",
-            "approvers": [
-              {
-                "id": 1,
-                "name": "ml.est"
-              }
-            ],
-            "width": 120,
-            "height": 60
-          },
-          {
-            "id": 1603192461967,
-            "x": 240,
-            "y": 100,
-            "name": "Step",
-            "type": "operation",
-            "approvers": [
-              {
-                "id": 1,
-                "name": "ml.est"
-              }
-            ],
-            "width": 120,
-            "height": 60
-          },
-          {
-            "id": 1603192507674,
-            "x": 490,
-            "y": 100,
-            "name": "Step",
-            "type": "operation",
-            "approvers": [
-              {
-                "id": 1,
-                "name": "ml.est"
-              }
-            ],
-            "width": 120,
-            "height": 60
-          }
-        ],
-        "connections": [
-          {
-            "source": {
-              "id": 1603189006845,
-              "position": "right"
-            },
-            "destination": {
-              "id": 1603192461967,
-              "position": "left"
-            },
-            "id": 1603192467077,
-            "type": "pass",
-            "name": "Pass"
-          },
-          {
-            "source": {
-              "id": 1603192461967,
-              "position": "right"
-            },
-            "destination": {
-              "id": 1603192507674,
-              "position": "left"
-            },
-            "id": 1603192519989,
-            "type": "pass",
-            "name": "Pass"
-          }
-        ]
-      }
+      "description": "Probabilistic record linkage",
+      "label": "PRL",
+      "organization": "Istat"
     },
     {
       "id": 2,
       "name": "Deterministic record linkage",
-      "graph": {
-        "nodes": [
-          {
-            "id": 1603192609731,
-            "x": 270,
-            "y": 110,
-            "name": "Step",
-            "type": "operation",
-            "approvers": [
-              {
-                "id": 1,
-                "name": "ml.est"
-              }
-            ],
-            "width": 120,
-            "height": 60
-          }
-        ],
-        "connections": []
-      }
+      "description": "Deterministic record linkage",
+      "label": "DRLOOO",
+      "organization": "Istat"
     },
     {
       "id": 3,
@@ -133,8 +42,11 @@
       "organization": "Istat"
     },
     {
-      "{\"id\":4,\"name\":\"Data validation in R\",\"description\":\"Data validation in R\",\"label\":\"ValidateR\",\"organization\":\"Istat\",\"graph\":{\"nodes\":[{\"id\":1603188770591,\"x\":220,\"y\":100,\"name\":\"Step\",\"type\":\"operation\",\"approvers\":[{\"id\":1,\"name\":\"ml.est\"}],\"width\":120,\"height\":60},{\"id\":1603188773429,\"x\":0,\"y\":90,\"name\":\"Step\",\"type\":\"operation\",\"approvers\":[{\"id\":1,\"name\":\"ml.est\"}],\"width\":120,\"height\":60}],\"connections\":[{\"source\":{\"id\":1603188773429,\"position\":\"right\"},\"destination\":{\"id\":1603188770591,\"position\":\"left\"},\"id\":1603188778055,\"type\":\"pass\",\"name\":\"Pass\"}]}}": "",
-      "id": 4
+      "id": 4,
+      "name": "Data validation in R",
+      "description": "Data validation in R",
+      "label": "ValidateR",
+      "organization": "Istat"
     }
   ],
   "users": [

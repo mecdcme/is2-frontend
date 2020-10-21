@@ -2,7 +2,7 @@ import router from "@/router";
 import { businessProcessService } from "@/services";
 
 const state = {
-  businessProcesses: [],
+  businessProcesses: null,
   businessProcess: {}
 };
 

@@ -13,7 +13,7 @@ function findAll() {
     axiosIs2.get("/processes").then(
       response => {
         var data = response.data ? response.data : [];
-        //console.log(data);
+        console.log(data);
         resolve(data);
       },
       error => {

@@ -57,6 +57,9 @@ const mutations = {
   },
   CREATE_BREADCRUMBS(state, breadcrumbs) {
     state.breadcrumbs = breadcrumbs;
+  },
+  set(state, [variable, value]) {
+    state[variable] = value;
   }
 };
 
