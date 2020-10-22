@@ -232,11 +232,11 @@ export default {
       this.evento = evt;
       this.$refs.chart.add({
         id: +new Date(),
-        x: "20",
-        y: "30",
+        x: this.$refs.chart.$el.offsetLeft,
+        y: this.$refs.chart.$el.offsetTop,
         name: "New",
         type: "operation",
-        approvers: []
+        approvers: null
       });
     }
   },
