@@ -150,7 +150,7 @@ export default {
 
       if (this.errore === false) {
         this.$store.dispatch("businessProcess/save", this.process);
-        return true;
+        this.$router.push("/catalogue/process");
       }
     }
   }

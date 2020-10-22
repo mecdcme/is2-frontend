@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="row" v-if="processes">
+  <div v-if="processes">
+    <div class="row">
       <div class="col-sm-12 col-md-6">
         <CCard>
           <CCardHeader>
@@ -59,7 +59,7 @@ export default {
     },
     handleSaveGraph(graph) {
       //check if process is selected
-      if (this.process != null) {
+      if (this.process == null) {
         alert("Please select a process!");
       } else {
         this.process.graph = graph;

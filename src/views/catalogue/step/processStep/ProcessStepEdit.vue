@@ -100,7 +100,7 @@ export default {
 
       if (this.error === false) {
         this.$store.dispatch("processStep/update", this.step);
-        return true;
+        this.$router.push("/components/step");
       }
     }
   },

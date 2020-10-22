@@ -41,16 +41,16 @@
           Save
         </button>
         <draggable>
-        <flowchart
-          :nodes="nodes"
-          :connections="connections"
-          @editnode="handleEditNode"
-          @dblclick="handleDblClick"
-          @editconnection="handleEditConnection"
-          ref="chart"
-        >
-          <!-- @save="handleChartSave" -->
-        </flowchart>
+          <flowchart
+            :nodes="nodes"
+            :connections="connections"
+            @editnode="handleEditNode"
+            @dblclick="handleDblClick"
+            @editconnection="handleEditConnection"
+            ref="chart"
+          >
+            <!-- @save="handleChartSave" -->
+          </flowchart>
         </draggable>
         <CModal style="width: 320px;" :show.sync="nodeDialog">
           <div class="header"><span>Edit</span></div>
@@ -236,7 +236,7 @@ export default {
         id: +new Date(),
         x: 50,
         y: 50,
-       /*  x: this.$refs.chart.$el.childNodes[0].outerText,
+        /*  x: this.$refs.chart.$el.childNodes[0].outerText,
         y: this.$refs.chart.$el.childNodes[0].outerText, */
         type: "operation",
         approvers: null

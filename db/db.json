@@ -25,20 +25,59 @@
       "name": "Prob",
       "description": "Probabilistic record linkage",
       "label": "PRL",
-      "organization": "Istat"
+      "organization": "Istat",
+      "graph": {
+        "nodes": [
+          {
+            "id": 1603396473285,
+            "x": 260,
+            "y": 110,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": 1603396476217,
+            "x": 40,
+            "y": 110,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          }
+        ],
+        "connections": [
+          {
+            "source": {
+              "id": 1603396476217,
+              "position": "right"
+            },
+            "destination": {
+              "id": 1603396473285,
+              "position": "left"
+            },
+            "id": 1603396480612,
+            "type": "pass",
+            "name": "Pass"
+          }
+        ]
+      }
     },
     {
       "id": 2,
       "name": "Deterministic record linkage",
       "description": "Deterministic record linkage",
-      "label": "DRLOOO",
+      "label": "DRL",
       "organization": "Istat"
     },
     {
       "id": 3,
       "name": "Probabilistic record linkage with blocking",
       "description": "Probabilistic record linkage with blocking",
-      "label": "PRLblocking",
+      "label": "PRLblock",
       "organization": "Istat"
     },
     {
@@ -47,6 +86,75 @@
       "description": "Data validation in R",
       "label": "ValidateR",
       "organization": "Istat"
+    },
+    {
+      "name": "ciao",
+      "description": "bello",
+      "label": "de casetta",
+      "organization": "istat",
+      "id": 5,
+      "graph": {
+        "nodes": [
+          {
+            "id": 1603398478456,
+            "x": 420,
+            "y": 100,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": 1603398481632,
+            "x": 50,
+            "y": 100,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": 1603398506900,
+            "x": 760,
+            "y": 200,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          }
+        ],
+        "connections": [
+          {
+            "source": {
+              "id": 1603398481632,
+              "position": "right"
+            },
+            "destination": {
+              "id": 1603398478456,
+              "position": "left"
+            },
+            "id": 1603398488236,
+            "type": "pass",
+            "name": "Pass"
+          },
+          {
+            "source": {
+              "id": 1603398478456,
+              "position": "right"
+            },
+            "destination": {
+              "id": 1603398506900,
+              "position": "left"
+            },
+            "id": 1603398513146,
+            "type": "pass",
+            "name": "Pass"
+          }
+        ]
+      }
     }
   ],
   "users": [
@@ -283,13 +391,6 @@
       "label": "MATCHING_TABLE",
       "descr": "Create result matching table",
       "business_service_id": 200
-    },
-    {
-      "name": "ciao",
-      "label": "bello",
-      "descr": "de casetta2",
-      "business_service_id": "300",
-      "id": 73
     }
   ]
 }

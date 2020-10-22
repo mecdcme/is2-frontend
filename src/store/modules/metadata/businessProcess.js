@@ -1,4 +1,3 @@
-import router from "@/router";
 import { businessProcessService } from "@/services";
 
 const state = {
@@ -44,7 +43,6 @@ const actions = {
         dispatch("message/success", "Business process saved!", {
           root: true
         });
-        router.push("/catalogue/process");
       },
       error => {
         console.log(error);
@@ -72,7 +70,6 @@ const actions = {
         dispatch("message/success", "Business process updated!", {
           root: true
         });
-        router.push("/catalogue/process");
       },
       error => {
         console.log(error);
