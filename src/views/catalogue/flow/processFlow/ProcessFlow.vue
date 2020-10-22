@@ -1,16 +1,19 @@
 <template>
   <div class="card">
     <div class="row">
-      <div class="c-sidebar c-sidebar-dark c-sidebar-show col">
-        <ul class="c-sidebar-nav">
-          <li class="c-sidebar-nav-title">Process Step List</li>
-        </ul>
-        <ul class="c-sidebar-nav">
-          <li v-for="item in processSteps" :key="item.id">
-            {{ item.name }}
-          </li>
-        </ul>
-        <button class="c-sidebar-minimizer" type="button"></button>
+      <div>
+        <draggable v-model="processSteps" ghost-class="ghost" @end="onEnd">
+          <transition-group type="transition" name="step-list">
+            <div
+              :id="element.id"
+              v-for="element in processSteps"
+              :key="element.id"
+            >
+              <strong>{{ element.name }} </strong>
+              <span>{{ element.id }} </span>
+            </div>
+          </transition-group>
+        </draggable>
       </div>
       <div id="app" class="col">
         <button
@@ -130,10 +133,14 @@
 import Vue from "vue";
 import FlowChart from "flowchart-vue";
 import { mapGetters } from "vuex";
+import draggable from "vuedraggable";
 Vue.use(FlowChart);
 
 export default {
   name: "App",
+  components: {
+    draggable
+  },
   data: function() {
     return {
       nodes: [
@@ -166,7 +173,8 @@ export default {
       nodeName: "",
       nodeType: "",
       connectionName: "",
-      connectionType: ""
+      connectionType: "",
+      evento: []
     };
   },
   computed: {
@@ -219,6 +227,17 @@ export default {
     },
     connectionModalClose() {
       this.connectionDialog = false;
+    },
+    onEnd(evt) {
+      this.evento = evt;
+      this.$refs.chart.add({
+        id: +new Date(),
+        x: "20",
+        y: "30",
+        name: "New",
+        type: "operation",
+        approvers: []
+      });
     }
   },
   created() {
