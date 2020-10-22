@@ -5,3 +5,4 @@ export * from "./standard";
 export * from "./headers";
 export * from "./util";
 export * from "./math";
+export * from "./render";
