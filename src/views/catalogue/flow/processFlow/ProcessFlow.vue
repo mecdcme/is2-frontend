@@ -40,6 +40,7 @@
         <button type="button" @click="$refs.chart.save()">
           Save
         </button>
+        <draggable>
         <flowchart
           :nodes="nodes"
           :connections="connections"
@@ -50,6 +51,7 @@
         >
           <!-- @save="handleChartSave" -->
         </flowchart>
+        </draggable>
         <CModal style="width: 320px;" :show.sync="nodeDialog">
           <div class="header"><span>Edit</span></div>
           <div class="body">
@@ -232,9 +234,10 @@ export default {
       this.evento = evt;
       this.$refs.chart.add({
         id: +new Date(),
-        x: this.$refs.chart.$el.offsetLeft,
-        y: this.$refs.chart.$el.offsetTop,
-        name: "New",
+        x: 50,
+        y: 50,
+       /*  x: this.$refs.chart.$el.childNodes[0].outerText,
+        y: this.$refs.chart.$el.childNodes[0].outerText, */
         type: "operation",
         approvers: null
       });
