@@ -167,7 +167,6 @@ export default {
           type: "pass"
         }
       ],
-      steps: [],
       nodeForm: { target: null },
       connectionForm: { target: null, operation: null },
       nodeDialog: false,
@@ -175,8 +174,7 @@ export default {
       nodeName: "",
       nodeType: "",
       connectionName: "",
-      connectionType: "",
-      evento: []
+      connectionType: ""
     };
   },
   computed: {
