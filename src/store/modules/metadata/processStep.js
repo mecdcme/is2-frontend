@@ -1,4 +1,3 @@
-import router from "@/router";
 import { processStepService } from "@/services";
 
 const state = {
@@ -44,7 +43,6 @@ const actions = {
         dispatch("message/success", "Process step saved!", {
           root: true
         });
-        router.push("/components/step");
       },
       error => {
         console.log(error);
@@ -72,7 +70,6 @@ const actions = {
         dispatch("message/success", "Process step updated!", {
           root: true
         });
-        router.push("/components/step");
       },
       error => {
         console.log(error);

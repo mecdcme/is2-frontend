@@ -44,20 +44,18 @@
       >
       </flowchart>
     </CCardBody>
-    <CModal :show.sync="nodeDialog">
-      <div class="header"><span>Edit</span></div>
-      <div class="body">
-        <label for="name">Name</label
-        ><input id="name" class="form-control" v-model="nodeName" />
-        <label for="type">Type</label>
-        <select id="type" class="form-control" v-model="nodeType"
-          ><option value="start"> Start </option
-          ><option value="end"> End </option
-          ><option value="operation">
-            Operation
-          </option></select
-        >
-      </div>
+    <CModal :show.sync="nodeDialog" title="Edit node">
+      <CInput label="Name" placeholder="Name" v-model="nodeName" class="mb-2" />
+      <CSelect
+        label="Type"
+        placeholder="Type"
+        v-model="nodeType"
+        :options="[
+          { value: 'start', label: 'Start' },
+          { value: 'end', label: 'End' },
+          { value: 'operation', label: 'Operation' }
+        ]"
+      />
       <template #footer>
         <CButton
           shape="square"
@@ -77,20 +75,22 @@
         </CButton>
       </template>
     </CModal>
-    <CModal style="width: 320px;" :show.sync="connectionDialog">
-      <div class="header"><span>Edit</span></div>
-      <div class="body">
-        <label for="name">Name</label
-        ><input id="name" class="form-control" v-model="connectionName" /><label
-          for="type"
-          >Type</label
-        ><select id="type" class="form-control" v-model="connectionType"
-          ><option value="pass"> Pass </option
-          ><option value="reject">
-            Reject
-          </option></select
-        >
-      </div>
+    <CModal :show.sync="connectionDialog" title="Edit connection">
+      <CInput
+        label="Name"
+        placeholder="Name"
+        v-model="connectionName"
+        class="mb-2"
+      />
+      <CSelect
+        label="Type"
+        placeholder="Type"
+        v-model="connectionType"
+        :options="[
+          { value: 'pass', label: 'Pass' },
+          { value: 'reject', label: 'Reject' }
+        ]"
+      />
       <template #footer>
         <CButton
           shape="square"
@@ -201,3 +201,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.modal-header {
+  padding: 0.75rem;
+}
+</style>

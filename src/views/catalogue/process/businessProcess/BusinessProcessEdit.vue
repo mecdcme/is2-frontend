@@ -118,7 +118,7 @@ export default {
 
       if (this.error === false) {
         this.$store.dispatch("businessProcess/update", this.process);
-        return true;
+        this.$router.push("/catalogue/process");
       }
     }
   },
