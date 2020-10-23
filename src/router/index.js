@@ -157,6 +157,13 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "components/mergedflow",
+        name: "MergedFlow",
+        component: () =>
+          import("../views/catalogue/flow/processFlow/MergedFlow"),
+        meta: { authorize: [] }
+      },
+      {
         path: "settings/users",
         name: "UserList",
         component: () => import("../views/settings/user/UserList"),

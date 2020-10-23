@@ -152,7 +152,8 @@ export default {
         x: 10,
         y: 10,
         name: "ml.est",
-        type: nodeType.Operation
+        type: nodeType.Operation,
+        descr: null
       });
     },
     handleEditNode(node) {

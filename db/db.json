@@ -96,32 +96,99 @@
       "graph": {
         "nodes": [
           {
+<<<<<<< HEAD
             "id": 1603482502670,
             "x": 20,
             "y": 90,
             "name": "Step",
             "type": "operation",
             "descr": "ml.est",
+=======
+            "id": "25",
+            "x": 210,
+            "y": 60,
+            "name": "PREDY_STRATA ",
+            "type": "operation",
+            "approvers": null,
+>>>>>>> b3cf0d8ffd590d068f28ef007aa8f33689161b24
             "width": 120,
             "height": 60
           },
           {
+<<<<<<< HEAD
             "id": 1603482505689,
             "x": 170,
             "y": 90,
             "name": "Step",
             "type": "operation",
             "descr": "ml.est",
+=======
+            "id": "35",
+            "x": 170,
+            "y": 200,
+            "name": "SELEDIT_STRATA ",
+            "type": "operation",
+            "approvers": null,
+>>>>>>> b3cf0d8ffd590d068f28ef007aa8f33689161b24
             "width": 120,
             "height": 60
           },
           {
+<<<<<<< HEAD
             "id": 1603482514883,
             "x": 340,
             "y": 90,
             "name": "Step",
             "type": "operation",
             "descr": "ml.est",
+=======
+            "id": "70",
+            "x": 820,
+            "y": 130,
+            "name": "CONTINGENCY_TABLE ",
+            "type": "operation",
+            "approvers": null,
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": "71",
+            "x": 470,
+            "y": 20,
+            "name": "FELLEGI_SUNTER ",
+            "type": "operation",
+            "approvers": null,
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": 1603459979834,
+            "x": 640,
+            "y": 50,
+            "name": "New Step",
+            "type": "operation",
+            "descr": null,
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": "72",
+            "x": 760,
+            "y": 260,
+            "name": "MATCHING_TABLE ",
+            "type": "operation",
+            "approvers": null,
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": "71",
+            "x": 740,
+            "y": 230,
+            "name": "FELLEGI_SUNTER ",
+            "type": "operation",
+            "approvers": null,
+>>>>>>> b3cf0d8ffd590d068f28ef007aa8f33689161b24
             "width": 120,
             "height": 60
           }
@@ -129,6 +196,7 @@
         "connections": [
           {
             "source": {
+<<<<<<< HEAD
               "id": 1603482502670,
               "position": "right"
             },
@@ -137,11 +205,22 @@
               "position": "top"
             },
             "id": 1603482513469,
+=======
+              "id": "25",
+              "position": "right"
+            },
+            "destination": {
+              "id": "35",
+              "position": "left"
+            },
+            "id": 1603459310419,
+>>>>>>> b3cf0d8ffd590d068f28ef007aa8f33689161b24
             "type": "pass",
             "name": "Pass"
           },
           {
             "source": {
+<<<<<<< HEAD
               "id": 1603482505689,
               "position": "bottom"
             },
@@ -150,6 +229,16 @@
               "position": "bottom"
             },
             "id": 1603482520904,
+=======
+              "id": "35",
+              "position": "right"
+            },
+            "destination": {
+              "id": "70",
+              "position": "left"
+            },
+            "id": 1603459312979,
+>>>>>>> b3cf0d8ffd590d068f28ef007aa8f33689161b24
             "type": "pass",
             "name": "Pass"
           }
