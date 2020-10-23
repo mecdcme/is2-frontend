@@ -24,14 +24,13 @@
       "id": 1,
       "name": "Prob",
       "description": "Probabilistic record linkage",
-      "label": "PRL",
       "organization": "Istat",
       "graph": {
         "nodes": [
           {
             "id": 1603396473285,
-            "x": 260,
-            "y": 110,
+            "x": 290,
+            "y": 10,
             "name": "Step",
             "type": "operation",
             "descr": "ml.est",
@@ -42,6 +41,16 @@
             "id": 1603396476217,
             "x": 40,
             "y": 110,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": 1603456030388,
+            "x": 290,
+            "y": 180,
             "name": "Step",
             "type": "operation",
             "descr": "ml.est",
@@ -62,6 +71,19 @@
             "id": 1603396480612,
             "type": "pass",
             "name": "Pass"
+          },
+          {
+            "source": {
+              "id": 1603396473285,
+              "position": "bottom"
+            },
+            "destination": {
+              "id": 1603456030388,
+              "position": "top"
+            },
+            "id": 1603456036142,
+            "type": "pass",
+            "name": "Pass"
           }
         ]
       }
@@ -71,7 +93,11 @@
       "name": "Deterministic record linkage",
       "description": "Deterministic record linkage",
       "label": "DRL",
-      "organization": "Istat"
+      "organization": "Istat",
+      "graph": {
+        "nodes": [],
+        "connections": []
+      }
     },
     {
       "id": 3,
@@ -88,17 +114,16 @@
       "organization": "Istat"
     },
     {
+      "id": 5,
       "name": "ciao",
       "description": "bello",
-      "label": "de casetta",
       "organization": "istat",
-      "id": 5,
       "graph": {
         "nodes": [
           {
-            "id": 1603398478456,
-            "x": 420,
-            "y": 100,
+            "id": 1603454673943,
+            "x": 370,
+            "y": 90,
             "name": "Step",
             "type": "operation",
             "descr": "ml.est",
@@ -106,9 +131,9 @@
             "height": 60
           },
           {
-            "id": 1603398481632,
-            "x": 50,
-            "y": 100,
+            "id": 1603454676452,
+            "x": 60,
+            "y": 80,
             "name": "Step",
             "type": "operation",
             "descr": "ml.est",
@@ -116,9 +141,19 @@
             "height": 60
           },
           {
-            "id": 1603398506900,
-            "x": 760,
+            "id": 1603455043815,
+            "x": 560,
             "y": 200,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": 1603455998752,
+            "x": 170,
+            "y": 190,
             "name": "Step",
             "type": "operation",
             "descr": "ml.est",
@@ -129,27 +164,40 @@
         "connections": [
           {
             "source": {
-              "id": 1603398481632,
+              "id": 1603454676452,
               "position": "right"
             },
             "destination": {
-              "id": 1603398478456,
+              "id": 1603454673943,
               "position": "left"
             },
-            "id": 1603398488236,
+            "id": 1603454680679,
             "type": "pass",
             "name": "Pass"
           },
           {
             "source": {
-              "id": 1603398478456,
+              "id": 1603454673943,
               "position": "right"
             },
             "destination": {
-              "id": 1603398506900,
+              "id": 1603455043815,
+              "position": "top"
+            },
+            "id": 1603455053786,
+            "type": "pass",
+            "name": "Pass"
+          },
+          {
+            "source": {
+              "id": 1603455998752,
               "position": "left"
             },
-            "id": 1603398513146,
+            "destination": {
+              "id": 1603454676452,
+              "position": "bottom"
+            },
+            "id": 1603456004130,
             "type": "pass",
             "name": "Pass"
           }
