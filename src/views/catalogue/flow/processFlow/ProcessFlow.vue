@@ -231,13 +231,11 @@ export default {
       this.connectionDialog = false;
     },
     onEnd(evt) {
-      this.evento = evt;
       this.$refs.chart.add({
-        id: +new Date(),
-        x: 50,
-        y: 50,
-        /*  x: this.$refs.chart.$el.childNodes[0].outerText,
-        y: this.$refs.chart.$el.childNodes[0].outerText, */
+        id: evt.item.id,
+        x: evt.item.offsetWidth,
+        y: evt.item.offsetTop,
+        name: evt.item.firstChild.innerText,
         type: "operation",
         approvers: null
       });
