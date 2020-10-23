@@ -1,7 +1,7 @@
 <template>
   <div v-if="processes">
     <div class="row">
-      <div class="col-sm-12 col-md-6">
+      <div class="col-sm-12 col-md-12">
         <CCard>
           <CCardHeader>
             Business processes
@@ -91,6 +91,17 @@ export default {
         };
         this.$store.dispatch("businessProcess/updateGraph", updatedProcess);
       }
+    },
+    onEnd(evt) {
+      this.$children[2].$children[0].add({
+        // this.flow.chart.add({
+        id: evt.item.id,
+        x: evt.item.offsetWidth,
+        y: evt.item.offsetTop,
+        name: evt.item.firstChild.innerText,
+        type: "operation",
+        approvers: null
+      });
     }
   },
   created() {

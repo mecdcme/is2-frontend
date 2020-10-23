@@ -146,9 +146,9 @@ export default {
         id: +new Date(),
         x: 10,
         y: 10,
-        name: "Step",
+        name: "New Step",
         type: "operation",
-        descr: "ml.est"
+        descr: null
       });
     },
     handleDblClick(position) {
@@ -156,9 +156,9 @@ export default {
         id: +new Date(),
         x: position.x,
         y: position.y,
-        name: "Step",
+        name: "New Step",
         type: "operation",
-        descr: "ml.est"
+        descr: null
       });
     },
     handleEditNode(node) {
