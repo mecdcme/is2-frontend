@@ -40,18 +40,18 @@
         <button type="button" @click="$refs.chart.save()">
           Save
         </button>
-        <draggable>
-          <flowchart
-            :nodes="nodes"
-            :connections="connections"
-            @editnode="handleEditNode"
-            @dblclick="handleDblClick"
-            @editconnection="handleEditConnection"
-            ref="chart"
-          >
-            <!-- @save="handleChartSave" -->
-          </flowchart>
-        </draggable>
+
+        <flowchart
+          :nodes="nodes"
+          :connections="connections"
+          @editnode="handleEditNode"
+          @dblclick="handleDblClick"
+          @editconnection="handleEditConnection"
+          ref="chart"
+        >
+          <!-- @save="handleChartSave" -->
+        </flowchart>
+
         <CModal style="width: 320px;" :show.sync="nodeDialog">
           <div class="header"><span>Edit</span></div>
           <div class="body">
