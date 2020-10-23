@@ -1,11 +1,12 @@
 import * as d3 from "d3";
 import { roundTo20 } from "./math";
+import { nodeType } from "@/common";
 
 function render(g, node, isSelected) {
   node.width = node.width || 120;
   node.height = node.height || 60;
   let borderColor = isSelected ? "#666" : "#bbb";
-  if (node.type !== "start" && node.type !== "end") {
+  if (node.type !== nodeType.Start && node.type !== nodeType.End) {
     // title
     g.append("rect")
       .attr("x", node.x)
@@ -21,7 +22,7 @@ function render(g, node, isSelected) {
       .attr("y", node.y + 15)
       .attr("class", "unselectable")
       .style("fill", "#6b6d7a")
-      .text(() => node.name)
+      .text(() => "Step")
       .each(function wrap() {
         let self = d3.select(this),
           textLength = self.node().getComputedTextLength(),
@@ -39,7 +40,7 @@ function render(g, node, isSelected) {
     .style("width", node.width + "px")
     .style("fill", "white")
     .style("stroke-width", "1px");
-  if (node.type !== "start" && node.type !== "end") {
+  if (node.type !== nodeType.Start && node.type !== nodeType.End) {
     body.attr("x", node.x).attr("y", node.y + 20);
     body.style("height", roundTo20(node.height - 20) + "px");
   } else {
@@ -54,9 +55,13 @@ function render(g, node, isSelected) {
 
   // body text
   let text =
-    node.type === "start" ? "Start" : node.type === "end" ? "End" : node.descr;
+    node.type === nodeType.Start
+      ? "Start"
+      : node.type === nodeType.End
+      ? "End"
+      : node.name;
   let bodyTextY;
-  if (node.type !== "start" && node.type !== "end") {
+  if (node.type !== nodeType.Start && node.type !== nodeType.End) {
     bodyTextY = node.y + 25 + roundTo20(node.height - 20) / 2;
   } else {
     bodyTextY = node.y + 5 + roundTo20(node.height) / 2;

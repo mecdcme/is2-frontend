@@ -92,11 +92,68 @@
       "id": 2,
       "name": "Deterministic record linkage",
       "description": "Deterministic record linkage",
-      "label": "DRL",
       "organization": "Istat",
       "graph": {
-        "nodes": [],
-        "connections": []
+        "nodes": [
+          {
+            "id": 1603482502670,
+            "x": 20,
+            "y": 90,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": 1603482505689,
+            "x": 170,
+            "y": 90,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          },
+          {
+            "id": 1603482514883,
+            "x": 340,
+            "y": 90,
+            "name": "Step",
+            "type": "operation",
+            "descr": "ml.est",
+            "width": 120,
+            "height": 60
+          }
+        ],
+        "connections": [
+          {
+            "source": {
+              "id": 1603482502670,
+              "position": "right"
+            },
+            "destination": {
+              "id": 1603482505689,
+              "position": "top"
+            },
+            "id": 1603482513469,
+            "type": "pass",
+            "name": "Pass"
+          },
+          {
+            "source": {
+              "id": 1603482505689,
+              "position": "bottom"
+            },
+            "destination": {
+              "id": 1603482514883,
+              "position": "bottom"
+            },
+            "id": 1603482520904,
+            "type": "pass",
+            "name": "Pass"
+          }
+        ]
       }
     },
     {
@@ -123,8 +180,8 @@
           {
             "id": 1603454673943,
             "x": 370,
-            "y": 90,
-            "name": "Step",
+            "y": 30,
+            "name": "pred.y",
             "type": "operation",
             "descr": "ml.est",
             "width": 120,
@@ -134,7 +191,7 @@
             "id": 1603454676452,
             "x": 60,
             "y": 80,
-            "name": "Step",
+            "name": "ml.est",
             "type": "operation",
             "descr": "ml.est",
             "width": 120,
@@ -144,7 +201,7 @@
             "id": 1603455043815,
             "x": 560,
             "y": 200,
-            "name": "Step",
+            "name": "sel.edit",
             "type": "operation",
             "descr": "ml.est",
             "width": 120,
@@ -152,10 +209,10 @@
           },
           {
             "id": 1603455998752,
-            "x": 170,
+            "x": 240,
             "y": 190,
             "name": "Step",
-            "type": "operation",
+            "type": "start",
             "descr": "ml.est",
             "width": 120,
             "height": 60
