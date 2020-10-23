@@ -75,6 +75,20 @@ const actions = {
         console.log(error);
       }
     );
+  },
+  updateGraph({ dispatch }, formData) {
+    businessProcessService.update(formData).then(
+      data => {
+        console.log(data);
+        dispatch("findAll");
+        dispatch("message/success", "Graph updated!", {
+          root: true
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 };
 

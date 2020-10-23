@@ -55,6 +55,9 @@ export default {
       if (this.process != null && this.process.graph) {
         this.nodes = this.process.graph.nodes;
         this.connections = this.process.graph.connections;
+      } else {
+        this.nodes = [];
+        this.connections = [];
       }
     },
     handleSaveGraph(graph) {
@@ -62,9 +65,14 @@ export default {
       if (this.process == null) {
         alert("Please select a process!");
       } else {
-        this.process.graph = graph;
-        this.$store.dispatch("businessProcess/update", this.process);
-        return true;
+        var updatedProcess = {
+          id: this.process.id,
+          name: this.process.name,
+          description: this.process.description,
+          organization: this.process.organization,
+          graph: graph
+        };
+        this.$store.dispatch("businessProcess/updateGraph", updatedProcess);
       }
     }
   },
