@@ -32,7 +32,7 @@
       </CButtonGroup>
       <flowchart
         width="100%"
-        height="300"
+        height="600"
         :nodes="nodes"
         :connections="connections"
         @editnode="handleEditNode"
@@ -151,7 +151,7 @@ export default {
         id: +new Date(),
         x: 10,
         y: 10,
-        name: "ml.est",
+        name: "New Step",
         type: nodeType.Operation,
         descr: null
       });
@@ -171,6 +171,18 @@ export default {
     nodeModalOk() {
       this.nodeForm.target.name = this.nodeName;
       this.nodeForm.target.type = this.nodeType;
+      if (this.nodeType == "start") {
+        this.nodeForm.target.name = "Start";
+        this.id = 0;
+      }
+      if (this.nodeType == "end") {
+        this.nodeForm.target.name = "End";
+        this.id = 99;
+      }
+      if (this.nodeType == "operation") {
+        this.nodeForm.target.name = "New Step";
+        this.id = null;
+      }
       this.nodeDialog = false;
     },
     nodeModalClose() {

@@ -40,6 +40,7 @@
           </CCardBody>
         </CCard>
       </div>
+
       <div class="col-sm-9 col-md-9">
         <app-flow
           :nodes="nodes"
@@ -66,7 +67,8 @@ export default {
     return {
       process: null,
       nodes: [],
-      connections: []
+      connections: [],
+      offsetx: 0
     };
   },
   computed: {
@@ -102,12 +104,14 @@ export default {
     onEnd(evt) {
       this.$children[2].$children[0].add({
         id: evt.item.id,
-        x: evt.item.offsetWidth,
+        x: evt.item.offsetWidth + this.offsetx,
         y: evt.item.offsetTop,
-        name: evt.item.firstChild.innerText,
+
+        name: evt.item.innerText,
         type: "operation",
-        approvers: null
+        descr: null
       });
+      this.offsetx = this.offsetx + 20;
     }
   },
   created() {
