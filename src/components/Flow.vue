@@ -173,15 +173,15 @@ export default {
       this.nodeForm.target.type = this.nodeType;
       if (this.nodeType == "start") {
         this.nodeForm.target.name = "Start";
-        this.id = 0;
+        this.nodeForm.target.id = 0;
       }
       if (this.nodeType == "end") {
         this.nodeForm.target.name = "End";
-        this.id = 99;
+        this.nodeForm.target.id = 99;
       }
       if (this.nodeType == "operation") {
         this.nodeForm.target.name = "New Step";
-        this.id = null;
+        this.nodeForm.target.id = null;
       }
       this.nodeDialog = false;
     },
