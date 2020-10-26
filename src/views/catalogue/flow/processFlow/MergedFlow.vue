@@ -94,7 +94,6 @@ export default {
     },
     onEnd(evt) {
       this.$children[2].$children[0].add({
-        // this.flow.chart.add({
         id: evt.item.id,
         x: evt.item.offsetWidth,
         y: evt.item.offsetTop,
