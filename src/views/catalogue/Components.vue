@@ -61,6 +61,11 @@
                 ><span>Go to workflow <chevron-right-icon /></span>
               </router-link>
             </p>
+            <p class="section-link">
+              <router-link tag="a" :to="{ name: 'MergedFlow' }"
+                ><span>Go to mergedflow <chevron-right-icon /></span>
+              </router-link>
+            </p>
           </div>
         </div>
       </div>
