@@ -1,6 +1,6 @@
 <template>
   <CCard>
-    <CCardHeader>Flow chart</CCardHeader>
+    <CCardHeader>Workflow</CCardHeader>
     <CCardBody>
       <CButtonGroup class="pb-2" v-if="!readonly">
         <CButton

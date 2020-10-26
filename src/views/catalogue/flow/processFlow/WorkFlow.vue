@@ -19,7 +19,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 col-md-12">
+      <div class="col-sm-3 col-md-3">
+        <app-selectable :options="processSteps" :selectedOptions="nodes" />
+      </div>
+      <div class="col-sm-9 col-md-9">
         <app-flow
           :nodes="nodes"
           :connections="connections"
@@ -33,11 +36,13 @@
 <script>
 import { mapGetters } from "vuex";
 import Flow from "@/components/Flow";
+import Selectable from "@/components/Selectable";
 
 export default {
   name: "Workflow",
   components: {
-    "app-flow": Flow
+    "app-flow": Flow,
+    "app-selectable": Selectable
   },
   data: function() {
     return {
@@ -47,7 +52,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("businessProcess", { processes: "businessProcesses" })
+    ...mapGetters("businessProcess", { processes: "businessProcesses" }),
+    ...mapGetters("processStep", ["processSteps"])
   },
   methods: {
     handleSelectInput() {
@@ -78,6 +84,7 @@ export default {
   },
   created() {
     this.$store.dispatch("businessProcess/findAll");
+    this.$store.dispatch("processStep/findAll");
   }
 };
 </script>
