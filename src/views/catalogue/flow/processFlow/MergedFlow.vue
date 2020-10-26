@@ -20,18 +20,25 @@
     </div>
     <div class="row">
       <div class="col-sm-3 col-md-3">
-        <draggable v-model="processSteps" ghost-class="ghost" @end="onEnd">
-          <transition-group type="transition" name="step-list">
-            <div
-              :id="element.id"
-              v-for="element in processSteps"
-              :key="element.id"
-            >
-              <strong>{{ element.name }} </strong>
-              <span>{{ element.id }} </span>
-            </div>
-          </transition-group>
-        </draggable>
+        <CCard>
+          <CCardHeader>
+            Process steps
+          </CCardHeader>
+          <CCardBody>
+            <draggable v-model="processSteps" ghost-class="ghost" @end="onEnd">
+              <transition-group type="transition" name="step-list">
+                <CAlert
+                  color="secondary"
+                  :id="element.id"
+                  v-for="element in processSteps"
+                  :key="element.id"
+                >
+                  <cog-icon class="mr-2" /><span>{{ element.name }} </span>
+                </CAlert>
+              </transition-group>
+            </draggable>
+          </CCardBody>
+        </CCard>
       </div>
       <div class="col-sm-9 col-md-9">
         <app-flow
@@ -50,7 +57,7 @@ import Flow from "@/components/Flow";
 import draggable from "vuedraggable";
 
 export default {
-  name: "Workflow",
+  name: "Mergedflow",
   components: {
     "app-flow": Flow,
     draggable
@@ -109,3 +116,22 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.alert {
+  position: relative;
+  padding: 0.5rem 1.25rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #d8dbe0;
+  font-size: 0.8rem;
+}
+.sortable-chosen {
+  cursor: move;
+}
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.sortable-chosen:active {
+  cursor: move;
+}
+</style>

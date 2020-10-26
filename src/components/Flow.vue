@@ -1,8 +1,8 @@
 <template>
   <CCard>
-    <CCardHeader>Flow chart</CCardHeader>
+    <CCardHeader>Workflow</CCardHeader>
     <CCardBody>
-      <CButtonGroup class="pb-2">
+      <CButtonGroup class="pb-2" v-if="!readonly">
         <CButton
           shape="square"
           size="sm"
@@ -37,25 +37,25 @@
         :connections="connections"
         @editnode="handleEditNode"
         @editconnection="handleEditConnection"
-        @dblclick="handleDblClick"
         @save="handleChartSave"
         :render="render"
+        :readonly="readonly"
         ref="chart"
       >
       </flowchart>
     </CCardBody>
-    <CModal :show.sync="nodeDialog" title="Edit node">
+
+    <!-- Node modal-->
+    <CModal :show.sync="nodeDialog" title="Node">
       <CInput label="Name" placeholder="Name" v-model="nodeName" class="mb-2" />
-      <CSelect
-        label="Type"
-        placeholder="Type"
-        v-model="nodeType"
-        :options="[
-          { value: 'start', label: 'Start' },
-          { value: 'end', label: 'End' },
-          { value: 'operation', label: 'Operation' }
-        ]"
-      />
+      <label for="ntype">Type</label>
+      <select class="form-control" v-model="nodeType"
+        ><option value="start"> Start </option
+        ><option value="end"> End </option
+        ><option value="operation">
+          Operation
+        </option></select
+      >
       <template #footer>
         <CButton
           shape="square"
@@ -75,22 +75,22 @@
         </CButton>
       </template>
     </CModal>
-    <CModal :show.sync="connectionDialog" title="Edit connection">
+
+    <!-- Connection modal-->
+    <CModal :show.sync="connectionDialog" title="Connection">
       <CInput
         label="Name"
         placeholder="Name"
         v-model="connectionName"
         class="mb-2"
       />
-      <CSelect
-        label="Type"
-        placeholder="Type"
-        v-model="connectionType"
-        :options="[
-          { value: 'pass', label: 'Pass' },
-          { value: 'reject', label: 'Reject' }
-        ]"
-      />
+      <label>Type</label
+      ><select class="form-control" v-model="connectionType"
+        ><option value="pass"> Pass </option
+        ><option value="reject">
+          Reject
+        </option></select
+      >
       <template #footer>
         <CButton
           shape="square"
@@ -114,9 +114,10 @@
 </template>
 <script>
 import { render } from "@/common";
+import { nodeType } from "@/common";
 
 export default {
-  name: "App",
+  name: "Flow",
   props: {
     nodes: {
       Type: Array,
@@ -125,6 +126,10 @@ export default {
     connections: {
       Type: Array,
       default: () => []
+    },
+    readonly: {
+      Type: Boolean,
+      default: false
     }
   },
   data: function() {
@@ -146,18 +151,8 @@ export default {
         id: +new Date(),
         x: 10,
         y: 10,
-        name: "New Step",
-        type: "operation",
-        descr: null
-      });
-    },
-    handleDblClick(position) {
-      this.$refs.chart.add({
-        id: +new Date(),
-        x: position.x,
-        y: position.y,
-        name: "New Step",
-        type: "operation",
+        name: "ml.est",
+        type: nodeType.Operation,
         descr: null
       });
     },
@@ -168,13 +163,12 @@ export default {
       this.nodeDialog = true;
     },
     handleEditConnection(connection) {
-      this.nodeName = connection.name;
-      this.nodeType = connection.type;
+      this.connectionName = connection.name;
+      this.connectionType = connection.type;
       this.connectionForm.target = connection;
       this.connectionDialog = true;
     },
     nodeModalOk() {
-      /* this.nodeForm.target.type = this.type.value(); */
       this.nodeForm.target.name = this.nodeName;
       this.nodeForm.target.type = this.nodeType;
       this.nodeDialog = false;
@@ -183,7 +177,6 @@ export default {
       this.nodeDialog = false;
     },
     connectionModalOk() {
-      /*  this.connectionForm.target = this.type.value(); */
       this.connectionForm.target.name = this.connectionName;
       this.connectionForm.target.type = this.connectionType;
       this.connectionDialog = false;
