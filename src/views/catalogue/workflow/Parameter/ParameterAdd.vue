@@ -111,13 +111,13 @@ export default {
       this.$router.push("/components/parameter");
     },
     handleSubmit() {
-      this.formTouched = !this.$v.step.$anyDirty;
-      this.error = this.$v.step.$invalid;
+      this.formTouched = !this.$v.parameter.$anyDirty;
+      this.error = this.$v.parameter.$invalid;
       this.uiState = "FORM_SUBMITTED";
 
       if (this.error === false) {
-        this.$store.dispatch("processStep/save", this.step);
-        this.$router.push("/components/step");
+        this.$store.dispatch("parameter/save", this.step);
+        this.$router.push("/components/parameter");
       }
     }
   }
