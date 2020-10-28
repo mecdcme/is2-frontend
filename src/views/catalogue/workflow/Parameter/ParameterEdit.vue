@@ -1,5 +1,5 @@
 <template>
-  <div class="row" v-if="step">
+  <div class="row" v-if="parameter">
     <div class="col-sm-12 col-md-6">
       <div class="card">
         <header class="card-header">Edit Parameter</header>
@@ -74,7 +74,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("parameter", ["parameters"])
+    ...mapGetters("parameter", ["parameter"])
   },
   validations: {
     parameter: {
