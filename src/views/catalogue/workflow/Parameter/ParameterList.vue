@@ -12,7 +12,7 @@
         </header>
         <CCardBody>
           <CDataTable
-            :items="paremeters"
+            :items="parameters"
             :fields="fields"
             column-filter
             table-filter
@@ -26,7 +26,7 @@
               <td>
                 <router-link
                   tag="a"
-                  :to="{ name: 'parameterEdit', params: { id: item.id } }"
+                  :to="{ name: 'ParameterEdit', params: { id: item.id } }"
                 >
                   <edit-icon />
                 </router-link>
