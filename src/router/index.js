@@ -144,6 +144,27 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "components/parameter",
+        name: "ParameterList",
+        component: () =>
+          import("../views/catalogue/workflow/parameter/ParameterList"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "components/parameter/edit/:id",
+        name: "ParameterEdit",
+        component: () =>
+          import("../views/catalogue/workflow/parameter/ParameterEdit"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "components/parameter/add",
+        name: "ParameterNew",
+        component: () =>
+          import("../views/catalogue/workflow/parameter/ParameterAdd"),
+        meta: { authorize: [] }
+      },
+      {
         path: "components/flow",
         name: "ProcessFlow",
         component: () =>

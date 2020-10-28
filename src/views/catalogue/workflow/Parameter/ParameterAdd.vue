@@ -2,55 +2,55 @@
   <div class="row">
     <div class="col-sm-12 col-md-6">
       <div class="card">
-        <header class="card-header">New Process Step</header>
+        <header class="card-header">New Parameter</header>
         <CCardBody>
-          <CInput label="Name" placeholder="Name" v-model="step.name" />
+          <CInput label="Name" placeholder="Name" v-model="parameter.name" />
           <p
             class="error"
-            v-if="!$v.step.name.required && uiState === 'FORM_SUBMITTED'"
+            v-if="!$v.parameter.name.required && uiState === 'FORM_SUBMITTED'"
           >
             This field is required
           </p>
           <p
             class="error"
-            v-if="!$v.step.name.minLength && uiState === 'FORM_SUBMITTED'"
+            v-if="!$v.parameter.name.minLength && uiState === 'FORM_SUBMITTED'"
           >
             Field must have at least
-            {{ $v.step.name.$params.minLength.min }}
+            {{ $v.parameter.name.$params.minLength.min }}
             characters.
           </p>
-          <CInput label="Label" placeholder="Label" v-model="step.label" />
+          <CInput label="Label" placeholder="Label" v-model="parameter.label" />
           <p
             class="error"
-            v-if="!$v.step.label.required && uiState === 'FORM_SUBMITTED'"
+            v-if="!$v.parameter.label.required && uiState === 'FORM_SUBMITTED'"
           >
             This field is required
           </p>
           <p
             class="error"
-            v-if="!$v.step.label.minLength && uiState === 'FORM_SUBMITTED'"
+            v-if="!$v.parameter.label.minLength && uiState === 'FORM_SUBMITTED'"
           >
             Field must have at least
-            {{ $v.step.label.$params.minLength.min }}
+            {{ $v.parameter.label.$params.minLength.min }}
             characters.
           </p>
           <CInput
             label="Description"
             placeholder="Description"
-            v-model="step.descr"
+            v-model="parameter.descr"
           />
           <p
             class="error"
-            v-if="!$v.step.descr.required && uiState === 'FORM_SUBMITTED'"
+            v-if="!$v.parameter.descr.required && uiState === 'FORM_SUBMITTED'"
           >
             This field is required
           </p>
           <p
             class="error"
-            v-if="!$v.step.descr.minLength && uiState === 'FORM_SUBMITTED'"
+            v-if="!$v.parameter.descr.minLength && uiState === 'FORM_SUBMITTED'"
           >
             Field must have at least
-            {{ $v.step.descr.$params.minLength.min }}
+            {{ $v.parameter.descr.$params.minLength.min }}
             characters.
           </p>
         </CCardBody>
@@ -75,23 +75,22 @@
 import { required, minLength } from "vuelidate/lib/validators";
 
 export default {
-  name: "ProcessNew",
+  name: "ParameterNew",
   data() {
     return {
       uiState: "SUBMIT_NOT_CLICKED",
       error: false,
       formTouched: false,
       empty: true,
-      step: {
+      parameter: {
         name: "",
         label: "",
-        descr: "",
-        business_service_id: "300"
+        descr: ""
       }
     };
   },
   validations: {
-    step: {
+    parameter: {
       id: {},
       name: {
         required,
@@ -109,7 +108,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push("/components/step");
+      this.$router.push("/components/parameter");
     },
     handleSubmit() {
       this.formTouched = !this.$v.step.$anyDirty;

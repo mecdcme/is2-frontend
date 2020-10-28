@@ -2,40 +2,44 @@
   <div class="row" v-if="step">
     <div class="col-sm-12 col-md-6">
       <div class="card">
-        <header class="card-header">Edit Process Step</header>
+        <header class="card-header">Edit Parameter</header>
         <form>
           <CCardBody>
             <CInput label="Id" placeholder="Id" disabled />
-            <CInput label="Name" placeholder="Name" v-model="step.name" />
-            <p class="error" v-if="!$v.step.name.required">
+            <CInput label="Name" placeholder="Name" v-model="parameter.name" />
+            <p class="error" v-if="!$v.parameter.name.required">
               This field is required
             </p>
-            <p class="error" v-if="!$v.step.name.minLength">
+            <p class="error" v-if="!$v.parameter.name.minLength">
               Field must have at least
-              {{ $v.step.name.$params.minLength.min }}
+              {{ $v.parameter.name.$params.minLength.min }}
               characters.
             </p>
-            <CInput label="Label" placeholder="Label" v-model="step.label" />
-            <p class="error" v-if="!$v.step.label.required">
+            <CInput
+              label="Label"
+              placeholder="Label"
+              v-model="parameter.label"
+            />
+            <p class="error" v-if="!$v.parameter.label.required">
               This field is required
             </p>
-            <p class="error" v-if="!$v.step.label.minLength">
+            <p class="error" v-if="!$v.parameter.label.minLength">
               Field must have at least
-              {{ $v.step.label.$params.minLength.min }}
+              {{ $v.parameter.label.$params.minLength.min }}
               characters.
             </p>
             <CTextarea
               rows="5"
               label="Description"
               placeholder="Description"
-              v-model="step.descr"
+              v-model="parameter.descr"
             />
-            <p class="error" v-if="!$v.step.descr.required">
+            <p class="error" v-if="!$v.parameter.descr.required">
               This field is required
             </p>
-            <p class="error" v-if="!$v.step.descr.minLength">
+            <p class="error" v-if="!$v.parameter.descr.minLength">
               Field must have at least
-              {{ $v.step.descr.$params.minLength.min }}
+              {{ $v.parameter.descr.$params.minLength.min }}
               characters.
             </p>
           </CCardBody>
@@ -70,12 +74,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("processStep", {
-      step: "processStep"
-    })
+    ...mapGetters("parameter", ["parameters"])
   },
   validations: {
-    step: {
+    parameter: {
       name: {
         required,
         minLength: minLength(3)
@@ -95,17 +97,17 @@ export default {
       this.$router.push("/components/step");
     },
     handleSubmit() {
-      this.formTouched = !this.$v.step.$anyDirty;
-      this.error = this.$v.step.$invalid;
+      this.formTouched = !this.$v.parameter.$anyDirty;
+      this.error = this.$v.parameter.$invalid;
 
       if (this.error === false) {
-        this.$store.dispatch("processStep/update", this.step);
-        this.$router.push("/components/step");
+        this.$store.dispatch("parameter/update", this.parameter);
+        this.$router.push("/components/parameter");
       }
     }
   },
   created() {
-    this.$store.dispatch("processStep/findById", this.$route.params.id);
+    this.$store.dispatch("parameter/findById", this.$route.params.id);
   }
 };
 </script>
