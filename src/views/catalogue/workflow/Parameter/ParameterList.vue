@@ -3,9 +3,9 @@
     <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">
-          Processes
+          Parameters
           <div class="card-header-actions">
-            <router-link tag="a" :to="{ name: 'ProcessStepNew' }">
+            <router-link tag="a" :to="{ name: 'ParameterNew' }">
               <add-icon />
             </router-link>
           </div>
@@ -101,11 +101,11 @@ export default {
   },
   methods: {
     parameterDelete() {
-      this.$store.dispatch("parameter/delete", this.selectedStep.id);
+      this.$store.dispatch("parameter/delete", this.selectedParameter.id);
       this.warningModal = false;
     },
-    modalOpen(step) {
-      this.selectedStep = step;
+    modalOpen(parameter) {
+      this.parameter = parameter;
       this.warningModal = true;
     },
     modalClose() {

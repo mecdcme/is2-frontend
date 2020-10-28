@@ -6,11 +6,11 @@ const state = {
 };
 
 const mutations = {
-  SET_PARAMETERS(state, processSteps) {
-    state.processSteps = processSteps;
+  SET_PARAMETERS(state, parameters) {
+    state.parameters = parameters;
   },
-  SET_PARAMETER(state, processStep) {
-    state.processStep = processStep;
+  SET_PARAMETER(state, parameter) {
+    state.parameter = parameter;
   }
 };
 
@@ -18,8 +18,8 @@ const actions = {
   findAll({ commit }) {
     parameterService.findAll().then(
       data => {
-        commit("SET_PROCESS_STEPS", data);
-        commit("SET_PROCESS_STEP", null); //clear process step
+        commit("SET_PARAMETERS", data);
+        commit("SET_PARAMETER", null); //clear process step
       },
       error => {
         console.log(error);
@@ -29,7 +29,7 @@ const actions = {
   findById({ commit }, id) {
     parameterService.findById(id).then(
       data => {
-        commit("SET_PROCESS_STEP", data);
+        commit("SET_PARAMETER", data);
       },
       error => {
         console.log(error);
@@ -40,7 +40,7 @@ const actions = {
     parameterService.save(formData).then(
       data => {
         console.log(data);
-        dispatch("message/success", "Process step saved!", {
+        dispatch("message/success", "Parameter saved!", {
           root: true
         });
       },
@@ -54,7 +54,7 @@ const actions = {
       data => {
         console.log(data);
         dispatch("findAll");
-        dispatch("message/success", "Process step deleted!", {
+        dispatch("message/success", "Parameter deleted!", {
           root: true
         });
       },
@@ -67,7 +67,7 @@ const actions = {
     parameterService.update(formData).then(
       data => {
         console.log(data);
-        dispatch("message/success", "Process step updated!", {
+        dispatch("message/success", "Parameter updated!", {
           root: true
         });
       },
@@ -87,7 +87,7 @@ const getters = {
   }
 };
 
-export const processStep = {
+export const parameter = {
   namespaced: true,
   state,
   mutations,

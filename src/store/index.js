@@ -8,6 +8,7 @@ import { message } from "./modules/message";
 import { businessProcess } from "./modules/metadata/businessProcess";
 import { businessService } from "./modules/metadata/businessService";
 import { processStep } from "./modules/metadata/processStep";
+import { parameter } from "./modules/metadata/parameter";
 import { user } from "./modules/user/user";
 
 Vue.use(Vuex);
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     businessProcess,
     businessService,
     processStep,
+    parameter,
     user
   }
 });
