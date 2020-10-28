@@ -15,19 +15,6 @@
               {{ $v.parameter.name.$params.minLength.min }}
               characters.
             </p>
-            <CInput
-              label="Label"
-              placeholder="Label"
-              v-model="parameter.label"
-            />
-            <p class="error" v-if="!$v.parameter.label.required">
-              This field is required
-            </p>
-            <p class="error" v-if="!$v.parameter.label.minLength">
-              Field must have at least
-              {{ $v.parameter.label.$params.minLength.min }}
-              characters.
-            </p>
             <CTextarea
               rows="5"
               label="Description"
@@ -40,6 +27,34 @@
             <p class="error" v-if="!$v.parameter.descr.minLength">
               Field must have at least
               {{ $v.parameter.descr.$params.minLength.min }}
+              characters.
+            </p>
+            <CTextarea
+              rows="5"
+              default_val="default_val"
+              placeholder="default_val"
+              v-model="parameter.default_val"
+            />
+            <p class="error" v-if="!$v.parameter.default_val.required">
+              This field is required
+            </p>
+            <p class="error" v-if="!$v.parameter.default_val.minLength">
+              Field must have at least
+              {{ $v.parameter.default_val.$params.minLength.min }}
+              characters.
+            </p>
+            <CTextarea
+              rows="5"
+              json_template="json_template"
+              placeholder="json_template"
+              v-model="parameter.json_template"
+            />
+            <p class="error" v-if="!$v.parameter.json_template.required">
+              This field is required
+            </p>
+            <p class="error" v-if="!$v.parameter.json_template.minLength">
+              Field must have at least
+              {{ $v.parameter.json_template.$params.minLength.min }}
               characters.
             </p>
           </CCardBody>
@@ -82,11 +97,15 @@ export default {
         required,
         minLength: minLength(3)
       },
-      label: {
+      descr: {
         required,
         minLength: minLength(3)
       },
-      descr: {
+      default_val: {
+        required,
+        minLength: minLength(3)
+      },
+      json_template: {
         required,
         minLength: minLength(3)
       }
@@ -94,7 +113,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push("/components/step");
+      this.$router.push("/components/parameter");
     },
     handleSubmit() {
       this.formTouched = !this.$v.parameter.$anyDirty;

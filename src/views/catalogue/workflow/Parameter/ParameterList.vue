@@ -73,7 +73,6 @@ export default {
       fields: [
         { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:10%" },
-        { key: "label", _style: "width:10%;" },
         { key: "descr", _style: "width:25%;" },
         { key: "default_val", _style: "width:10%;" },
         { key: "json_template", _style: "width:25%;" },

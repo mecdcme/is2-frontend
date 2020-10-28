@@ -19,21 +19,6 @@
             {{ $v.parameter.name.$params.minLength.min }}
             characters.
           </p>
-          <CInput label="Label" placeholder="Label" v-model="parameter.label" />
-          <p
-            class="error"
-            v-if="!$v.parameter.label.required && uiState === 'FORM_SUBMITTED'"
-          >
-            This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.parameter.label.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.parameter.label.$params.minLength.min }}
-            characters.
-          </p>
           <CInput
             label="Description"
             placeholder="Description"
@@ -116,7 +101,7 @@ export default {
       this.uiState = "FORM_SUBMITTED";
 
       if (this.error === false) {
-        this.$store.dispatch("parameter/save", this.step);
+        this.$store.dispatch("parameter/save", this.parameter);
         this.$router.push("/components/parameter");
       }
     }
