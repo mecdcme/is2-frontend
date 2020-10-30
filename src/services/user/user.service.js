@@ -1,5 +1,5 @@
 import { axiosIs2 } from "@/http";
-import qs from "querystring";
+import { config } from "@/common";
 
 export const userService = {
   findAll,
@@ -47,12 +47,7 @@ function findById(id) {
 }
 function save(data) {
   return new Promise((resolve, reject) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    };
-    axiosIs2.post("/users/", qs.stringify(data), config).then(
+    axiosIs2.post("/users/", data, config).then(
       response => {
         console.log(response.data);
         console.log(response.statusText);
@@ -71,18 +66,13 @@ function save(data) {
 
 function update(data) {
   return new Promise((resolve, reject) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    };
     const user = {
       name: data.name,
       surname: data.surname,
       email: data.email,
       role: data.role
     };
-    axiosIs2.put("/users/" + data.id, qs.stringify(user), config).then(
+    axiosIs2.put("/users/" + data.id, user, config).then(
       response => {
         console.log(response.data);
         console.log(response.statusText);

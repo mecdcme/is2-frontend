@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center min-vh-100">
     <CContainer fluid>
       <CRow class="justify-content-center">
-        <CCol sm="6" md="8" lg="6">
+        <CCol col="7" md="7" xl="4">
           <div class="card-group">
             <div class="card text-white bg-gradient-primary d-md-down-none">
               <div class="card-body text-center">
@@ -25,7 +25,7 @@
               <CCardHeader align="center">
                 <h3 class="mt-3">Sign in to IS<sup>2</sup> Workbench</h3>
               </CCardHeader>
-              <CCardBody class="mb-0">
+              <CCardBody class="mb-0 mt-3">
                 <CForm>
                   <CAlert color="danger" v-if="errorMsg" class="text-center">
                     <span>{{ errorMsg }}</span>
@@ -68,14 +68,6 @@
                         color="primary"
                         @click.prevent="handleSubmit"
                         >Sign in</CButton
-                      >
-                    </CCol>
-                  </CRow>
-                  <CRow>
-                    <CCol col="12" class="register">
-                      <span>New to workbench? </span>
-                      <router-link tag="a" to="/register"
-                        >Create an account</router-link
                       >
                     </CCol>
                   </CRow>

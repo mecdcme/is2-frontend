@@ -2,8 +2,7 @@ import { axiosAuth } from "@/http";
 import { config } from "@/common";
 
 export const authService = {
-  login,
-  register
+  login
 };
 
 function login({ username, password }) {
@@ -31,39 +30,5 @@ function login({ username, password }) {
         reject(err);
       }
     );
-  });
-}
-
-function register({ username, email, fullname, password }) {
-  return new Promise((resolve, reject) => {
-    const requestBody = {
-      username: username,
-      email: email,
-      name: fullname,
-      role: "USER",
-      password: password
-    };
-
-    axiosAuth
-      .post("/signup?language=ENG", requestBody, config)
-      .then(
-        response => {
-          console.log(response);
-          const token = response.headers["jwt-auth"];
-          const data = {
-            token: token,
-            user: response.data
-          };
-          resolve(data);
-        },
-        error => {
-          console.log(error.response.data.code);
-          const err = {
-            code: error.response.status,
-            message: error.response.data.code
-          };
-          reject(err);
-        }
-      );
   });
 }

@@ -1,4 +1,5 @@
 import { axiosIs2 } from "@/http";
+import { config } from "@/common";
 
 export const businessProcessService = {
   findAll,
@@ -40,7 +41,7 @@ function findById(id) {
 
 function save(formData) {
   return new Promise((resolve, reject) => {
-    axiosIs2.post("/processes", formData).then(
+    axiosIs2.post("/processes", formData, config).then(
       response => {
         var data = response.data ? response.data : {};
         //console.log(data);
@@ -55,7 +56,7 @@ function save(formData) {
 
 function update(formData) {
   return new Promise((resolve, reject) => {
-    axiosIs2.put("/processes/" + formData.id, formData).then(
+    axiosIs2.put("/processes/" + formData.id, formData, config).then(
       response => {
         var data = response.data ? response.data : {};
         //console.log(data);
