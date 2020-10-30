@@ -39,8 +39,10 @@
           <div class="card-body">
             This section contains the list of parameters available in the
             catalogue.
-            <p class="section-link section-link-disabled">
-              <span>Go to parameters <chevron-right-icon /></span>
+            <p class="section-link">
+              <router-link tag="a" :to="{ name: 'ParameterList' }"
+                ><span>Go to parameters <chevron-right-icon /></span>
+              </router-link>
             </p>
           </div>
         </div>

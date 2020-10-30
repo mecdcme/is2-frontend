@@ -1,6 +1,5 @@
 import { axiosAuth } from "@/http";
 import { config } from "@/common";
-import qs from "querystring";
 
 export const authService = {
   login,
@@ -14,7 +13,7 @@ function login({ username, password }) {
       password: password
     };
 
-    axiosAuth.post("/login", qs.stringify(requestBody), config).then(
+    axiosAuth.post("/login", requestBody, config).then(
       response => {
         console.log(response.data);
         const token = response.data.accessToken;
@@ -46,7 +45,7 @@ function register({ username, email, fullname, password }) {
     };
 
     axiosAuth
-      .post("/signup?language=ENG", qs.stringify(requestBody), config)
+      .post("/signup?language=ENG", requestBody, config)
       .then(
         response => {
           console.log(response);

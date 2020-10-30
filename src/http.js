@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "@/store";
 
 const axiosAuth = axios.create({
-  baseURL: process.env.VUE_APP_DEV_SERVER + "/api/"
+  baseURL: process.env.VUE_APP_DEV_SERVER
 });
 
 const axiosIs2 = axios.create({
@@ -14,8 +14,8 @@ axiosIs2.interceptors.request.use(
   config => {
     //store.dispatch("coreui/loading", true);
     const token = store.getters["auth/token"];
-    if (token && !("jwt-auth" in config.headers)) {
-      config.headers["jwt-auth"] = token;
+    if (token && !("Authorization" in config.headers)) {
+      config.headers["Authorization"] = token;
     }
     return config;
   },
