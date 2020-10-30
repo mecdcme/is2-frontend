@@ -18,6 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "query-string": "^6.13.1",
     "vue": "^2.6.12",
+    "vue-json-edit": "^1.4.3",
+    "vue-json-editor": "^1.4.2",
     "vue-material-design-icons": "^4.9.0",
     "vue-router": "^3.4.3",
     "vue-select": "^3.10.8",

@@ -43,7 +43,26 @@
               {{ $v.parameter.default_val.$params.minLength.min }}
               characters.
             </p>
-            <CTextarea
+            <!--  <div>
+              <vue-json-editor
+                name="pippo"
+                v-model="parameter.json_template"
+                :show-btns="true"
+                :expandedOnStart="true"
+                @json-change="onJsonChange"
+              ></vue-json-editor>
+            </div> -->
+            <JsonEditor
+              :options="{
+                confirmText: 'confirm',
+                cancelText: 'cancel'
+              }"
+              :objData="parameter.json_template"
+              v-model="parameter.json_template"
+            >
+            </JsonEditor>
+
+            <!--  <CTextarea
               rows="5"
               json_template="json_template"
               placeholder="json_template"
@@ -56,7 +75,7 @@
               Field must have at least
               {{ $v.parameter.json_template.$params.minLength.min }}
               characters.
-            </p>
+            </p> -->
           </CCardBody>
           <CCardFooter>
             <CButton
@@ -79,9 +98,13 @@
 <script>
 import { mapGetters } from "vuex";
 import { required, minLength } from "vuelidate/lib/validators";
+// import vueJsonEditor from "vue-json-editor";
 
 export default {
-  name: "ProcessEdit",
+  name: "ParameterEdit",
+  /*  components: {
+    "vue-json-editor": vueJsonEditor
+  }, */
   data() {
     return {
       error: false,
