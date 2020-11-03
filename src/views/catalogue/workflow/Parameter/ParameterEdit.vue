@@ -38,21 +38,21 @@
             <p class="error" v-if="!$v.parameter.default_val.required">
               This field is required
             </p>
-            <p class="error" v-if="!$v.parameter.default_val.minLength">
+            <!--  <p class="error" v-if="!$v.parameter.default_val.minLength">
               Field must have at least
               {{ $v.parameter.default_val.$params.minLength.min }}
               characters.
-            </p>
+            </p> -->
             <!--  <div>
               <vue-json-editor
                 name="pippo"
                 v-model="parameter.json_template"
-                :show-btns="true"
-                :expandedOnStart="true"
-                @json-change="onJsonChange"
               ></vue-json-editor>
             </div> -->
-            <JsonEditor
+
+            <!-- :show-btns="true" :expandedOnStart="true"
+            @json-change="onJsonChange" -->
+            <!-- <JsonEditor
               :options="{
                 confirmText: 'confirm',
                 cancelText: 'cancel'
@@ -60,9 +60,18 @@
               :objData="parameter.json_template"
               v-model="parameter.json_template"
             >
-            </JsonEditor>
+            </JsonEditor> -->
 
-            <!--  <CTextarea
+            <!--   <json-editor
+              ref="JsonEditor"
+              :schema="schema"
+              v-model="parameter.json_template"
+            >
+              <button @click="submit">submit</button>
+              <button @click="reset">Reset</button>
+            </json-editor> -->
+
+            <CTextarea
               rows="5"
               json_template="json_template"
               placeholder="json_template"
@@ -75,7 +84,7 @@
               Field must have at least
               {{ $v.parameter.json_template.$params.minLength.min }}
               characters.
-            </p> -->
+            </p>
           </CCardBody>
           <CCardFooter>
             <CButton
@@ -98,13 +107,14 @@
 <script>
 import { mapGetters } from "vuex";
 import { required, minLength } from "vuelidate/lib/validators";
-// import vueJsonEditor from "vue-json-editor";
+/* import vueJsonEditor from "vue-json-editor"; */
 
 export default {
   name: "ParameterEdit",
-  /*  components: {
+  /* components: {
     "vue-json-editor": vueJsonEditor
   }, */
+  // components: { JsonEditor },
   data() {
     return {
       error: false,
@@ -125,8 +135,7 @@ export default {
         minLength: minLength(3)
       },
       default_val: {
-        required,
-        minLength: minLength(3)
+        required
       },
       json_template: {
         required,

@@ -57,7 +57,7 @@
           Delete
         </CButton>
       </template>
-      Delete step '{{ selectedParameter.name }}'?
+      Delete Parameter '{{ selectedParameter.name }}'?
     </CModal>
   </div>
 </template>
@@ -104,7 +104,7 @@ export default {
       this.warningModal = false;
     },
     modalOpen(parameter) {
-      this.parameter = parameter;
+      this.selectedParameter = parameter;
       this.warningModal = true;
     },
     modalClose() {
