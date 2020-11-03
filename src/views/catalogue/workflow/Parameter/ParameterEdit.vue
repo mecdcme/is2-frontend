@@ -31,6 +31,7 @@
             </p>
             <CTextarea
               rows="5"
+              label="Default_val"
               default_val="default_val"
               placeholder="default_val"
               v-model="parameter.default_val"
@@ -73,7 +74,8 @@
 
             <CTextarea
               rows="5"
-              json_template="json_template"
+              label="json_template"
+              json_template="Json_template"
               placeholder="json_template"
               v-model="parameter.json_template"
             />

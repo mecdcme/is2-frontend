@@ -38,6 +38,49 @@
             {{ $v.parameter.descr.$params.minLength.min }}
             characters.
           </p>
+          <CTextarea
+            rows="5"
+            label="Default_val"
+            default_val="default_val"
+            placeholder="default_val"
+            v-model="parameter.default_val"
+          />
+          <p
+            class="error"
+            v-if="
+              !$v.parameter.default_val.required && uiState === 'FORM_SUBMITTED'
+            "
+          >
+            This field is required
+          </p>
+
+          <CTextarea
+            rows="5"
+            label="json_template"
+            json_template="Json_template"
+            placeholder="json_template"
+            v-model="parameter.json_template"
+          />
+          <p
+            class="error"
+            v-if="
+              !$v.parameter.json_template.required &&
+                uiState === 'FORM_SUBMITTED'
+            "
+          >
+            This field is required
+          </p>
+          <p
+            class="error"
+            v-if="
+              !$v.parameter.json_template.minLength &&
+                uiState === 'FORM_SUBMITTED'
+            "
+          >
+            Field must have at least
+            {{ $v.parameter.json_template.$params.minLength.min }}
+            characters.
+          </p>
         </CCardBody>
         <CCardFooter>
           <CButton
@@ -76,16 +119,18 @@ export default {
   },
   validations: {
     parameter: {
-      id: {},
       name: {
         required,
         minLength: minLength(3)
       },
-      label: {
+      descr: {
         required,
         minLength: minLength(3)
       },
-      descr: {
+      default_val: {
+        required
+      },
+      json_template: {
         required,
         minLength: minLength(3)
       }
