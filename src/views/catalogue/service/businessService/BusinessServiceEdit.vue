@@ -78,7 +78,9 @@
                   @click.prevent="handleSubmit"
                   >Update</CButton
                 >
-                <CButton  shape="square" size="sm" color="light" @click="goBack">Back</CButton>
+                <CButton shape="square" size="sm" color="light" @click="goBack"
+                  >Back</CButton
+                >
               </CCol>
             </CRow>
           </CCardFooter>
@@ -90,7 +92,6 @@
 <script>
 import { mapGetters } from "vuex";
 import { required, minLength } from "vuelidate/lib/validators";
-
 
 export default {
   name: "ServiceEdit",
@@ -110,7 +111,7 @@ export default {
     service: {
       name: {
         required,
-        minLength: minLength(4)        
+        minLength: minLength(4)
       },
       description: {
         required,
@@ -123,7 +124,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("businessService/findById", this.$route.params.id);    
+    this.$store.dispatch("businessService/findById", this.$route.params.id);
   },
   methods: {
     goBack() {
@@ -140,7 +141,7 @@ export default {
         this.$store.dispatch("businessService/update", this.service);
         this.$router.push("/catalogue/service");
       }
-    }    
+    }
   }
 };
 </script>

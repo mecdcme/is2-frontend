@@ -122,7 +122,6 @@
   </div>
 </template>
 <script>
-
 import { required, minLength } from "vuelidate/lib/validators";
 
 export default {
@@ -175,7 +174,7 @@ export default {
 
       if (this.errore === false) {
         this.$store.dispatch("businessService/save", this.service);
-        this.$router.push("/catalogue/service");        
+        this.$router.push("/catalogue/service");
       }
     }
   }
