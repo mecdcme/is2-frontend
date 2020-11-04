@@ -122,12 +122,9 @@
   </div>
 </template>
 <script>
-// eslint-disable-next-line no-unused-vars
-import { axiosIs2 } from "@/http";
-// eslint-disable-next-line no-unused-vars
-import { required, minLength, between } from "vuelidate/lib/validators";
-const querystring = require("querystring");
-import { config } from "@/common";
+
+import { required, minLength } from "vuelidate/lib/validators";
+
 export default {
   name: "ServiceAdd",
   data() {
@@ -174,19 +171,11 @@ export default {
     handleSubmit() {
       this.formTouched = !this.$v.service.$anyDirty;
       this.errore = this.$v.service.$invalid;
-      this.uiState = "form submitted";
+      this.uiState = "FORM_SUBMITTED";
+
       if (this.errore === false) {
-        axiosIs2
-          .post("/services", querystring.stringify(this.service), config)
-          .then(response => {
-            console.log(response);
-            this.service = response.data;
-            this.$router.push("/catalogue/service");
-          });
-
-        //this is where you send the responses
-
-        return true;
+        this.$store.dispatch("businessService/save", this.service);
+        this.$router.push("/catalogue/service");        
       }
     }
   }
