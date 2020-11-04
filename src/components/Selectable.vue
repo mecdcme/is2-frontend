@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     selectableOptions() {
-      this.options.forEach(option => {
+      this.options.map(option => {
         this.$set(option, "selected", this.getIsSelected(option)); //set reactive property
       });
       return this.options;

@@ -1,7 +1,7 @@
 <template>
   <div v-if="processes">
     <div class="row">
-      <div class="col-sm-12 col-md-6">
+      <div class="col-sm-12 col-md-12">
         <CCard>
           <CCardHeader>
             Business processes
@@ -18,31 +18,23 @@
         </CCard>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-3 col-md-3">
-        <app-selectable :options="processSteps" :selectedOptions="nodes" />
-      </div>
-      <div class="col-sm-9 col-md-9">
-        <app-flow
-          :nodes="nodes"
-          :connections="connections"
-          @saveGraph="handleSaveGraph"
-        />
-      </div>
-    </div>
+    <app-flow
+      :nodePool="processSteps"
+      :nodes="nodes"
+      :connections="connections"
+      @saveGraph="handleSaveGraph"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import Flow from "@/components/Flow";
-import Selectable from "@/components/Selectable";
 
 export default {
-  name: "Workflow",
+  name: "WorkFlow",
   components: {
-    "app-flow": Flow,
-    "app-selectable": Selectable
+    "app-flow": Flow
   },
   data: function() {
     return {

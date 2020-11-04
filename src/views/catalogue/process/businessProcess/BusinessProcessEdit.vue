@@ -5,7 +5,7 @@
         <header class="card-header">Edit Process</header>
         <form>
           <CCardBody>
-            <CInput label="Id" placeholder="Id" disabled />
+            <CInput label="Id" v-model="process.id" disabled />
             <CInput label="Name" placeholder="Name" v-model="process.name" />
             <p class="error" v-if="!$v.process.name.required">
               This field is required

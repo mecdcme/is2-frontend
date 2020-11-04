@@ -1,124 +1,102 @@
 <template>
-  <CCard>
-    <CCardHeader>Workflow</CCardHeader>
-    <CCardBody>
-      <CButtonGroup class="pb-2" v-if="!readonly">
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          class="mr-2"
-          @click="addNode"
-        >
-          Add node
-        </CButton>
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          class="mr-2"
-          @click="$refs.chart.remove()"
-        >
-          Delete node
-        </CButton>
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          @click="$refs.chart.save()"
-        >
-          Save graph
-        </CButton>
-      </CButtonGroup>
-      <flowchart
-        width="100%"
-        height="600"
-        :nodes="nodes"
-        :connections="connections"
-        @editnode="handleEditNode"
-        @editconnection="handleEditConnection"
-        @save="handleChartSave"
-        :render="render"
-        :readonly="readonly"
-        ref="chart"
-      >
-      </flowchart>
-    </CCardBody>
-
-    <!-- Node modal-->
-    <CModal :show.sync="nodeDialog" title="Node">
-      <CInput label="Name" placeholder="Name" v-model="nodeName" class="mb-2" />
-      <label for="ntype">Type</label>
-      <select class="form-control" v-model="nodeType"
-        ><option value="start"> Start </option
-        ><option value="end"> End </option
-        ><option value="operation">
-          Operation
-        </option></select
-      >
-      <template #footer>
-        <CButton
-          shape="square"
-          size="sm"
-          color="light"
-          @click="nodeModalClose()"
-        >
-          Close
-        </CButton>
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          @click="nodeModalOk()"
-        >
-          Update
-        </CButton>
-      </template>
-    </CModal>
-
-    <!-- Connection modal-->
-    <CModal :show.sync="connectionDialog" title="Connection">
-      <CInput
-        label="Name"
-        placeholder="Name"
-        v-model="connectionName"
-        class="mb-2"
-      />
-      <label>Type</label
-      ><select class="form-control" v-model="connectionType"
-        ><option value="pass"> Pass </option
-        ><option value="reject">
-          Reject
-        </option></select
-      >
-      <template #footer>
-        <CButton
-          shape="square"
-          size="sm"
-          color="light"
-          @click="connectionModalClose()"
-        >
-          Close
-        </CButton>
-        <CButton
-          shape="square"
-          size="sm"
-          color="primary"
-          @click="connectionModalOk()"
-        >
-          Update
-        </CButton>
-      </template>
-    </CModal>
-  </CCard>
+  <div class="row">
+    <div class="col-sm-3 col-md-3">
+      <CCard>
+        <CCardHeader>
+          Process steps
+        </CCardHeader>
+        <CCardBody>
+          <draggable :list="nodePool" ghost-class="ghost" @end="onEnd">
+            <transition-group type="transition" name="step-list">
+              <CAlert
+                color="secondary"
+                v-for="node in nodePool"
+                :id="node.id"
+                :key="node.id"
+              >
+                <cog-icon class="mr-2" /><span>{{ node.name }} </span>
+              </CAlert>
+            </transition-group>
+          </draggable>
+        </CCardBody>
+      </CCard>
+    </div>
+    <div class="col-sm-9 col-md-9">
+      <CCard>
+        <CCardHeader>Workflow</CCardHeader>
+        <CCardBody>
+          <CButtonGroup class="pb-2" v-if="!readonly">
+            <CButton
+              shape="square"
+              size="sm"
+              color="primary"
+              class="mr-2"
+              @click="$refs.chart.remove()"
+            >
+              Delete Element
+            </CButton>
+            <CButton
+              shape="square"
+              size="sm"
+              color="primary"
+              @click="$refs.chart.save()"
+            >
+              Save graph
+            </CButton>
+          </CButtonGroup>
+          <flowchart
+            width="100%"
+            height="600"
+            :nodes="nodes"
+            :connections="connections"
+            @editnode="handleEditNode"
+            @save="handleChartSave"
+            :render="render"
+            :readonly="readonly"
+            ref="chart"
+          >
+          </flowchart>
+        </CCardBody>
+      </CCard>
+      <!-- Node modal-->
+      <CModal :show.sync="nodeDialog" title="Step">
+        <div class="form-group-plain">
+          <label for="Name">Name</label>
+          <span class="form-control-plain">{{ nodeName }}</span>
+        </div>
+        <div class="form-group-plain">
+          <label for="Description">Description</label>
+          <span class="form-control-plain">{{ nodeDescription }}</span>
+        </div>
+        <template #footer>
+          <CButton
+            shape="square"
+            size="sm"
+            color="primary"
+            @click="nodeModalClose()"
+          >
+            Close
+          </CButton>
+        </template>
+      </CModal>
+    </div>
+  </div>
 </template>
 <script>
-import { render } from "@/common";
+import { render } from "@/common"; //flowchart render function
 import { nodeType } from "@/common";
+import draggable from "vuedraggable";
 
 export default {
   name: "Flow",
+  components: {
+    draggable
+  },
   props: {
+    nodePool: {
+      Type: Array,
+      default: () => []
+    },
     nodes: {
       Type: Array,
       default: () => []
@@ -135,66 +113,36 @@ export default {
   data: function() {
     return {
       nodeForm: { target: null },
-      connectionForm: { target: null, operation: null },
       nodeDialog: false,
-      connectionDialog: false,
       nodeName: "",
       nodeType: "",
-      connectionName: "",
-      connectionType: ""
+      nodeDescription: ""
     };
   },
   methods: {
     render,
-    addNode() {
+    addNode(node) {
       this.$refs.chart.add({
+        //canvas node properties
         id: +new Date(),
-        x: 10,
-        y: 10,
-        name: "New Step",
+        x: node.x,
+        y: node.y,
         type: nodeType.Operation,
-        descr: null
+        //process node
+        idnode: node.id,
+        name: node.name,
+        description: node.descr
       });
     },
     handleEditNode(node) {
       this.nodeName = node.name;
+      this.nodeDescription = node.description;
       this.nodeType = node.type;
       this.nodeForm.target = node;
       this.nodeDialog = true;
     },
-    handleEditConnection(connection) {
-      this.connectionName = connection.name;
-      this.connectionType = connection.type;
-      this.connectionForm.target = connection;
-      this.connectionDialog = true;
-    },
-    nodeModalOk() {
-      this.nodeForm.target.name = this.nodeName;
-      this.nodeForm.target.type = this.nodeType;
-      if (this.nodeType == "start") {
-        this.nodeForm.target.name = "Start";
-        this.nodeForm.target.id = 0;
-      }
-      if (this.nodeType == "end") {
-        this.nodeForm.target.name = "End";
-        this.nodeForm.target.id = 99;
-      }
-      if (this.nodeType == "operation") {
-        this.nodeForm.target.name = "New Step";
-        this.nodeForm.target.id = null;
-      }
-      this.nodeDialog = false;
-    },
     nodeModalClose() {
       this.nodeDialog = false;
-    },
-    connectionModalOk() {
-      this.connectionForm.target.name = this.connectionName;
-      this.connectionForm.target.type = this.connectionType;
-      this.connectionDialog = false;
-    },
-    connectionModalClose() {
-      this.connectionDialog = false;
     },
     handleChartSave(nodes, connections) {
       var graph = {
@@ -202,6 +150,16 @@ export default {
         connections: connections
       };
       this.$emit("saveGraph", graph);
+    },
+    //drop pool node
+    onEnd(event) {
+      var node = this.getPoolNode(event.item.id);
+      node.x = event.item.offsetWidth;
+      node.y = event.item.offsetTop;
+      if (typeof node !== "undefined") this.addNode(node);
+    },
+    getPoolNode(nodeId) {
+      return this.nodePool.find(node => node.id === parseInt(nodeId));
     }
   }
 };
@@ -210,5 +168,50 @@ export default {
 <style scoped>
 .modal-header {
   padding: 0.75rem;
+}
+.alert {
+  position: relative;
+  padding: 0.5rem 1rem 0.5rem 1.25rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #d8dbe0;
+  font-size: 0.8rem;
+}
+.alert:hover {
+  cursor: pointer;
+}
+.alert-secondary {
+  color: #3c4b64;
+}
+.form-group-plain {
+  margin-bottom: 0.2rem;
+}
+.form-group-plain > label {
+  display: inline-block;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+.form-control-plain {
+  display: block;
+  width: 100%;
+  padding: 0rem;
+  padding-bottom: 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-clip: padding-box;
+  border: 1px solid;
+  color: #768192;
+  background-color: #fff;
+  border-color: #fff;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.sortable-chosen {
+  cursor: move;
+}
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.sortable-chosen:active {
+  cursor: move;
 }
 </style>
