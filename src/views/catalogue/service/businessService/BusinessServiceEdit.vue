@@ -71,13 +71,14 @@
             <CRow class="d-flex justify-content-middle">
               <CCol sm="9">
                 <CButton
+                  shape="square"
+                  size="sm"
                   color="primary"
-                  type="submit"
-                  value="Submit"
+                  style="margin-right:0.3rem"
                   @click.prevent="handleSubmit"
                   >Update</CButton
                 >
-                <CButton @click="goBusinessServiceList()">Cancel</CButton>
+                <CButton  shape="square" size="sm" color="light" @click="goBack">Back</CButton>
               </CCol>
             </CRow>
           </CCardFooter>
@@ -87,39 +88,29 @@
   </div>
 </template>
 <script>
-import { axiosIs2 } from "@/http";
-import { config } from "@/common";
-// eslint-disable-next-line no-unused-vars
-import { required, minLength, between } from "vuelidate/lib/validators";
-const querystring = require("querystring");
+import { mapGetters } from "vuex";
+import { required, minLength } from "vuelidate/lib/validators";
+
 
 export default {
   name: "ServiceEdit",
   data() {
     return {
-      uiState: "submit not clicked",
-      errore: false,
+      error: false,
       formTouched: false,
-      empty: true,
-      service: {
-        name: "",
-        description: "",
-        organization: ""
-      },
-      /*  service: [], */
       errors: []
     };
+  },
+  computed: {
+    ...mapGetters("businessService", {
+      service: "businessService"
+    })
   },
   validations: {
     service: {
       name: {
         required,
-        minLength: minLength(4),
-        checkName(name) {
-          return (
-            /[a-z]/.test(name) && !/[0-9]/.test(name) // checks for a-z
-          );
-        }
+        minLength: minLength(4)        
       },
       description: {
         required,
@@ -132,49 +123,24 @@ export default {
     }
   },
   created() {
-    axiosIs2.get("/services/" + this.$route.params.id).then(response => {
-      console.log(response);
-      this.service = response.data;
-    });
+    this.$store.dispatch("businessService/findById", this.$route.params.id);    
   },
   methods: {
-    updateBusinessService() {
-      axiosIs2
-        .put(
-          "/services/" + this.service.id,
-          querystring.stringify(this.service),
-          config
-        )
-        .then(response => {
-          console.log(response);
-          this.service = response.data;
-        });
+    goBack() {
+      this.$router.push("/catalogue/service");
     },
     goBusinessServiceList() {
       this.$router.push("/catalogue/service");
     },
     handleSubmit() {
       this.formTouched = !this.$v.service.$anyDirty;
-      this.errore = this.$v.service.$invalid;
+      this.error = this.$v.service.$invalid;
 
-      if (this.errore === false) {
-        axiosIs2
-          .put(
-            "/services/" + this.service.id,
-            querystring.stringify(this.service),
-            config
-          )
-          .then(response => {
-            console.log(response);
-            this.service = response.data;
-          });
-
-        //this is where you send the responses
-        this.uiState = "form submitted";
+      if (this.error === false) {
+        this.$store.dispatch("businessService/update", this.service);
         this.$router.push("/catalogue/service");
-        return true;
       }
-    }
+    }    
   }
 };
 </script>
