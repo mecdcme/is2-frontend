@@ -193,7 +193,28 @@ const routes = [
         name: "UserAdd",
         component: () => import("../views/settings/user/UserAdd"),
         meta: { authorize: [] }
-      }
+      },
+      {
+      path: "components/stepInstance",
+        name: "StepInstanceList",
+        component: () =>
+          import("../views/catalogue/step/stepInstance/StepInstanceList"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "components/stepInstance/edit/:id",
+        name: "StepInstanceEdit",
+        component: () =>
+          import("../views/catalogue/step/stepInstance/StepInstanceEdit"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "components/stepInstance/add",
+        name: "StepInstanceNew",
+        component: () =>
+          import("../views/catalogue/step/stepInstance/StepInstanceAdd"),
+        meta: { authorize: [] }
+      },
     ]
   },
   { path: "*", redirect: "/" }
