@@ -19,10 +19,14 @@
                   ><success-icon
                 /></span>
               </template>
-              <app-business-process-domain
-                :process="process"
-                @update="handleUpdateProcess"
-              />
+              <div class="row">
+                <div class="col-6">
+                  <app-business-process-domain
+                    :process="process"
+                    @update="handleUpdateProcess"
+                  />
+                </div>
+              </div>
             </CTab>
             <CTab>
               <template #title>
