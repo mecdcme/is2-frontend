@@ -63,10 +63,10 @@ const actions = {
       }
     );
   },
-  update({ dispatch }, formData) {
+  update({ commit, dispatch }, formData) {
     businessProcessService.update(formData).then(
       data => {
-        console.log(data);
+        commit("SET_BUSINESS_PROCESS", data);
         dispatch("message/success", "Business process updated!", {
           root: true
         });
@@ -76,11 +76,10 @@ const actions = {
       }
     );
   },
-  updateGraph({ dispatch }, formData) {
+  updateGraph({ commit, dispatch }, formData) {
     businessProcessService.update(formData).then(
       data => {
-        console.log(data);
-        dispatch("findAll");
+        commit("SET_BUSINESS_PROCESS", data);
         dispatch("message/success", "Graph updated!", {
           root: true
         });

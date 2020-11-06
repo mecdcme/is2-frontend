@@ -1,129 +1,122 @@
 <template>
   <div class="row" v-if="process">
-    <div class="col-sm-12 col-md-6">
-      <div class="card">
-        <header class="card-header">Edit Process</header>
-        <form>
-          <CCardBody>
-            <CInput label="Id" v-model="process.id" disabled />
-            <CInput label="Name" placeholder="Name" v-model="process.name" />
-            <p class="error" v-if="!$v.process.name.required">
-              This field is required
-            </p>
-            <p class="error" v-if="!$v.process.name.minLength">
-              Field must have at least
-              {{ $v.process.name.$params.minLength.min }}
-              characters.
-            </p>
-            <CTextarea
-              rows="3"
-              label="Description"
-              placeholder="Description"
-              v-model="process.description"
-            />
-            <p class="error" v-if="!$v.process.description.required">
-              This field is required
-            </p>
-            <p class="error" v-if="!$v.process.description.minLength">
-              Field must have at least
-              {{ $v.process.description.$params.minLength.min }}
-              characters.
-            </p>
-            <CInput label="Label" placeholder="Label" v-model="process.label" />
-            <p class="error" v-if="!$v.process.label.required">
-              This field is required
-            </p>
-            <p class="error" v-if="!$v.process.label.minLength">
-              Field must have at least
-              {{ $v.process.label.$params.minLength.min }}
-              characters.
-            </p>
-            <CInput
-              label="Organization"
-              placeholder="Organization"
-              v-model="process.organization"
-            />
-            <p class="error" v-if="!$v.process.organization.required">
-              This field is required
-            </p>
-            <p class="error" v-if="!$v.process.organization.minLength">
-              Field must have at least
-              {{ $v.process.organization.$params.minLength.min }}
-              characters.
-            </p>
-          </CCardBody>
-          <CCardFooter>
-            <CButton
-              shape="square"
-              size="sm"
-              color="primary"
-              style="margin-right:0.3rem"
-              @click.prevent="handleSubmit"
-              >Update</CButton
-            >
-            <CButton shape="square" size="sm" color="light" @click="goBack"
-              >Back</CButton
-            >
-          </CCardFooter>
-        </form>
-      </div>
+    <div class="col-12">
+      <CCard>
+        <CCardHeader
+          ><strong>{{ process.name }}</strong></CCardHeader
+        >
+        <CCardBody>
+          <CTabs
+            variant="pills"
+            :vertical="{ navs: 'col-md-2', content: 'col-md-10' }"
+            :active-tab="activeTab"
+            @update:activeTab="updateStep"
+          >
+            <CTab>
+              <template #title>
+                <span>Basic</span>
+                <span class="float-right" v-if="editedProcess"
+                  ><success-icon
+                /></span>
+              </template>
+              <app-business-process-domain
+                :process="process"
+                @update="handleUpdateProcess"
+              />
+            </CTab>
+            <CTab>
+              <template #title>
+                <span>Workflow</span>
+                <span class="float-right" v-if="editedWorkflow"
+                  ><success-icon
+                /></span>
+              </template>
+              <app-flow
+                :nodePool="steps"
+                :nodes="nodes"
+                :connections="connections"
+                displayBack="true"
+                @saveGraph="handleSaveGraph"
+                @back="handleBack"
+              />
+            </CTab>
+          </CTabs>
+        </CCardBody>
+      </CCard>
     </div>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
-import { required, minLength } from "vuelidate/lib/validators";
+import BusinessProcessDomain from "./BusinessProcessDomain";
+import Flow from "@/components/Flow";
 
 export default {
   name: "ProcessEdit",
+  components: {
+    "app-business-process-domain": BusinessProcessDomain,
+    "app-flow": Flow
+  },
   data() {
     return {
-      error: false,
-      formTouched: false,
-      errors: []
+      activeTab: 0,
+      editedProcess: false,
+      editedWorkflow: false
     };
   },
   computed: {
-    ...mapGetters("businessProcess", {
-      process: "businessProcess"
-    })
-  },
-  validations: {
-    process: {
-      name: {
-        required,
-        minLength: minLength(4)
-      },
-      description: {
-        required,
-        minLength: minLength(3)
-      },
-      label: {
-        required,
-        minLength: minLength(3)
-      },
-      organization: {
-        required,
-        minLength: minLength(3)
-      }
+    ...mapGetters("businessProcess", { process: "businessProcess" }),
+    ...mapGetters("processStep", { steps: "processSteps" }),
+    nodes() {
+      return this.process.graph && this.process.graph.nodes
+        ? this.process.graph.nodes
+        : [];
+    },
+    connections() {
+      return this.process.graph && this.process.graph.connections
+        ? this.process.graph.connections
+        : [];
     }
   },
   methods: {
-    goBack() {
-      this.$router.push("/catalogue/process");
-    },
-    handleSubmit() {
-      this.formTouched = !this.$v.process.$anyDirty;
-      this.error = this.$v.process.$invalid;
-
-      if (this.error === false) {
-        this.$store.dispatch("businessProcess/update", this.process);
-        this.$router.push("/catalogue/process");
+    handleUpdateProcess(process, fieldsChanged) {
+      if (fieldsChanged) {
+        this.$store.dispatch("businessProcess/update", process);
+        this.editedProcess = true;
       }
+      this.next();
+    },
+    handleSaveGraph(graph) {
+      var updatedProcess = { ...this.process, graph: graph };
+      this.$store.dispatch("businessProcess/updateGraph", updatedProcess);
+      this.editedWorkflow = true;
+    },
+    handleBack() {
+      this.back();
+    },
+    backToList() {
+      this.$router.push("/catalogue/process/");
+    },
+    next() {
+      this.activeTab++;
+    },
+    back() {
+      this.activeTab--;
+    },
+    updateStep(active) {
+      this.activeTab = active;
     }
   },
   created() {
     this.$store.dispatch("businessProcess/findById", this.$route.params.id);
+    this.$store.dispatch("processStep/findAll");
   }
 };
 </script>
+
+<style scoped>
+.tab-content > .active {
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+}
+</style>

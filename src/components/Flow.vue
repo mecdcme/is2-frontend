@@ -45,8 +45,8 @@
             </CButton>
           </CButtonGroup>
           <flowchart
-            width="100%"
-            height="600"
+            :width="width"
+            :height="height"
             :nodes="nodes"
             :connections="connections"
             @editnode="handleEditNode"
@@ -57,6 +57,16 @@
           >
           </flowchart>
         </CCardBody>
+        <CCardFooter v-show="displayBack">
+          <CButton
+            shape="square"
+            size="sm"
+            color="primary"
+            style="margin-right:0.3rem"
+            @click.prevent="$emit('back')"
+            >Back</CButton
+          >
+        </CCardFooter>
       </CCard>
       <!-- Node modal-->
       <CModal :show.sync="nodeDialog" title="Step">
@@ -105,7 +115,19 @@ export default {
       Type: Array,
       default: () => []
     },
+    width: {
+      Type: Number,
+      default: "800"
+    },
+    height: {
+      Type: Number,
+      default: "400"
+    },
     readonly: {
+      Type: Boolean,
+      default: false
+    },
+    displayBack: {
       Type: Boolean,
       default: false
     }
@@ -154,8 +176,9 @@ export default {
     //drop pool node
     onEnd(event) {
       var node = this.getPoolNode(event.item.id);
-      node.x = event.item.offsetWidth;
-      node.y = event.item.offsetTop;
+      node.x = event.item.offsetWidth % (this.width - 80);
+      node.y = event.item.offsetTop % (this.height - 100);
+      //console.log ("x: " + node.x + ", y: " + node.y);
       if (typeof node !== "undefined") this.addNode(node);
     },
     getPoolNode(nodeId) {
@@ -213,5 +236,14 @@ export default {
 /* (Optional) Apply a "closed-hand" cursor during drag operation. */
 .sortable-chosen:active {
   cursor: move;
+}
+.card {
+  padding-top: 0rem;
+  scroll-padding-bottom: 0rem;
+  box-shadow: none !important;
+}
+.card-body {
+  overflow-x: auto;
+  overflow-y: auto;
 }
 </style>
