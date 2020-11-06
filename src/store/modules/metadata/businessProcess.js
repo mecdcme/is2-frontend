@@ -2,7 +2,7 @@ import { businessProcessService } from "@/services";
 
 const state = {
   businessProcesses: null,
-  businessProcess: {}
+  businessProcess: null
 };
 
 const mutations = {
