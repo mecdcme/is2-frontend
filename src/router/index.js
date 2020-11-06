@@ -195,26 +195,26 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-      path: "components/stepInstance",
-        name: "StepInstanceList",
+        path: "components/appRole",
+        name: "AppRoleList",
         component: () =>
-          import("../views/catalogue/step/stepInstance/StepInstanceList"),
+          import("../views/catalogue/workflow/appRole/AppRoleList"),
         meta: { authorize: [] }
       },
       {
-        path: "components/stepInstance/edit/:id",
-        name: "StepInstanceEdit",
+        path: "components/appRole/edit/:id",
+        name: "AppRoleEdit",
         component: () =>
-          import("../views/catalogue/step/stepInstance/StepInstanceEdit"),
+          import("../views/catalogue/workflow/appRole/AppRoleEdit"),
         meta: { authorize: [] }
       },
       {
-        path: "components/stepInstance/add",
-        name: "StepInstanceNew",
+        path: "components/appRole/add",
+        name: "AppRoleNew",
         component: () =>
-          import("../views/catalogue/step/stepInstance/StepInstanceAdd"),
+          import("../views/catalogue/workflow/appRole/AppRoleAdd"),
         meta: { authorize: [] }
-      },
+      }
     ]
   },
   { path: "*", redirect: "/" }
