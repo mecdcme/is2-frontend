@@ -434,7 +434,39 @@
       "contact" : "Mark van der Loo (mark.vanderloo@gmail.com)",
       "business_service_id" : 300
     }
-  ]
+  ],
+  "app_role":[{"id":1, "code":"X", "name":"MATCHING VARIABLES", "descr":"MATCHING VARAIBLES", "order_code":1, "cls_data_type_id":2, "parameter_id":1},
+    {"id":2, "code":"X1", "name":"MATCHING A", "descr":"MATCHING VARIABLE IN DATASET A", "order_code":2, "cls_data_type_id":1, "parameter_id":0},
+    {"id":3, "code":"X2", "name":"MATCHING B", "descr":"MATCHING VARIABLE IN DATASET B", "order_code":3, "cls_data_type_id":1, "parameter_id":0},
+    {"id":4, "code":"CT", "name":"CONTENGENCY TABLE", "descr":"CONTENGENCY TABLE", "order_code":4, "cls_data_type_id":1, "parameter_id":0},
+    {"id":5, "code":"FS", "name":"FELLEGI-SUNTER", "descr":"FELLEGI-SUNTER", "order_code":2, "cls_data_type_id":1, "parameter_id":0},
+    {"id":6, "code":"B", "name":"BLOCKING", "descr":"SLICING DEL DATASET", "order_code":7, "cls_data_type_id":1, "parameter_id":0},
+    {"id":7, "code":"MT", "name":"MATCHING TABLE", "descr":"MATCHING TABLE", "order_code":10, "cls_data_type_id":1, "parameter_id":0},
+    {"id":8, "code":"TH", "name":"THRESHOLD MATCHING", "descr":"THRESHOLD MATCHING", "order_code":9, "cls_data_type_id":2, "parameter_id":2},
+    {"id":9, "code":"TU", "name":"THRESHOLD UNMATCHING", "descr":"THRESHOLD UNMATCHING", "order_code":10, "cls_data_type_id":2, "parameter_id":3},
+    {"id":10, "code":"PM", "name":"POSSIBLE MATCHING TABLE", "descr":"POSSIBLE MATCHING TABLE", "order_code":9, "cls_data_type_id":1, "parameter_id":0},
+    {"id":11, "code":"M", "name":"RANKING", "descr":"INFLUENCE RANKING", "order_code":5, "cls_data_type_id":1, "parameter_id":0},
+    {"id":12, "code":"S", "name":"STRATA", "descr":"PARTIZIONAMENTO DEL DATASET", "order_code":6, "cls_data_type_id":1, "parameter_id":0},
+    {"id":13, "code":"RA", "name":"RESIDUAL A", "descr":"RESIDUAL DATASET  A", "order_code":6, "cls_data_type_id":1, "parameter_id":0},
+    {"id":14, "code":"RB", "name":"RESIDUAL B", "descr":"RESIDUAL DATASET  B", "order_code":5, "cls_data_type_id":1, "parameter_id":0},
+    {"id":15, "code":"MD", "name":"DATA", "descr":"DATA", "order_code":1, "cls_data_type_id":1, "parameter_id":0},
+    {"id":16, "code":"RS", "name":"RULESET", "descr":"RULESET", "order_code":2, "cls_data_type_id":4, "parameter_id":0},
+    {"id":100, "code":"N", "name":"SKIP", "descr":"VARIABILE NON UTILIZZATA", "order_code":100, "cls_data_type_id":1, "parameter_id":0},
+    {"id":101, "code":"I", "name":"IDENTIFICATIVO", "descr":"CHIAVE OSSERVAZIONE", "order_code":1, "cls_data_type_id":1, "parameter_id":0},
+    {"id":102, "code":"Y", "name":"TARGET", "descr":"VARIABILE DI OGGETTO DI ANALISI", "order_code":3, "cls_data_type_id":1, "parameter_id":0},
+    {"id":103, "code":"X", "name":"COVARIATA", "descr":"VARIABILE INDIPENDENTE", "order_code":4, "cls_data_type_id":1, "parameter_id":0},
+    {"id":104, "code":"P", "name":"PREDIZIONE", "descr":"VARIABILE DI PREDIZIONE", "order_code":5, "cls_data_type_id":1, "parameter_id":0},
+    {"id":105, "code":"O", "name":"OUTLIER", "descr":"FLAG OUTLIER", "order_code":6, "cls_data_type_id":1, "parameter_id":0},
+    {"id":106, "code":"W", "name":"PESO", "descr":"PESO CAMPIONARIO", "order_code":7, "cls_data_type_id":1, "parameter_id":0},
+    {"id":107, "code":"E", "name":"ERRORI INFLUENTI", "descr":"ERRORE INFLUENTE", "order_code":10, "cls_data_type_id":1, "parameter_id":0},
+    {"id":108, "code":"R", "name":"RANKING", "descr":"INFLUENCE RANKING", "order_code":11, "cls_data_type_id":1, "parameter_id":0},
+    {"id":109, "code":"T", "name":"OUTPUT", "descr":"VARIABILE DI OUTPUT", "order_code":20, "cls_data_type_id":1, "parameter_id":0},
+    {"id":110, "code":"S", "name":"STRATO", "descr":"PARTIZIONAMENTO DEL DATASET", "order_code":2, "cls_data_type_id":1, "parameter_id":0},
+    {"id":111, "code":"Z", "name":"PARAMETRI", "descr":"PARAMETRI DI INPUT", "order_code":997, "cls_data_type_id":2, "parameter_id":102},
+    {"id":112, "code":"M", "name":"MODELLO", "descr":"MODELLO DATI", "order_code":998, "cls_data_type_id":2, "parameter_id":101},
+    {"id":113, "code":"F", "name":"SCORE", "descr":"INFLUENCE SCORE", "order_code":12, "cls_data_type_id":1, "parameter_id":0},
+    {"id":114, "code":"G", "name":"INFO", "descr":"PARAMETRI OUT - INFO RIEPILOGO", "order_code":999, "cls_data_type_id":2, "parameter_id":103},
+    {"id":115, "code":"V", "name":"CONVERGENZA", "descr":"VARIABILE DI CONVERGENZA", "order_code":6, "cls_data_type_id":1, "parameter_id":0}]
   
   
 }
