@@ -24,12 +24,14 @@
       "id": 1,
       "name": "Prob",
       "description": "Probabilistic record linkage",
+      "label": "PRLblock",
       "organization": "Istat"
     },
     {
       "id": 2,
       "name": "Deterministic record linkage",
       "description": "Deterministic record linkage",
+      "label": "DRL",
       "organization": "Istat"
     },
     {
@@ -45,12 +47,6 @@
       "description": "Data validation in R",
       "label": "ValidateR",
       "organization": "Istat"
-    },
-    {
-      "id": 5,
-      "name": "ciao",
-      "description": "bello",
-      "organization": "istat"
     }
   ],
   "users": [
