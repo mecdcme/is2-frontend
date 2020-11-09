@@ -57,7 +57,7 @@
           Delete
         </CButton>
       </template>
-      Delete appRole '{{ selectedAppRole.name }}'?
+      Delete role '{{ selectedAppRole.name }}'?
     </CModal>
   </div>
 </template>
@@ -71,16 +71,12 @@ export default {
       selectedAppRole: {},
       warningModal: false,
       fields: [
-        { key: "id", _style: "width:5%" },
         { key: "code", _style: "width:10%" },
         { key: "name", _style: "width:10%;" },
         { key: "descr", _style: "width:25%;" },
-
-        { key: "order_code", _style: "width:10%;" },
-        { key: "cls_data_type_id", _style: "width:5%;" },
-        { key: "parameter_id", _style: "width:5%;" },
-
-        /* { key: "organization", _style: "width:10%;" }, */
+        { key: "order_code", label: "Order", _style: "width:10%;" },
+        { key: "cls_data_type_id", label: "Type", _style: "width:5%;" },
+        { key: "parameter_id", label: "Param", _style: "width:5%;" },
         {
           key: "show_update",
           label: "",

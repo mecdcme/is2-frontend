@@ -1,91 +1,74 @@
 <template>
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <div class="card">
-        <header class="card-header">New App Role</header>
+      <CCard>
+        <CCardHeader>
+          Parameter
+        </CCardHeader>
         <CCardBody>
-          <CInput label="Name" placeholder="Name" v-model="approle.name" />
-          <p
-            class="error"
-            v-if="!$v.approle.name.required && uiState === 'FORM_SUBMITTED'"
-          >
+          <CInput
+            label="Code*"
+            placeholder="Code"
+            :class="{ 'is-invalid': $v.approle.code.$error }"
+            v-model="approle.code"
+          />
+          <div class="help-block" :class="{ show: $v.approle.code.$error }">
             This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.approle.name.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.approle.name.$params.minLength.min }}
-            characters.
-          </p>
+          </div>
+          <CInput
+            label="Name*"
+            placeholder="Name"
+            :class="{ 'is-invalid': $v.approle.name.$error }"
+            v-model="approle.name"
+          />
+          <div class="help-block" :class="{ show: $v.approle.name.$error }">
+            This field is required
+          </div>
           <CTextarea
-            rows="5"
-            label="Description"
+            rows="3"
+            label="Description*"
             placeholder="Description"
+            :class="{ 'is-invalid': $v.approle.descr.$error }"
             v-model="approle.descr"
           />
-          <p
-            class="error"
-            v-if="!$v.approle.descr.required && uiState === 'FORM_SUBMITTED'"
-          >
+          <div class="help-block" :class="{ show: $v.approle.descr.$error }">
             This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.approle.descr.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.approle.descr.$params.minLength.min }}
-            characters.
-          </p>
+          </div>
           <CInput
-            label="Order Code"
-            placeholder="Order Code"
+            label="Order"
+            placeholder="Order"
             v-model="approle.order_code"
           />
-          <p
-            class="error"
-            v-if="
-              !$v.approle.order_code.required && uiState === 'FORM_SUBMITTED'
-            "
-          >
+          <div class="help-block">
             This field is required
-          </p>
+          </div>
           <CInput
-            label="Cls Data Type Id"
-            placeholder="Cls Data Type Id"
+            label="Data type*"
+            placeholder="Data type"
+            :class="{ 'is-invalid': $v.approle.cls_data_type_id.$error }"
             v-model="approle.cls_data_type_id"
           />
-          <p
-            class="error"
-            v-if="
-              !$v.approle.cls_data_type_id.required &&
-                uiState === 'FORM_SUBMITTED'
-            "
+          <div
+            class="help-block"
+            :class="{ show: $v.approle.cls_data_type_id.$error }"
           >
             This field is required
-          </p>
+          </div>
           <CInput
-            label="Parameter Id"
-            placeholder="Parameter Id"
+            label="Parameter"
+            placeholder="Parameter"
             v-model="approle.parameter_id"
           />
-          <p
-            class="error"
-            v-if="
-              !$v.approle.parameter_id.required && uiState === 'FORM_SUBMITTED'
-            "
-          >
+          <div class="help-block">
             This field is required
-          </p>
+          </div>
         </CCardBody>
         <CCardFooter>
           <CButton
             shape="square"
             size="sm"
             color="primary"
-            style="margin-right:0.3rem"
+            class="mr-2"
             @click.prevent="handleSubmit"
             >Save</CButton
           >
@@ -93,24 +76,20 @@
             >Back</CButton
           >
         </CCardFooter>
-      </div>
+      </CCard>
     </div>
   </div>
 </template>
 <script>
-import { required, minLength } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
-  name: "ParameterNew",
+  name: "ParameterAdd",
   data() {
     return {
-      uiState: "SUBMIT_NOT_CLICKED",
-      error: false,
-      formTouched: false,
-      empty: true,
       approle: {
+        code: "",
         name: "",
-        label: "",
         descr: "",
         order_code: "",
         cls_data_type_id: "",
@@ -120,38 +99,31 @@ export default {
   },
   validations: {
     approle: {
+      code: {
+        required
+      },
       name: {
-        required,
-        minLength: minLength(3)
+        required
       },
       descr: {
-        required,
-        minLength: minLength(3)
-      },
-      order_code: {
         required
       },
       cls_data_type_id: {
-        required
-      },
-      parameter_id: {
         required
       }
     }
   },
   methods: {
+    handleSubmit() {
+      this.$v.$touch(); //validate form data
+      if (!this.$v.approle.$invalid) {
+        this.$store.dispatch("approle/save", this.approle).then(() => {
+          this.goBack();
+        });
+      }
+    },
     goBack() {
       this.$router.push("/components/approle");
-    },
-    handleSubmit() {
-      this.formTouched = !this.$v.approle.$anyDirty;
-      this.error = this.$v.approle.$invalid;
-      this.uiState = "FORM_SUBMITTED";
-
-      if (this.error === false) {
-        this.$store.dispatch("approle/save", this.approle);
-        this.$router.push("/components/approle");
-      }
     }
   }
 };

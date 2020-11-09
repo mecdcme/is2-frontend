@@ -48,7 +48,7 @@
             shape="square"
             size="sm"
             color="primary"
-            style="margin-right:0.3rem"
+            class="mr-2"
             @click.prevent="handleSubmit"
             >Save</CButton
           >
