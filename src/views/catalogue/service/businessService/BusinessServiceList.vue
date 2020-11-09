@@ -41,11 +41,8 @@
         </CCardBody>
       </div>
     </div>
-    <CModal title="Attenzione!" color="warning" :show.sync="warningModal">
+    <CModal title="Attenzione!" :show.sync="warningModal">
       <template #footer>
-        <CButton shape="square" size="sm" color="primary" @click="modalClose()">
-          Close
-        </CButton>
         <CButton
           shape="square"
           size="sm"
@@ -54,8 +51,11 @@
         >
           Delete
         </CButton>
+        <CButton shape="square" size="sm" color="light" @click="modalClose()">
+          Close
+        </CButton>
       </template>
-      Sei sicuro di voler eliminare il servizio?
+      Delete service '{{ selectedService.name }}'?
     </CModal>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
   name: "servicelist",
   data() {
     return {
-      services: [],
+      selectedService: {},
       warningModal: false,
       fields: [
         { key: "id", _style: "width:5%" },
@@ -101,12 +101,6 @@ export default {
       this.$store.dispatch("businessService/delete", this.selectedService.id);
       this.warningModal = false;
     },
-    editService(item) {
-      // eslint-disable-next-line no-redeclare
-      var index = this.services.indexOf(item);
-      // this.services.splice(index, 1);
-      this.$router.push("/catalogue/service/edit/" + this.services[index].id);
-    },
     modalOpen(service) {
       this.selectedService = service;
       this.warningModal = true;
@@ -116,8 +110,8 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("businessService/findAll");
     this.$store.dispatch("coreui/setContext", Context.Service);
+    this.$store.dispatch("businessService/findAll");
   }
 };
 </script>

@@ -41,6 +41,9 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("auth/logout");
+      if (this.$router.currentRoute.path != "/metadata") {
+        this.$router.push("/");
+      }
     }
   }
 };

@@ -5,7 +5,7 @@
         <header class="card-header">
           Processes
           <div class="card-header-actions">
-            <router-link tag="a" :to="{ name: 'BusinessProcessNew' }">
+            <router-link tag="a" :to="{ name: 'BusinessProcessAdd' }">
               <add-icon />
             </router-link>
           </div>
@@ -45,16 +45,16 @@
     </div>
     <CModal title="Warning!" :show.sync="warningModal">
       <template #footer>
-        <CButton shape="square" size="sm" color="light" @click="modalClose">
-          Close
-        </CButton>
         <CButton
           shape="square"
           size="sm"
           color="primary"
-          @click="processDelete"
+          @click="deleteProcess"
         >
           Delete
+        </CButton>
+        <CButton shape="square" size="sm" color="light" @click="modalClose">
+          Close
         </CButton>
       </template>
       Delete process '{{ selectedProcess.name }}'?
@@ -98,7 +98,7 @@ export default {
     ...mapGetters("businessProcess", ["businessProcesses"])
   },
   methods: {
-    processDelete() {
+    deleteProcess() {
       this.$store.dispatch("businessProcess/delete", this.selectedProcess.id);
       this.warningModal = false;
     },

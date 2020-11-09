@@ -1,4 +1,5 @@
 <template>
+  <!-- wait until process is loaded -->
   <div class="row" v-if="process">
     <div class="col-12">
       <CCard>

@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import store from "@/store";
-import { Role } from "@/common";
 
 import Login from "@/views/auth/Login";
 import Register from "@/views/auth/Register";
@@ -74,15 +73,6 @@ const routes = [
         meta: { authorize: [] }
       },
       {
-        path: "catalogue/service/delete/:id",
-        name: "BusinessServiceDelete",
-        component: () =>
-          import(
-            "../views/catalogue/service/businessService/BusinessServiceDelete"
-          ),
-        meta: { authorize: [Role.Admin] }
-      },
-      {
         path: "catalogue/process",
         name: "BusinessProcessList",
         component: () =>
@@ -102,10 +92,10 @@ const routes = [
       },
       {
         path: "catalogue/process/add",
-        name: "BusinessProcessNew",
+        name: "BusinessProcessAdd",
         component: () =>
           import(
-            "../views/catalogue/process/businessProcess/BusinessProcessNew"
+            "../views/catalogue/process/businessProcess/BusinessProcessAdd"
           ),
         meta: { authorize: [] }
       },

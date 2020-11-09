@@ -96,7 +96,7 @@
 import { required } from "vuelidate/lib/validators";
 
 export default {
-  name: "ProcessNew",
+  name: "ProcessAdd",
   data() {
     return {
       activeTab: 0,
@@ -127,7 +127,7 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch(); //validate form data
-      if (this.$v.process.$invalid === false) {
+      if (!this.$v.process.$invalid) {
         this.$store
           .dispatch("businessProcess/save", this.process)
           .then(data => {

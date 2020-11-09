@@ -100,7 +100,9 @@ export default {
         username: this.username,
         password: this.password
       };
-      this.$store.dispatch("auth/login", formData);
+      this.$store.dispatch("auth/login", formData).then(
+        this.$router.push("/") //Go to main page
+      );
     }
   }
 };

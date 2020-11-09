@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import router from "@/router";
 import { authService } from "@/services";
 import { Role } from "@/common";
 import { AuthStatus } from "@/common";
@@ -41,8 +40,9 @@ const mutations = {
 
 const actions = {
   login({ commit }, authData) {
-    authService.login(authData).then(
-      data => {
+    return authService
+      .login(authData)
+      .then(data => {
         //decode JWT token
         var decoded = jwt.decode(data.token, { complete: true });
         console.log(decoded);
@@ -55,15 +55,12 @@ const actions = {
         });
 
         commit("SET_STATUS", AuthStatus.Logged);
-
-        router.push("/"); //Go to main page
-      },
-      error => {
+      })
+      .catch(error => {
         console.log(error);
         commit("SET_STATUS", AuthStatus.InvalidCredentials);
         commit("SET_ERROR_MSG", "Incorrect username or password!");
-      }
-    );
+      });
   },
   reloadCredentials({ commit }) {
     const token = localStorage.getItem("token");
@@ -81,34 +78,8 @@ const actions = {
       commit("SET_STATUS", AuthStatus.Logged);
     }
   },
-  register({ commit }, authData) {
-    authService.register(authData).then(
-      data => {
-        //decode JWT token
-        var decoded = jwt.decode(data.token, { complete: true });
-        console.log(decoded.payload);
-        const user = decoded.payload;
-
-        commit("AUTH_USER", {
-          token: data.token,
-          user: user
-        });
-
-        commit("SET_STATUS", AuthStatus.Logged);
-
-        router.push("/"); //Go to main page
-      },
-      error => {
-        console.log(error);
-        commit("SET_STATUS", AuthStatus.UserExists);
-      }
-    );
-  },
   logout({ commit }) {
     commit("CLEAR_AUTH_DATA");
-    if (router.currentRoute.path != "/metadata") {
-      router.push("/");
-    }
   }
 };
 const getters = {

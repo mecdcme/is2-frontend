@@ -5,67 +5,68 @@ export default class AbstractService {
   constructor(endpoint) {
     this.endpoint = endpoint;
   }
+
   findAll() {
     return axiosIs2
       .get(this.endpoint + "/")
-      .then(response => {
-        var data = response.data ? response.data : [];
+      .then(res => {
+        var data = res.data ? res.data : [];
         //console.log(data);
         return data;
       })
-      .catch(error => {
-        throw error;
+      .catch(err => {
+        throw err;
       });
   }
 
   findById(id) {
     return axiosIs2
       .get(this.endpoint + "/" + id)
-      .then(response => {
-        var data = response.data ? response.data : {};
+      .then(res => {
+        var data = res.data ? res.data : {};
         //console.log(data);
         return data;
       })
-      .catch(error => {
-        throw error;
+      .catch(err => {
+        throw err;
       });
   }
 
   save(formData) {
     return axiosIs2
       .post(this.endpoint, formData, config)
-      .then(response => {
-        var data = response.data ? response.data : {};
+      .then(res => {
+        var data = res.data ? res.data : {};
         //console.log(data);
         return data;
       })
-      .catch(error => {
-        throw error;
+      .catch(err => {
+        throw err;
       });
   }
 
   update(formData) {
     return axiosIs2
       .put(this.endpoint + "/" + formData.id, formData, config)
-      .then(response => {
-        var data = response.data ? response.data : {};
+      .then(res => {
+        var data = res.data ? res.data : {};
         //console.log(data);
         return data;
       })
-      .catch(error => {
-        throw error;
+      .catch(err => {
+        throw err;
       });
   }
 
   delete(id) {
-    return axiosIs2.delete(this.endpoint + "/" + id).then(
-      response => {
-        //console.log(response.data);
-        return response.data;
-      },
-      error => {
-        throw error;
-      }
-    );
+    return axiosIs2
+      .delete(this.endpoint + "/" + id)
+      .then(res => {
+        //console.log(res.data);
+        return res.data;
+      })
+      .catch(err => {
+        throw err;
+      });
   }
 }

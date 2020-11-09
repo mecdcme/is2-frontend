@@ -50,20 +50,6 @@ const actions = {
         console.log(err);
       });
   },
-  delete({ dispatch, commit }, id) {
-    return businessProcessService
-      .delete(id)
-      .then(() => {
-        commit("SET_BUSINESS_PROCESS", null); //clear business process
-        dispatch("findAll");
-        dispatch("message/success", "Business process deleted!", {
-          root: true
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
   update({ commit, dispatch }, formData) {
     return businessProcessService
       .update(formData)
@@ -89,7 +75,20 @@ const actions = {
       .catch(err => {
         console.log(err);
       });
-  }
+  },
+  delete({ dispatch }, id) {
+    return businessProcessService
+      .delete(id)
+      .then(() => {
+        dispatch("findAll");
+        dispatch("message/success", "Business process deleted!", {
+          root: true
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
 };
 
 const getters = {

@@ -6,29 +6,27 @@ export const authService = {
 };
 
 function login({ username, password }) {
-  return new Promise((resolve, reject) => {
-    const requestBody = {
-      username: username,
-      password: password
-    };
+  const formData = {
+    username,
+    password
+  };
 
-    axiosAuth.post("/login", requestBody, config).then(
-      response => {
-        console.log(response.data);
-        const token = response.data.accessToken;
-        const data = {
-          token: token
-        };
-        resolve(data);
-      },
-      error => {
-        console.log(error.response.data.code);
-        const err = {
-          code: error.response.status,
-          message: error.response.data.code
-        };
-        reject(err);
-      }
-    );
-  });
+  return axiosAuth
+    .post("/login", formData, config)
+    .then(res => {
+      console.log(res.data);
+      const token = res.data.accessToken;
+      const data = {
+        token: token
+      };
+      return data;
+    })
+    .catch(error => {
+      console.log(error.res.data.code);
+      const err = {
+        code: error.res.status,
+        message: error.res.data.code
+      };
+      throw err;
+    });
 }

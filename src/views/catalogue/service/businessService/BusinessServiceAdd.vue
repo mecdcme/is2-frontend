@@ -1,137 +1,72 @@
 <template>
   <div class="row">
-    <div class="col-sm-12 col-md-12">
-      <div class="card">
-        <header class="card-header">New Service</header>
+    <div class="col-12">
+      <CCard>
+        <CCardHeader>
+          Business Service
+        </CCardHeader>
         <CCardBody>
-          <div>
-            <CRow>
-              <CCol sm="9">
-                <CInput
-                  label="Name"
-                  placeholder="Name"
-                  v-model="service.name"
-                />
-                <p
-                  class="error"
-                  v-if="
-                    !$v.service.name.required && uiState === 'form submitted'
-                  "
-                >
-                  This field is required
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.service.name.minLength && uiState === 'form submitted'
-                  "
-                >
-                  Field must have at least
-                  {{ $v.service.name.$params.minLength.min }}
-                  characters.
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.service.name.checkName && uiState === 'form submitted'
-                  "
-                >
-                  invalid character in field name.
-                </p>
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="9">
-                <CInput
-                  label="Description"
-                  placeholder="Description"
-                  v-model="service.description"
-                />
-                <p
-                  class="error"
-                  v-if="
-                    !$v.service.description.required &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  This field is required
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.service.description.minLength &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  Field must have at least
-                  {{ $v.service.description.$params.minLength.min }}
-                  characters.
-                </p>
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="9">
-                <CInput
-                  label="Organization"
-                  placeholder="Organization"
-                  v-model="service.organization"
-                />
-                <p
-                  class="error"
-                  v-if="
-                    !$v.service.organization.required &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  This field is required
-                </p>
-                <p
-                  class="error"
-                  v-if="
-                    !$v.service.organization.minLength &&
-                      uiState === 'form submitted'
-                  "
-                >
-                  Field must have at least
-                  {{ $v.service.organization.$params.minLength.min }}
-                  characters.
-                </p>
-              </CCol>
-            </CRow>
+          <CInput
+            label="Name"
+            placeholder="Name"
+            :class="{ 'is-invalid': $v.service.name.$error }"
+            v-model="service.name"
+          />
+          <div class="help-block" :class="{ show: $v.service.name.$error }">
+            This field is required
+          </div>
+          <CTextarea
+            rows="3"
+            label="Description"
+            placeholder="Description"
+            :class="{ 'is-invalid': $v.service.description.$error }"
+            v-model="service.description"
+          />
+          <div
+            class="help-block"
+            :class="{ show: $v.service.description.$error }"
+          >
+            This field is required
+          </div>
+          <CInput
+            label="Organization"
+            placeholder="Organization"
+            :class="{
+              'is-invalid': $v.service.organization.$error
+            }"
+            v-model="service.organization"
+          />
+          <div
+            class="help-block"
+            :class="{ show: $v.service.organization.$error }"
+          >
+            This field is required
           </div>
         </CCardBody>
         <CCardFooter>
-          <CRow class="d-flex justify-content-middle">
-            <CCol sm="9">
-              <CButton
-                shape="square"
-                size="sm"
-                color="primary"
-                style="margin-right:0.3rem"
-                @click.prevent="handleSubmit"
-                >Save
-              </CButton>
-              <CButton shape="square" size="sm" color="light" @click="goBack"
-                >Back</CButton
-              >
-            </CCol>
-          </CRow>
+          <CButton
+            shape="square"
+            size="sm"
+            color="primary"
+            class="mr-2"
+            @click.prevent="handleSubmit"
+            >Next</CButton
+          >
+          <CButton shape="square" size="sm" color="light" @click="goBack"
+            >Back</CButton
+          >
         </CCardFooter>
-      </div>
+      </CCard>
     </div>
   </div>
 </template>
 <script>
-import { required, minLength } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "ServiceAdd",
   data() {
     return {
-      uiState: "submit not clicked",
-      errore: false,
-      formTouched: false,
-      empty: true,
       service: {
         name: "",
         description: "",
@@ -142,40 +77,28 @@ export default {
   },
   validations: {
     service: {
-      id: {},
       name: {
-        required,
-        minLength: minLength(4),
-        checkName(name) {
-          return (
-            /[a-z]/.test(name) && !/[0-9]/.test(name) // checks for a-z
-          );
-        }
+        required
       },
       description: {
-        required,
-        minLength: minLength(4)
+        required
       },
       organization: {
-        required,
-        minLength: minLength(4)
+        required
       }
     }
   },
-
   methods: {
+    handleSubmit() {
+      this.$v.$touch(); //validate form data
+      if (!this.$v.service.$invalid) {
+        this.$store
+          .dispatch("businessService/save", this.service)
+          .then(this.$router.push("/catalogue/service"));
+      }
+    },
     goBack() {
       this.$router.push("/catalogue/service");
-    },
-    handleSubmit() {
-      this.formTouched = !this.$v.service.$anyDirty;
-      this.errore = this.$v.service.$invalid;
-      this.uiState = "FORM_SUBMITTED";
-
-      if (this.errore === false) {
-        this.$store.dispatch("businessService/save", this.service);
-        this.$router.push("/catalogue/service");
-      }
     }
   }
 };
