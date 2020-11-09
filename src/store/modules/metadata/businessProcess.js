@@ -16,78 +16,79 @@ const mutations = {
 
 const actions = {
   findAll({ commit }) {
-    businessProcessService.findAll().then(
-      data => {
+    return businessProcessService
+      .findAll()
+      .then(data => {
         commit("SET_BUSINESS_PROCESSES", data);
         commit("SET_BUSINESS_PROCESS", null); //clear business process
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   findById({ commit }, id) {
-    businessProcessService.findById(id).then(
-      data => {
+    return businessProcessService
+      .findById(id)
+      .then(data => {
         commit("SET_BUSINESS_PROCESS", data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
-  save({ dispatch }, formData) {
-    businessProcessService.save(formData).then(
-      data => {
-        console.log(data);
+  save({ dispatch, commit }, formData) {
+    return businessProcessService
+      .save(formData)
+      .then(data => {
+        commit("SET_BUSINESS_PROCESS", data);
         dispatch("message/success", "Business process saved!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+        return data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
-  delete({ dispatch }, id) {
-    businessProcessService.delete(id).then(
-      data => {
-        console.log(data);
+  delete({ dispatch, commit }, id) {
+    return businessProcessService
+      .delete(id)
+      .then(() => {
+        commit("SET_BUSINESS_PROCESS", null); //clear business process
         dispatch("findAll");
         dispatch("message/success", "Business process deleted!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   update({ commit, dispatch }, formData) {
-    businessProcessService.update(formData).then(
-      data => {
+    return businessProcessService
+      .update(formData)
+      .then(data => {
         commit("SET_BUSINESS_PROCESS", data);
         dispatch("message/success", "Business process updated!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   updateGraph({ commit, dispatch }, formData) {
-    businessProcessService.update(formData).then(
-      data => {
+    return businessProcessService
+      .update(formData)
+      .then(data => {
         commit("SET_BUSINESS_PROCESS", data);
         dispatch("message/success", "Graph updated!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 

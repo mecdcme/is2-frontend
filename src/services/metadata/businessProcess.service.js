@@ -10,76 +10,66 @@ export const businessProcessService = {
 };
 
 function findAll() {
-  return new Promise((resolve, reject) => {
-    axiosIs2.get("/processes").then(
-      response => {
-        var data = response.data ? response.data : [];
-        console.log(data);
-        resolve(data);
-      },
-      error => {
-        reject(error);
-      }
-    );
-  });
+  return axiosIs2
+    .get("/processes")
+    .then(res => {
+      var data = res.data ? res.data : [];
+      //console.log(data);
+      return data;
+    })
+    .catch(err => {
+      throw err;
+    });
 }
 
 function findById(id) {
-  return new Promise((resolve, reject) => {
-    axiosIs2.get("/processes/" + id).then(
-      response => {
-        var data = response.data ? response.data : {};
-        //console.log(data);
-        resolve(data);
-      },
-      error => {
-        reject(error);
-      }
-    );
-  });
+  return axiosIs2
+    .get("/processes/" + id)
+    .then(res => {
+      var data = res.data ? res.data : {};
+      //console.log(data);
+      return data;
+    })
+    .catch(err => {
+      throw err;
+    });
 }
 
 function save(formData) {
-  return new Promise((resolve, reject) => {
-    axiosIs2.post("/processes", formData, config).then(
-      response => {
-        var data = response.data ? response.data : {};
-        //console.log(data);
-        resolve(data);
-      },
-      error => {
-        reject(error);
-      }
-    );
-  });
+  return axiosIs2
+    .post("/processes", formData, config)
+    .then(res => {
+      var data = res.data ? res.data : {};
+      //console.log(data);
+      return data;
+    })
+    .catch(err => {
+      throw err;
+    });
 }
 
 function update(formData) {
-  return new Promise((resolve, reject) => {
-    axiosIs2.put("/processes/" + formData.id, formData, config).then(
-      response => {
-        var data = response.data ? response.data : {};
-        //console.log(data);
-        resolve(data);
-      },
-      error => {
-        reject(error);
-      }
-    );
-  });
+  return axiosIs2
+    .put("/processes/" + formData.id, formData, config)
+    .then(res => {
+      var data = res.data ? res.data : {};
+      //console.log(data);
+      return data;
+    })
+    .catch(err => {
+      throw err;
+    });
 }
 
 function _delete(id) {
-  return new Promise((resolve, reject) => {
-    axiosIs2.delete("/processes/" + id).then(
-      response => {
-        var data = response.data ? response.data : {};
-        //console.log(data);
-        resolve(data);
-      },
-      error => {
-        reject(error);
-      }
-    );
-  });
+  return axiosIs2
+    .delete("/processes/" + id)
+    .then(res => {
+      var data = res.data ? res.data : {};
+      //console.log(data);
+      return data;
+    })
+    .catch(err => {
+      throw err;
+    });
 }

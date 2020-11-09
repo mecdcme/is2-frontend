@@ -57,15 +57,10 @@
           >
           </flowchart>
         </CCardBody>
-        <CCardFooter v-show="displayBack">
-          <CButton
-            shape="square"
-            size="sm"
-            color="primary"
-            style="margin-right:0.3rem"
-            @click.prevent="$emit('back')"
-            >Back</CButton
-          >
+        <CCardFooter>
+          <slot name="footer">
+            <!-- Add a footer if needed -->
+          </slot>
         </CCardFooter>
       </CCard>
       <!-- Node modal-->
@@ -124,10 +119,6 @@ export default {
       default: "400"
     },
     readonly: {
-      Type: Boolean,
-      default: false
-    },
-    displayBack: {
       Type: Boolean,
       default: false
     }

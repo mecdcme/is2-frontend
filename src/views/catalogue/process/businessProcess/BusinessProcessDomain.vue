@@ -1,6 +1,6 @@
 <template>
-  <CCard>
-    <CCardBody class="pt-0 pb-0">
+  <CCard class="card-no-border">
+    <CCardBody>
       <CInput
         label="Name*"
         placeholder="Name"

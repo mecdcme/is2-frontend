@@ -1,157 +1,142 @@
 <template>
   <div class="row">
-    <div class="col-sm-12 col-md-6">
-      <div class="card">
-        <header class="card-header">Edit Process</header>
+    <div class="col-12">
+      <CCard>
+        <CCardHeader>
+          Process
+        </CCardHeader>
         <CCardBody>
-          <CInput label="Name" placeholder="Name" v-model="process.name" />
-          <p
-            class="error"
-            v-if="!$v.process.name.required && uiState === 'FORM_SUBMITTED'"
+          <CTabs
+            variant="pills"
+            :vertical="{ navs: 'col-md-2', content: 'col-md-10' }"
+            :active-tab="activeTab"
           >
-            This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.process.name.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.process.name.$params.minLength.min }}
-            characters.
-          </p>
-          <CInput
-            label="Description"
-            placeholder="Description"
-            v-model="process.description"
-          />
-          <p
-            class="error"
-            v-if="
-              !$v.process.description.required && uiState === 'FORM_SUBMITTED'
-            "
-          >
-            This field is required
-          </p>
-          <p
-            class="error"
-            v-if="
-              !$v.process.description.minLength && uiState === 'FORM_SUBMITTED'
-            "
-          >
-            Field must have at least
-            {{ $v.process.description.$params.minLength.min }}
-            characters.
-          </p>
-          <CInput label="Label" placeholder="Label" v-model="process.label" />
-          <p
-            class="error"
-            v-if="!$v.process.label.required && uiState === 'FORM_SUBMITTED'"
-          >
-            This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.process.label.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.process.label.$params.minLength.min }}
-            characters.
-          </p>
-          <CInput
-            label="Organization"
-            placeholder="Organization"
-            v-model="process.organization"
-          />
-          <p
-            class="error"
-            v-if="
-              !$v.process.organization.required && uiState === 'FORM_SUBMITTED'
-            "
-          >
-            This field is required
-          </p>
-          <p
-            class="error"
-            v-if="
-              !$v.process.organization.minLength && uiState === 'FORM_SUBMITTED'
-            "
-          >
-            Field must have at least
-            {{ $v.process.organization.$params.minLength.min }}
-            characters.
-          </p>
+            <CTab>
+              <template #title>
+                <span>Basic</span>
+              </template>
+              <div class="row">
+                <div class="col-6">
+                  <CCard class="card-no-border">
+                    <CCardBody>
+                      <CInput
+                        label="Name"
+                        placeholder="Name"
+                        :class="{ 'is-invalid': $v.process.name.$error }"
+                        v-model="process.name"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.process.name.$error }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="Label"
+                        placeholder="Label"
+                        :class="{ 'is-invalid': $v.process.label.$error }"
+                        v-model="process.label"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.process.label.$error }"
+                      >
+                        This field is required
+                      </div>
+                      <CTextarea
+                        rows="3"
+                        label="Description"
+                        placeholder="Description"
+                        :class="{ 'is-invalid': $v.process.description.$error }"
+                        v-model="process.description"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.process.description.$error }"
+                      >
+                        This field is required
+                      </div>
+                      <CInput
+                        label="Organization"
+                        placeholder="Organization"
+                        :class="{
+                          'is-invalid': $v.process.organization.$error
+                        }"
+                        v-model="process.organization"
+                      />
+                      <div
+                        class="help-block"
+                        :class="{ show: $v.process.organization.$error }"
+                      >
+                        This field is required
+                      </div>
+                    </CCardBody>
+                    <CCardFooter>
+                      <CButton
+                        shape="square"
+                        size="sm"
+                        color="primary"
+                        class="mr-2"
+                        @click.prevent="handleSubmit"
+                        >Next</CButton
+                      >
+                    </CCardFooter>
+                  </CCard>
+                </div>
+              </div>
+            </CTab>
+            <CTab title="Workflow" disabled> </CTab>
+          </CTabs>
         </CCardBody>
-        <CCardFooter>
-          <CButton
-            shape="square"
-            size="sm"
-            color="primary"
-            style="margin-right:0.3rem"
-            @click.prevent="handleSubmit"
-            >Save</CButton
-          >
-          <CButton shape="square" size="sm" color="light" @click="goBack"
-            >Back</CButton
-          >
-        </CCardFooter>
-      </div>
+      </CCard>
     </div>
   </div>
 </template>
 <script>
-import { required, minLength } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "ProcessNew",
   data() {
     return {
-      uiState: "submit not clicked",
-      errore: false,
-      formTouched: false,
-      empty: true,
+      activeTab: 0,
       process: {
         name: "",
         description: "",
         label: "",
         organization: ""
-      },
-      errors: []
+      }
     };
   },
   validations: {
     process: {
-      id: {},
       name: {
-        required,
-        minLength: minLength(3)
+        required
       },
       description: {
-        required,
-        minLength: minLength(3)
+        required
       },
       label: {
-        required,
-        minLength: minLength(3)
+        required
       },
       organization: {
-        required,
-        minLength: minLength(3)
+        required
       }
     }
   },
   methods: {
+    handleSubmit() {
+      this.$v.$touch(); //validate form data
+      if (this.$v.process.$invalid === false) {
+        this.$store
+          .dispatch("businessProcess/save", this.process)
+          .then(data => {
+            this.$router.push("/catalogue/process/edit/" + data.id + "?step=2");
+          });
+      }
+    },
     goBack() {
       this.$router.push("/catalogue/process");
-    },
-    handleSubmit() {
-      this.formTouched = !this.$v.process.$anyDirty;
-      this.errore = this.$v.process.$invalid;
-      this.uiState = "FORM_SUBMITTED";
-
-      if (this.errore === false) {
-        this.$store.dispatch("businessProcess/save", this.process);
-        this.$router.push("/catalogue/process");
-      }
     }
   }
 };

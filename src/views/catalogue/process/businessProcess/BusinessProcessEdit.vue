@@ -42,7 +42,25 @@
                 displayBack="true"
                 @saveGraph="handleSaveGraph"
                 @back="handleBack"
-              />
+              >
+                <template #footer>
+                  <CButton
+                    shape="square"
+                    size="sm"
+                    color="primary"
+                    class="mr-2"
+                    @click.prevent="handleBack"
+                    >Prev</CButton
+                  >
+                  <CButton
+                    shape="square"
+                    size="sm"
+                    color="light"
+                    @click.prevent="backToList"
+                    >Back</CButton
+                  >
+                </template>
+              </app-flow>
             </CTab>
           </CTabs>
         </CCardBody>
@@ -114,6 +132,7 @@ export default {
   created() {
     this.$store.dispatch("businessProcess/findById", this.$route.params.id);
     this.$store.dispatch("processStep/findAll");
+    this.activeTab = this.$route.query.step ? this.$route.query.step - 1 : 0;
   }
 };
 </script>

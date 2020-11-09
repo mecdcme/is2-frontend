@@ -72,6 +72,17 @@ button:focus {
 }
 
 /* Cards */
+.card-no-border {
+  padding-top: 0rem;
+  scroll-padding-bottom: 0rem;
+  box-shadow: none !important;
+}
+
+.card-no-border > .card-body{
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
 .card-header-actions {
   margin-right: 0;
 }
