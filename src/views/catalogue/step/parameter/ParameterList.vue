@@ -12,13 +12,12 @@
         </header>
         <CCardBody>
           <CDataTable
-            :items="parameters"
+            :items="viewParameters"
             :fields="fields"
             column-filter
             table-filter
             items-per-page-select
             :items-per-page="5"
-            hover
             sorter
             pagination
           >
@@ -71,13 +70,10 @@ export default {
       selectedParameter: {},
       warningModal: false,
       fields: [
-        { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:10%" },
-        { key: "descr", _style: "width:25%;" },
+        { key: "descr", _style: "width:20%;" },
         { key: "default_val", _style: "width:10%;" },
-        { key: "json_template", _style: "width:25%;" },
-
-        /* { key: "organization", _style: "width:10%;" }, */
+        { key: "json_template_truncate", _style: "width:30%;" },
         {
           key: "show_update",
           label: "",
@@ -96,7 +92,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("parameter", ["parameters"])
+    ...mapGetters("parameter", ["parameters"]),
+    viewParameters() {
+      return this.parameters.map(param => {
+        return {
+          ...param,
+          json_template_truncate: this.truncate(param.json_template)
+        };
+      });
+    }
   },
   methods: {
     parameterDelete() {
@@ -109,6 +113,9 @@ export default {
     },
     modalClose() {
       this.warningModal = false;
+    },
+    truncate(field) {
+      return field.length > 100 ? field.substring(0, 100) + "..." : field;
     }
   },
   created() {

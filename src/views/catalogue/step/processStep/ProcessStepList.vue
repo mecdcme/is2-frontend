@@ -65,7 +65,6 @@ export default {
       selectedStep: {},
       warningModal: false,
       fields: [
-        { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:10%" },
         { key: "label", _style: "width:10%;" },
         { key: "descr", _style: "width:30%;" },
