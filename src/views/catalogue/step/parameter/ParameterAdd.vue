@@ -20,7 +20,7 @@
             placeholder="Default value"
             v-model="parameter.default_val"
           />
-           <div class="help-block">
+          <div class="help-block">
             This field is required
           </div>
           <CTextarea

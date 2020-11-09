@@ -25,7 +25,7 @@
           </header>
           <div class="card-body">
             This section contains the list of roles available in the catalogue.
-           <p class="section-link">
+            <p class="section-link">
               <router-link tag="a" :to="{ name: 'AppRoleList' }"
                 ><span>Go to roles <chevron-right-icon /></span>
               </router-link>
