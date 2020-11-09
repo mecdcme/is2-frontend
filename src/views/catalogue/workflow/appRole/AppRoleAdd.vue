@@ -2,84 +2,82 @@
   <div class="row">
     <div class="col-sm-12 col-md-6">
       <div class="card">
-        <header class="card-header">New Parameter</header>
+        <header class="card-header">New App Role</header>
         <CCardBody>
-          <CInput label="Name" placeholder="Name" v-model="parameter.name" />
+          <CInput label="Name" placeholder="Name" v-model="approle.name" />
           <p
             class="error"
-            v-if="!$v.parameter.name.required && uiState === 'FORM_SUBMITTED'"
+            v-if="!$v.approle.name.required && uiState === 'FORM_SUBMITTED'"
           >
             This field is required
           </p>
           <p
             class="error"
-            v-if="!$v.parameter.name.minLength && uiState === 'FORM_SUBMITTED'"
+            v-if="!$v.approle.name.minLength && uiState === 'FORM_SUBMITTED'"
           >
             Field must have at least
-            {{ $v.parameter.name.$params.minLength.min }}
+            {{ $v.approle.name.$params.minLength.min }}
+            characters.
+          </p>
+          <CTextarea
+            rows="5"
+            label="Description"
+            placeholder="Description"
+            v-model="approle.descr"
+          />
+          <p
+            class="error"
+            v-if="!$v.approle.descr.required && uiState === 'FORM_SUBMITTED'"
+          >
+            This field is required
+          </p>
+          <p
+            class="error"
+            v-if="!$v.approle.descr.minLength && uiState === 'FORM_SUBMITTED'"
+          >
+            Field must have at least
+            {{ $v.approle.descr.$params.minLength.min }}
             characters.
           </p>
           <CInput
-            label="Description"
-            placeholder="Description"
-            v-model="parameter.descr"
-          />
-          <p
-            class="error"
-            v-if="!$v.parameter.descr.required && uiState === 'FORM_SUBMITTED'"
-          >
-            This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.parameter.descr.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.parameter.descr.$params.minLength.min }}
-            characters.
-          </p>
-          <CTextarea
-            rows="5"
-            label="Default_val"
-            default_val="default_val"
-            placeholder="default_val"
-            v-model="parameter.default_val"
+            label="Order Code"
+            placeholder="Order Code"
+            v-model="approle.order_code"
           />
           <p
             class="error"
             v-if="
-              !$v.parameter.default_val.required && uiState === 'FORM_SUBMITTED'
+              !$v.approle.order_code.required && uiState === 'FORM_SUBMITTED'
             "
           >
             This field is required
           </p>
-
-          <CTextarea
-            rows="5"
-            label="json_template"
-            json_template="Json_template"
-            placeholder="json_template"
-            v-model="parameter.json_template"
+          <CInput
+            label="Cls Data Type Id"
+            placeholder="Cls Data Type Id"
+            v-model="approle.cls_data_type_id"
           />
           <p
             class="error"
             v-if="
-              !$v.parameter.json_template.required &&
+              !$v.approle.cls_data_type_id.required &&
                 uiState === 'FORM_SUBMITTED'
             "
           >
             This field is required
           </p>
+          <CInput
+            label="Parameter Id"
+            placeholder="Parameter Id"
+            v-model="approle.parameter_id"
+          />
           <p
             class="error"
             v-if="
-              !$v.parameter.json_template.minLength &&
-                uiState === 'FORM_SUBMITTED'
+              !$v.approle.parameter_id.required && uiState === 'FORM_SUBMITTED'
             "
           >
-            Field must have at least
-            {{ $v.parameter.json_template.$params.minLength.min }}
-            characters.
+            This field is required
           </p>
         </CCardBody>
         <CCardFooter>
@@ -110,15 +108,18 @@ export default {
       error: false,
       formTouched: false,
       empty: true,
-      parameter: {
+      approle: {
         name: "",
         label: "",
-        descr: ""
+        descr: "",
+        order_code: "",
+        cls_data_type_id: "",
+        parameter_id: ""
       }
     };
   },
   validations: {
-    parameter: {
+    approle: {
       name: {
         required,
         minLength: minLength(3)
@@ -127,27 +128,29 @@ export default {
         required,
         minLength: minLength(3)
       },
-      default_val: {
+      order_code: {
         required
       },
-      json_template: {
-        required,
-        minLength: minLength(3)
+      cls_data_type_id: {
+        required
+      },
+      parameter_id: {
+        required
       }
     }
   },
   methods: {
     goBack() {
-      this.$router.push("/components/parameter");
+      this.$router.push("/components/approle");
     },
     handleSubmit() {
-      this.formTouched = !this.$v.parameter.$anyDirty;
-      this.error = this.$v.parameter.$invalid;
+      this.formTouched = !this.$v.approle.$anyDirty;
+      this.error = this.$v.approle.$invalid;
       this.uiState = "FORM_SUBMITTED";
 
       if (this.error === false) {
-        this.$store.dispatch("parameter/save", this.parameter);
-        this.$router.push("/components/parameter");
+        this.$store.dispatch("approle/save", this.approle);
+        this.$router.push("/components/approle");
       }
     }
   }
