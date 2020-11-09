@@ -1,58 +1,39 @@
 <template>
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      <div class="card">
-        <header class="card-header">New Process Step</header>
+      <CCard>
+        <CCardHeader>
+          Process step
+        </CCardHeader>
         <CCardBody>
-          <CInput label="Name" placeholder="Name" v-model="step.name" />
-          <p
-            class="error"
-            v-if="!$v.step.name.required && uiState === 'FORM_SUBMITTED'"
-          >
-            This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.step.name.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.step.name.$params.minLength.min }}
-            characters.
-          </p>
-          <CInput label="Label" placeholder="Label" v-model="step.label" />
-          <p
-            class="error"
-            v-if="!$v.step.label.required && uiState === 'FORM_SUBMITTED'"
-          >
-            This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.step.label.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.step.label.$params.minLength.min }}
-            characters.
-          </p>
           <CInput
+            label="Name"
+            placeholder="Name"
+            :class="{ 'is-invalid': $v.step.name.$error }"
+            v-model="step.name"
+          />
+          <div class="help-block" :class="{ show: $v.step.name.$error }">
+            This field is required
+          </div>
+          <CInput
+            label="Label"
+            placeholder="Label"
+            :class="{ 'is-invalid': $v.step.label.$error }"
+            v-model="step.label"
+          />
+          <div class="help-block" :class="{ show: $v.step.label.$error }">
+            This field is required
+          </div>
+          <CTextarea
+            rows="3"
             label="Description"
             placeholder="Description"
+            :class="{ 'is-invalid': $v.step.descr.$error }"
             v-model="step.descr"
           />
-          <p
-            class="error"
-            v-if="!$v.step.descr.required && uiState === 'FORM_SUBMITTED'"
-          >
+          <div class="help-block" :class="{ show: $v.step.descr.$error }">
             This field is required
-          </p>
-          <p
-            class="error"
-            v-if="!$v.step.descr.minLength && uiState === 'FORM_SUBMITTED'"
-          >
-            Field must have at least
-            {{ $v.step.descr.$params.minLength.min }}
-            characters.
-          </p>
+          </div>
         </CCardBody>
         <CCardFooter>
           <CButton
@@ -67,59 +48,48 @@
             >Back</CButton
           >
         </CCardFooter>
-      </div>
+      </CCard>
     </div>
   </div>
 </template>
 <script>
-import { required, minLength } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
-  name: "ProcessNew",
+  name: "ProcessStepAdd",
   data() {
     return {
-      uiState: "SUBMIT_NOT_CLICKED",
-      error: false,
-      formTouched: false,
-      empty: true,
       step: {
         name: "",
         label: "",
-        descr: "",
-        business_service_id: "300"
+        descr: ""
       }
     };
   },
   validations: {
     step: {
-      id: {},
       name: {
-        required,
-        minLength: minLength(3)
+        required
       },
       label: {
-        required,
-        minLength: minLength(3)
+        required
       },
       descr: {
-        required,
-        minLength: minLength(3)
+        required
       }
     }
   },
   methods: {
+    handleSubmit() {
+      this.$v.$touch(); //validate form data
+      if (!this.$v.step.$invalid) {
+        this.$store.dispatch("processStep/save", this.step).then(() => {
+          this.goBack();
+        });
+      }
+    },
     goBack() {
       this.$router.push("/components/step");
-    },
-    handleSubmit() {
-      this.formTouched = !this.$v.step.$anyDirty;
-      this.error = this.$v.step.$invalid;
-      this.uiState = "FORM_SUBMITTED";
-
-      if (this.error === false) {
-        this.$store.dispatch("processStep/save", this.step);
-        this.$router.push("/components/step");
-      }
     }
   }
 };

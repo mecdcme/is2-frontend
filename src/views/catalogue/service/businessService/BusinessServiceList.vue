@@ -42,6 +42,9 @@
     </div>
     <CModal title="Warning!" :show.sync="warningModal">
       <template #footer>
+        <CButton shape="square" size="sm" color="light" @click="modalClose()">
+          Close
+        </CButton>
         <CButton
           shape="square"
           size="sm"
@@ -49,9 +52,6 @@
           @click="deleteService()"
         >
           Delete
-        </CButton>
-        <CButton shape="square" size="sm" color="light" @click="modalClose()">
-          Close
         </CButton>
       </template>
       Delete service '{{ selectedService.name }}'?

@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">
-          Processes
+          Process steps
           <div class="card-header-actions">
             <router-link tag="a" :to="{ name: 'ProcessStepNew' }">
               <add-icon />
@@ -18,7 +18,6 @@
             table-filter
             items-per-page-select
             :items-per-page="5"
-            hover
             sorter
             pagination
           >
@@ -69,8 +68,7 @@ export default {
         { key: "id", _style: "width:5%" },
         { key: "name", _style: "width:10%" },
         { key: "label", _style: "width:10%;" },
-        { key: "descr", _style: "width:25%;" },
-        /* { key: "organization", _style: "width:10%;" }, */
+        { key: "descr", _style: "width:30%;" },
         {
           key: "show_update",
           label: "",

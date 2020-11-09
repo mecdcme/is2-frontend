@@ -52,15 +52,15 @@
       <div class="col-sm-6 col-md-4">
         <div class="card">
           <header class="card-header">
-            <span>Workflow</span>
+            <span>Step instances</span>
             <span class="badge float-right badge-success">New</span>
           </header>
           <div class="card-body">
-            This section allows to test the workflow component. Enjoy the
-            wonderful wizard!
+            This section contains the list of step instances available in the
+            catalogue.
             <p class="section-link">
-              <router-link tag="a" :to="{ name: 'WorkFlow' }"
-                ><span>Go to workflow <chevron-right-icon /></span>
+              <router-link tag="a" :to="{ name: 'StepInstanceList' }"
+                ><span>Go to step instances <chevron-right-icon /></span>
               </router-link>
             </p>
           </div>

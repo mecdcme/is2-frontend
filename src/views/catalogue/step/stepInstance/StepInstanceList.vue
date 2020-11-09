@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md-12">
       <div class="card">
         <header class="card-header">
-          Processes
+          Process step instances
           <div class="card-header-actions">
             <router-link tag="a" :to="{ name: 'StepInstanceNew' }">
               <add-icon />
@@ -18,7 +18,6 @@
             table-filter
             items-per-page-select
             :items-per-page="5"
-            hover
             sorter
             pagination
           >
@@ -75,7 +74,6 @@ export default {
         { key: "method", _style: "width:10%" },
         { key: "label", _style: "width:10%;" },
         { key: "descr", _style: "width:25%;" },
-        /* { key: "organization", _style: "width:10%;" }, */
         {
           key: "show_update",
           label: "",
@@ -101,8 +99,8 @@ export default {
       this.$store.dispatch("stepInstance/delete", this.selectedStepInstance.id);
       this.warningModal = false;
     },
-    modalOpen(stepinstance) {
-      this.selectedStepInstance = stepinstance;
+    modalOpen(stepInstance) {
+      this.selectedStepInstance = stepInstance;
       this.warningModal = true;
     },
     modalClose() {

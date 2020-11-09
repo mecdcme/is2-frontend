@@ -1,74 +1,63 @@
 <template>
   <div class="row" v-if="step">
     <div class="col-sm-12 col-md-6">
-      <div class="card">
-        <header class="card-header">Edit Process Step</header>
-        <form>
-          <CCardBody>
-            <CInput label="Id" placeholder="Id" disabled />
-            <CInput label="Name" placeholder="Name" v-model="step.name" />
-            <p class="error" v-if="!$v.step.name.required">
-              This field is required
-            </p>
-            <p class="error" v-if="!$v.step.name.minLength">
-              Field must have at least
-              {{ $v.step.name.$params.minLength.min }}
-              characters.
-            </p>
-            <CInput label="Label" placeholder="Label" v-model="step.label" />
-            <p class="error" v-if="!$v.step.label.required">
-              This field is required
-            </p>
-            <p class="error" v-if="!$v.step.label.minLength">
-              Field must have at least
-              {{ $v.step.label.$params.minLength.min }}
-              characters.
-            </p>
-            <CTextarea
-              rows="5"
-              label="Description"
-              placeholder="Description"
-              v-model="step.descr"
-            />
-            <p class="error" v-if="!$v.step.descr.required">
-              This field is required
-            </p>
-            <p class="error" v-if="!$v.step.descr.minLength">
-              Field must have at least
-              {{ $v.step.descr.$params.minLength.min }}
-              characters.
-            </p>
-          </CCardBody>
-          <CCardFooter>
-            <CButton
-              shape="square"
-              size="sm"
-              color="primary"
-              style="margin-right:0.3rem"
-              @click.prevent="handleSubmit"
-              >Update</CButton
-            >
-            <CButton shape="square" size="sm" color="light" @click="goBack"
-              >Back</CButton
-            >
-          </CCardFooter>
-        </form>
-      </div>
+      <CCard>
+        <CCardHeader>
+          Process step
+        </CCardHeader>
+        <CCardBody>
+          <CInput
+            label="Name"
+            placeholder="Name"
+            :class="{ 'is-invalid': $v.step.name.$error }"
+            v-model="step.name"
+          />
+          <div class="help-block" :class="{ show: $v.step.name.$error }">
+            This field is required
+          </div>
+          <CInput
+            label="Label"
+            placeholder="Label"
+            :class="{ 'is-invalid': $v.step.label.$error }"
+            v-model="step.label"
+          />
+          <div class="help-block" :class="{ show: $v.step.label.$error }">
+            This field is required
+          </div>
+          <CTextarea
+            rows="3"
+            label="Description"
+            placeholder="Description"
+            :class="{ 'is-invalid': $v.step.descr.$error }"
+            v-model="step.descr"
+          />
+          <div class="help-block" :class="{ show: $v.step.descr.$error }">
+            This field is required
+          </div>
+        </CCardBody>
+        <CCardFooter>
+          <CButton
+            shape="square"
+            size="sm"
+            color="primary"
+            style="margin-right:0.3rem"
+            @click.prevent="handleSubmit"
+            >Update</CButton
+          >
+          <CButton shape="square" size="sm" color="light" @click="goBack"
+            >Back</CButton
+          >
+        </CCardFooter>
+      </CCard>
     </div>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
-import { required, minLength } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "ProcessEdit",
-  data() {
-    return {
-      error: false,
-      formTouched: false
-    };
-  },
   computed: {
     ...mapGetters("processStep", {
       step: "processStep"
@@ -77,31 +66,27 @@ export default {
   validations: {
     step: {
       name: {
-        required,
-        minLength: minLength(3)
+        required
       },
       label: {
-        required,
-        minLength: minLength(3)
+        required
       },
       descr: {
-        required,
-        minLength: minLength(3)
+        required
       }
     }
   },
   methods: {
+    handleSubmit() {
+      this.$v.$touch(); //validate form data
+      if (!this.$v.step.$invalid) {
+        this.$store.dispatch("processStep/update", this.step).then(() => {
+          this.goBack();
+        });
+      }
+    },
     goBack() {
       this.$router.push("/components/step");
-    },
-    handleSubmit() {
-      this.formTouched = !this.$v.step.$anyDirty;
-      this.error = this.$v.step.$invalid;
-
-      if (this.error === false) {
-        this.$store.dispatch("processStep/update", this.step);
-        this.$router.push("/components/step");
-      }
     }
   },
   created() {

@@ -16,65 +16,64 @@ const mutations = {
 
 const actions = {
   findAll({ commit }) {
-    processStepService.findAll().then(
-      data => {
+    return processStepService
+      .findAll()
+      .then(data => {
         commit("SET_PROCESS_STEPS", data);
         commit("SET_PROCESS_STEP", null); //clear process step
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   findById({ commit }, id) {
-    processStepService.findById(id).then(
-      data => {
+    return processStepService
+      .findById(id)
+      .then(data => {
         commit("SET_PROCESS_STEP", data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
-  save({ dispatch }, formData) {
-    processStepService.save(formData).then(
-      data => {
-        console.log(data);
+  save({ commit, dispatch }, formData) {
+    return processStepService
+      .save(formData)
+      .then(data => {
+        commit("SET_PROCESS_STEP", data);
         dispatch("message/success", "Process step saved!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  update({ commit, dispatch }, formData) {
+    return processStepService
+      .update(formData)
+      .then(data => {
+        commit("SET_PROCESS_STEP", data);
+        dispatch("message/success", "Process step updated!", {
+          root: true
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   delete({ dispatch }, id) {
-    processStepService.delete(id).then(
-      data => {
-        console.log(data);
+    return processStepService
+      .delete(id)
+      .then(() => {
         dispatch("findAll");
         dispatch("message/success", "Process step deleted!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  },
-  update({ dispatch }, formData) {
-    processStepService.update(formData).then(
-      data => {
-        console.log(data);
-        dispatch("message/success", "Process step updated!", {
-          root: true
-        });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 

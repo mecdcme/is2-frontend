@@ -134,6 +134,27 @@ const routes = [
         meta: { authorize: [] }
       },
       {
+        path: "components/stepinstance",
+        name: "StepInstanceList",
+        component: () =>
+          import("../views/catalogue/step/stepInstance/StepInstanceList"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "components/stepinstance/edit/:id",
+        name: "StepInstanceEdit",
+        component: () =>
+          import("../views/catalogue/step/stepInstance/StepInstanceEdit"),
+        meta: { authorize: [] }
+      },
+      {
+        path: "components/stepinstance/add",
+        name: "StepInstanceNew",
+        component: () =>
+          import("../views/catalogue/step/stepInstance/StepInstanceAdd"),
+        meta: { authorize: [] }
+      },
+      {
         path: "components/parameter",
         name: "ParameterList",
         component: () =>
