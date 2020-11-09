@@ -18,7 +18,6 @@
             table-filter
             items-per-page-select
             :items-per-page="5"
-            hover
             sorter
             pagination
           >
@@ -41,7 +40,7 @@
         </CCardBody>
       </div>
     </div>
-    <CModal title="Attenzione!" :show.sync="warningModal">
+    <CModal title="Warning!" :show.sync="warningModal">
       <template #footer>
         <CButton
           shape="square"
@@ -93,8 +92,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("businessService", ["businessServices"]),
-    ...mapGetters("businessService", ["businessService"])
+    ...mapGetters("businessService", ["businessServices"])
   },
   methods: {
     deleteService() {
