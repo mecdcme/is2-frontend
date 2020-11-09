@@ -112,54 +112,6 @@
       "description": "Data validation in R",
       "label": "ValidateR",
       "organization": "Istat"
-    },
-    {
-      "name": "Belfiore",
-      "description": "Lavora da casa",
-      "label": "BFR",
-      "organization": "Stelli",
-      "id": 5,
-      "graph": {
-        "nodes": [
-          {
-            "id": 1604932479846,
-            "x": 138,
-            "y": 135,
-            "type": "operation",
-            "idnode": 10,
-            "name": "MLEST",
-            "description": "This function performs the maximum likelihood estimates of the parameters of a contamination model by ECM algorithm and it provides the expected values of the \"true\" data for all units that were used for the estimation",
-            "width": 120,
-            "height": 60
-          },
-          {
-            "id": 1604932553009,
-            "x": 410,
-            "y": 80,
-            "type": "operation",
-            "idnode": 20,
-            "name": "PREDY",
-            "description": "On the basis of a set of contamination model parameters, and a set of observed data, it calculates the expected values of the corresponding real data. Missing values for the variables response as well as are allowed, but not for covariates",
-            "width": 120,
-            "height": 60
-          }
-        ],
-        "connections": [
-          {
-            "source": {
-              "id": 1604932479846,
-              "position": "right"
-            },
-            "destination": {
-              "id": 1604932553009,
-              "position": "left"
-            },
-            "id": 1604932557810,
-            "type": "pass",
-            "name": "Pass"
-          }
-        ]
-      }
     }
   ],
   "users": [
