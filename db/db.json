@@ -354,44 +354,268 @@
     {
       "id": 1,
       "name": "MATCHING VARIABLES",
-      "descr": "MATCHING VARIABLES",
-      "default_val": "",
-      "json_template": "{ \"data\": [], \"schema\": { \"items\": { \"properties\": { \"MatchingVariable\": { \"maxLength\": 50, \"required\": true, \"title\": \"MatchingVariable\", \"type\": \"string\" }, \"MatchingVariableA\": { \"maxLength\": 50, \"required\": true, \"title\": \"MatchingVariableA\", \"type\": \"string\" }, \"MatchingVariableB\": { \"maxLength\": 50, \"required\": true, \"title\": \"MatchingVariableB\", \"type\": \"string\" }, \"Method\": { \"enum\": [ \"Equality\", \"Jaro\", \"Dice\", \"JaroWinkler\", \"Levenshtein\", \"3Grams\", \"Soundex\", \"NumericComparison\", \"NumericEuclideanDistance\", \"WindowEquality\", \"Inclusion3Grams\" ], \"required\": true, \"title\": \"Method\" }, \"Threshold\": { \"title\": \"Threshold\", \"type\": \"number\", \"default\": 1 }, \"Window\": { \"title\": \"Window\", \"type\": \"integer\", \"default\": 1 } }, \"type\": \"object\" }, \"type\": \"array\" }, \"options\": { \"type\": \"table\", \"showActionsColumn\": false, \"hideAddItemsBtn\": true, \"items\": { \"fields\": { \"Method\": { \"type\": \"select\", \"noneLabel\": \"\", \"removeDefaultNone\": false }, \"MatchingVariableA\": { \"type\": \"select\", \"noneLabel\": \"\", \"dataSource\": \"matchedVariables\" }, \"MatchingVariableB\": { \"type\": \"select\", \"noneLabel\": \"\", \"dataSource\": \"matchedVariables\" } } }, \"form\": { \"buttons\": { \"addRow\": \"addRow\", \"removeRow\": \"removeRow\" } }, \"view\": { \"templates\": { \"container-array-toolbar\": \"#addItemsBtn\" } } }}"
+      "descr": "Matching variable algorithms ",
+      "default_val": "3",
+      "json_template": {
+        "data": [],
+        "schema": {
+          "items": {
+            "properties": {
+              "MatchingVariable": {
+                "maxLength": 21,
+                "required": false,
+                "title": "MatchingVariable",
+                "type": "string"
+              },
+              "MatchingVariableA": {
+                "maxLength": 331,
+                "required": true,
+                "title": "MatchingVariableA",
+                "type": "string"
+              },
+              "MatchingVariableB": {
+                "maxLength": 52,
+                "required": true,
+                "title": "MatchingVariableB",
+                "type": "string"
+              },
+              "Method": {
+                "enum": [
+                  "Equality",
+                  "Jaro",
+                  "Dice",
+                  "JaroWinkler",
+                  "Levenshtein",
+                  "3Grams",
+                  "Soundex",
+                  "NumericComparison",
+                  "NumericEuclideanDistance",
+                  "WindowEquality",
+                  "Inclusion3Grams"
+                ],
+                "required": true,
+                "title": "Method"
+              },
+              "Threshold": {
+                "title": "Threshold",
+                "type": "number",
+                "default": 1
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "options": {
+          "type": "table",
+          "showActionsColumn": false,
+          "hideAddItemsBtn": true,
+          "items": {
+            "fields": {
+              "Method": {
+                "type": "select",
+                "noneLabel": "",
+                "removeDefaultNone": false
+              },
+              "MatchingVariableA": {
+                "type": "select",
+                "noneLabel": "",
+                "dataSource": "matchedVariables"
+              },
+              "MatchingVariableB": {
+                "type": "select",
+                "noneLabel": "",
+                "dataSource": "matchedVariables"
+              }
+            }
+          },
+          "form": {
+            "buttons": {
+              "addRow": "addRow",
+              "removeRow": "removeRow"
+            }
+          },
+          "view": {
+            "templates": {
+              "container-array-toolbar": "#addItemsBtn"
+            }
+          }
+        }
+      }
     },
     {
       "id": 2,
       "name": "THRESHOLD MATCHING",
       "descr": "THRESHOLD MATCHING",
-      "default_val": "1",
-      "json_template": "{\"data\":[],\"schema\":{\"name\":\"THRESHOLD MATCHING\",\"type\":\"number\", \"minimum\": 0.01,\"maximum\": 1}}"
+      "default_val": "0.2",
+      "json_template": {
+        "data": [],
+        "schema": {
+          "name": "THRESHOLD MATCHING",
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 2
+        }
+      }
     },
     {
       "id": 3,
       "name": "THRESHOLD UNMATCHING",
       "descr": "THRESHOLD UNMATCHING",
       "default_val": "1",
-      "json_template": "{\"data\":[],\"schema\":{\"name\":\"THRESHOLD UNMATCHING\",\"type\":\"number\", \"minimum\": 0.01,\"maximum\": 1}}"
+      "json_template": {
+        "data": [],
+        "schema": {
+          "name": "THRESHOLD UNMATCHING",
+          "type": "number",
+          "minimum": 0.02,
+          "maximum": 1
+        }
+      }
     },
     {
       "id": 101,
       "name": "MODEL",
       "descr": "DATA MODEL",
-      "default_val": "",
-      "json_template": "{ \"data\": [], \"schema\": { \"type\": \"array\", \"items\": { \"type\": \"object\", \"properties\": { \"layer\": { \"title\": \"Layer\", \"type\": \"string\" }, \"N\": { \"title\": \"N\", \"type\": \"number\" }, \"is.conv\": { \"title\": \"conv\", \"type\": \"boolean\" }, \"lambda\": { \"title\": \"lambda\", \"type\": \"number\" }, \"w\": { \"title\": \"w\", \"type\": \"number\" }, \"B\": { \"title\": \"B\", \"type\": \"string\" }, \"bic_norm\": { \"title\": \"bic_norm\", \"type\": \"string\" }, \"bic_mix\": { \"title\": \"bic_mix\", \"type\": \"string\" }, \"aic_norm\": { \"title\": \"aic_norm\", \"type\": \"string\" }, \"aic_mix\": { \"title\": \"aic_mix\", \"type\": \"string\" }, \"sigma\": { \"title\": \"sigma\", \"type\": \"number\" } } } }, \"options\": { \"type\": \"table\", \"showActionsColumn\": false }}"
+      "default_val": "1",
+      "json_template": {
+        "data": [],
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "layer": {
+                "title": "Layer",
+                "type": "string"
+              },
+              "N": {
+                "title": "N",
+                "type": "number"
+              },
+              "is.conv": {
+                "title": "conv",
+                "type": "boolean"
+              },
+              "lambda": {
+                "title": "lambda",
+                "type": "number"
+              },
+              "w": {
+                "title": "w",
+                "type": "number"
+              },
+              "B": {
+                "title": "B",
+                "type": "string"
+              },
+              "bic_norm": {
+                "title": "bic_norm",
+                "type": "string"
+              },
+              "bic_mix": {
+                "title": "bic_mix",
+                "type": "string"
+              },
+              "aic_norm": {
+                "title": "aic_norm",
+                "type": "string"
+              },
+              "aic_mix": {
+                "title": "aic_mix",
+                "type": "string"
+              },
+              "sigma": {
+                "title": "sigma",
+                "type": "number"
+              }
+            }
+          }
+        },
+        "options": {
+          "type": "table",
+          "showActionsColumn": false
+        }
+      }
     },
     {
       "id": 102,
       "name": "INPUT_PARAMETERS",
       "descr": "INPUT PARAMETERS",
       "default_val": "",
-      "json_template": "{\"data\": [],\"schema\": { \"properties\": {\"graph\": {\"required\": true,\"title\": \"Graph\",\"description\": \"Activates graphic output\",\"type\": \"number\",\"default\": 0,\"minimum\": 0.01,\"maximum\": 10},\"model\": {\"required\": true,\"title\": \"Model\",\"description\": \"Data Distribution: LN lognormal / N Normal\",\"default\": \"LN\"},\"tot\": {\"title\": \"Tot\",\"description\": \"Estimates of originals vector for the target variables\"},\"t.sel\": {\"title\": \"t.sel\",\"description\": \"Optional vector of threshold values for selective edinting on the target variables\"},\"t.outl\": {\"required\": true,\"title\": \"t.outl\",\"description\": \"Threshold value for posterior probabilities of identifying outliers\",\"type\": \"number\",\"default\": 0.05,\"minimum\": 0.01,\"maximum\": 10},\"eps\": {\"required\": true,\"title\": \"eps\",\"description\": \"Tolerance for the log-likelihood convergence\",\"type\": \"number\",\"default\": 0.0000001,\"minimum\": 0.0000001,\"maximum\": 1},\"lambda.fix\": {\"required\": true,\"title\": \"lambda.fix\",\"description\": \"TRUE if w is known\",\"type\": \"number\",\"default\": 0,\"maximum\": 1 },\"w.fix\": {\"required\": true,\"title\": \"w.fix\",\"description\": \"TRUE if w is known\",\"type\": \"number\",\"default\": 0,\"minimum\": 0.01,\"maximum\": 1}},\"type\": \"object\" }}"
+      "json_template": {
+        "data": [],
+        "schema": {
+          "properties": {
+            "graph": {
+              "required": true,
+              "title": "Graph",
+              "description": "Activates graphic output",
+              "type": "number",
+              "default": 0,
+              "minimum": 0.01,
+              "maximum": 10
+            },
+            "model": {
+              "required": true,
+              "title": "Model",
+              "description": "Data Distribution: LN lognormal / N Normal",
+              "default": "LN"
+            },
+            "tot": {
+              "title": "Tot",
+              "description": "Estimates of originals vector for the target variables"
+            },
+            "t.sel": {
+              "title": "t.sel",
+              "description": "Optional vector of threshold values for selective edinting on the target variables"
+            },
+            "t.outl": {
+              "required": true,
+              "title": "t.outl",
+              "description": "Threshold value for posterior probabilities of identifying outliers",
+              "type": "number",
+              "default": 0.05,
+              "minimum": 0.01,
+              "maximum": 10
+            },
+            "eps": {
+              "required": true,
+              "title": "eps",
+              "description": "Tolerance for the log-likelihood convergence",
+              "type": "number",
+              "default": 1e-7,
+              "minimum": 1e-7,
+              "maximum": 1
+            },
+            "lambda.fix": {
+              "required": true,
+              "title": "lambda.fix",
+              "description": "TRUE if w is known",
+              "type": "number",
+              "default": 0,
+              "maximum": 1
+            },
+            "w.fix": {
+              "required": true,
+              "title": "w.fix",
+              "description": "TRUE if w is known",
+              "type": "number",
+              "default": 0,
+              "minimum": 0.01,
+              "maximum": 1
+            }
+          },
+          "type": "object"
+        }
+      }
     },
     {
       "id": 103,
       "name": "OUTPUT_PARAMETERS",
       "descr": "OUTPUT PARAMETERS - INFO REPORT",
       "default_val": "",
-      "json_template": ""
+      "json_template": {}
     }
   ],
   "step_instance": [

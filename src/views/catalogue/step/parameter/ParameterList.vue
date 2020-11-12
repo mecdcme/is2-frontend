@@ -71,9 +71,13 @@ export default {
       warningModal: false,
       fields: [
         { key: "name", _style: "width:10%" },
-        { key: "descr", _style: "width:20%;" },
-        { key: "default_val", _style: "width:10%;" },
-        { key: "json_template_truncate", _style: "width:30%;" },
+        { key: "descr", label: "Description", _style: "width:20%;" },
+        { key: "default_val", label: "Default", _style: "width:10%;" },
+        {
+          key: "has_json_template",
+          label: "Json Template",
+          _style: "width:5%;"
+        },
         {
           key: "show_update",
           label: "",
@@ -97,7 +101,8 @@ export default {
       return this.parameters.map(param => {
         return {
           ...param,
-          json_template_truncate: this.truncate(param.json_template)
+          has_json_template:
+            Object.keys(param.json_template).length === 0 ? false : true
         };
       });
     }

@@ -38,44 +38,6 @@
     </div>
     <div class="col-sm-6 col-md-4">
       <div class="card">
-        <header class="card-header">
-          Process catalogue
-          <span class="badge float-right badge-success">New</span>
-        </header>
-        <div class="card-body">
-          This section contains the list of parameters available in the
-          catalogue. The processes allow to execute the algorithms offered by
-          the statistical services.
-          <br />
-          <p class="section-link">
-            <router-link tag="a" :to="{ name: 'ParameterList' }"
-              ><span>Go to Parameter List <chevron-right-icon /></span>
-            </router-link>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-      <div class="card">
-        <header class="card-header">
-          Process catalogue
-          <span class="badge float-right badge-success">New</span>
-        </header>
-        <div class="card-body">
-          This section contains the list of app roles available in the
-          catalogue. This allow to configure the variable role inside the the
-          the process.
-          <br />
-          <p class="section-link">
-            <router-link tag="a" :to="{ name: 'App Role List' }"
-              ><span>Go to App Roles <chevron-right-icon /></span>
-            </router-link>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-4">
-      <div class="card">
         <header class="card-header">Work session</header>
         <div class="card-body">
           This section contains the work sessions created by authenticated user.

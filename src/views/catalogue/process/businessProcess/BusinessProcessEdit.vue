@@ -3,7 +3,7 @@
   <div class="row" v-if="process">
     <div class="col-12">
       <CCard>
-        <CCardHeader>Edit process</CCardHeader>
+        <CCardHeader>Edit process: {{ process.name }}</CCardHeader>
         <CCardBody>
           <CTabs
             variant="pills"
