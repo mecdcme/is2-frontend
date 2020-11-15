@@ -17,8 +17,13 @@
   </CCard>
 </template>
 <script>
+import VJsoneditor from "v-jsoneditor";
+
 export default {
   name: "JsonEditor",
+  components: {
+    VJsoneditor
+  },
   props: {
     jsonObject: {
       Type: Object,

@@ -8,8 +8,6 @@ import { iconsSet as icons } from "@/assets/icons/icons.js";
 import Vuelidate from "vuelidate";
 import vSelect from "vue-select";
 import VueSpinners from "vue-spinners";
-import FlowChart from "flowchart-vue";
-import VJsoneditor from "v-jsoneditor";
 
 import "@/assets/icons/materialIcons";
 
@@ -18,8 +16,6 @@ Vue.config.productionTip = false;
 Vue.use(CoreuiVue);
 Vue.use(Vuelidate);
 Vue.use(VueSpinners);
-Vue.use(FlowChart);
-Vue.use(VJsoneditor);
 Vue.component("v-select", vSelect);
 
 Vue.filter("capitalize", function(value) {

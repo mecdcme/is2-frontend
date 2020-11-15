@@ -11,6 +11,7 @@
             variant="pills"
             :vertical="{ navs: 'col-md-2', content: 'col-md-10' }"
             :active-tab="activeTab"
+            :fade="false"
             @update:activeTab="updateStep"
           >
             <CTab>

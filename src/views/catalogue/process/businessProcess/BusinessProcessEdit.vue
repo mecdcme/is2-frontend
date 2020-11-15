@@ -9,6 +9,7 @@
             variant="pills"
             :vertical="{ navs: 'col-md-2', content: 'col-md-10' }"
             :active-tab="activeTab"
+            :fade="false"
             @update:activeTab="updateStep"
           >
             <CTab>
@@ -135,10 +136,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.tab-content > .active {
-  animation: fadeIn ease 1s;
-  -webkit-animation: fadeIn ease 1s;
-}
-</style>

@@ -90,11 +90,13 @@
 <script>
 import { render } from "@/common"; //flowchart render function
 import { nodeType } from "@/common";
+import FlowChart from "flowchart-vue";
 import draggable from "vuedraggable";
 
 export default {
   name: "Flow",
   components: {
+    flowchart: FlowChart,
     draggable
   },
   props: {
