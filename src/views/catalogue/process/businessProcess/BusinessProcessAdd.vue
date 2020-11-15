@@ -9,7 +9,7 @@
           <CTabs
             variant="pills"
             :vertical="{ navs: 'col-md-2', content: 'col-md-10' }"
-            :active-tab="activeTab"
+            :active-tab="0"
           >
             <CTab>
               <template #title>
@@ -99,7 +99,6 @@ export default {
   name: "ProcessAdd",
   data() {
     return {
-      activeTab: 0,
       process: {
         name: "",
         description: "",
@@ -134,9 +133,6 @@ export default {
             this.$router.push("/catalogue/process/edit/" + data.id + "?step=2");
           });
       }
-    },
-    goBack() {
-      this.$router.push("/catalogue/process");
     }
   }
 };

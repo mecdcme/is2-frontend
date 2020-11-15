@@ -616,6 +616,23 @@
       "descr": "OUTPUT PARAMETERS - INFO REPORT",
       "default_val": "",
       "json_template": {}
+    },
+    {
+      "name": "Prova",
+      "descr": "Description",
+      "default_val": "9.6",
+      "json_template": {
+        "data": [],
+        "matching": 9.6
+      },
+      "id": 104
+    },
+    {
+      "name": "Newton",
+      "descr": "Gravitation",
+      "default_val": "9.8",
+      "json_template": {},
+      "id": 105
     }
   ],
   "step_instance": [

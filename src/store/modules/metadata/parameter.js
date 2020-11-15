@@ -16,65 +16,66 @@ const mutations = {
 
 const actions = {
   findAll({ commit }) {
-    parameterService.findAll().then(
-      data => {
+    return parameterService
+      .findAll()
+      .then(data => {
         commit("SET_PARAMETERS", data);
         commit("SET_PARAMETER", null); //clear process step
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   findById({ commit }, id) {
-    parameterService.findById(id).then(
-      data => {
+    return parameterService
+      .findById(id)
+      .then(data => {
         commit("SET_PARAMETER", data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
-  save({ dispatch }, formData) {
-    parameterService.save(formData).then(
-      data => {
-        console.log(data);
+  save({ commit, dispatch }, formData) {
+    return parameterService
+      .save(formData)
+      .then(data => {
+        commit("SET_PARAMETER", data);
         dispatch("message/success", "Parameter saved!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+        return data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   delete({ dispatch }, id) {
-    parameterService.delete(id).then(
-      data => {
-        console.log(data);
+    return parameterService
+      .delete(id)
+      .then(() => {
         dispatch("findAll");
         dispatch("message/success", "Parameter deleted!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   update({ dispatch }, formData) {
-    parameterService.update(formData).then(
-      data => {
+    return parameterService
+      .update(formData)
+      .then(data => {
         console.log(data);
         dispatch("message/success", "Parameter updated!", {
           root: true
         });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+        return data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 
