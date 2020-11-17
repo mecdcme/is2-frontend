@@ -12,7 +12,7 @@
         </header>
         <CCardBody>
           <CDataTable
-            :items="approles"
+            :items="viewRoles"
             :fields="fields"
             column-filter
             table-filter
@@ -63,6 +63,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import { DataType } from "@/common";
 
 export default {
   name: "appRoleList",
@@ -74,9 +75,8 @@ export default {
         { key: "code", _style: "width:10%" },
         { key: "name", _style: "width:10%;" },
         { key: "descr", _style: "width:25%;" },
+        { key: "type", label: "Type", _style: "width:5%;" },
         { key: "order_code", label: "Order", _style: "width:10%;" },
-        { key: "cls_data_type_id", label: "Type", _style: "width:5%;" },
-        { key: "parameter_id", label: "Param", _style: "width:5%;" },
         {
           key: "show_update",
           label: "",
@@ -95,7 +95,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("approle", ["approles"])
+    ...mapGetters("approle", ["approles"]),
+    viewRoles() {
+      return this.approles.map(role => {
+        return {
+          ...role,
+          type: DataType.find(type => type.id == role.cls_data_type_id).value
+        };
+      });
+    }
   },
   methods: {
     appRoleDelete() {

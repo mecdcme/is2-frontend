@@ -1,19 +1,24 @@
 import Vue from "vue";
 
+//Vue core
 import App from "./App.vue";
 import router from "@/router";
 import store from "@/store";
-import CoreuiVue from "@coreui/vue";
-import { iconsSet as icons } from "@/assets/icons/icons.js";
+
+//Vue global plugins
 import Vuelidate from "vuelidate";
 import vSelect from "vue-select";
 import VueSpinners from "vue-spinners";
 
-import "@/assets/icons/materialIcons";
+//Icons
+import { iconsSet as icons } from "@/assets/icons/coreui.js";
+import "@/assets/icons/material";
+
+//CoreUI components
+import "@/coreui";
 
 Vue.config.productionTip = false;
 
-Vue.use(CoreuiVue);
 Vue.use(Vuelidate);
 Vue.use(VueSpinners);
 Vue.component("v-select", vSelect);

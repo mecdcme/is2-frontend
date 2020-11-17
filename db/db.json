@@ -362,7 +362,7 @@
           "items": {
             "properties": {
               "MatchingVariable": {
-                "maxLength": 21,
+                "maxLength": 22,
                 "required": false,
                 "title": "MatchingVariable",
                 "type": "string"
@@ -618,20 +618,23 @@
       "json_template": {}
     },
     {
-      "name": "Prova",
-      "descr": "Description",
+      "name": "Galileo",
+      "descr": "First modern scientist",
       "default_val": "9.6",
       "json_template": {
         "data": [],
-        "matching": 9.6
+        "matching": 9.68
       },
       "id": 104
     },
     {
       "name": "Newton",
       "descr": "Gravitation",
-      "default_val": "9.8",
-      "json_template": {},
+      "default_val": "9.81",
+      "json_template": {
+        "data": [],
+        "G": 9.8
+      },
       "id": 105
     }
   ],
