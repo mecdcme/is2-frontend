@@ -55,6 +55,11 @@ button:focus {
   padding-bottom: 0.2rem;
 }
 
+.table-hover tbody tr:hover {
+  color: #3c4b64;
+  background-color: #f6f8fa;
+}
+
 .section-link {
   margin-top: 15px;
 }

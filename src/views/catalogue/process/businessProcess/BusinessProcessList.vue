@@ -19,6 +19,7 @@
             items-per-page-select
             :items-per-page="5"
             sorter
+            hover
             pagination
           >
             <template #show_update="{item}">
