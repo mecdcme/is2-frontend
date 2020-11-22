@@ -1,6 +1,9 @@
 <template>
-  <div class="row" v-if="businessProcesses">
-    <div class="col-sm-12 col-md-12">
+  <div class="row">
+    <div class="col-12" v-if="isLoading">
+      <tile></tile>
+    </div>
+    <div class="col-12" v-else>
       <div class="card">
         <header class="card-header">
           Processes
@@ -95,7 +98,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("businessProcess", ["businessProcesses"])
+    ...mapGetters("businessProcess", ["businessProcesses"]),
+    ...mapGetters("coreui", ["isLoading"])
   },
   methods: {
     deleteProcess() {

@@ -3,10 +3,10 @@
     <CRow class="w-100 justify-content-center">
       <CCol md="6">
         <div class="clearfix">
-          <h1 class="float-left display-3 mr-4">500</h1>
+          <h1 class="float-left display-3 mr-4">{{ code }}</h1>
           <h4 class="pt-3">Houston, we have a problem!</h4>
           <p class="text-muted">
-            An error occurred, please contact IAIS administrator
+            An error occurred, please contact IS2 administrator
           </p>
         </div>
         <div class="clearfix mb-3">
@@ -28,8 +28,9 @@
 import { mapGetters } from "vuex";
 
 export default {
+  name: "Error",
   computed: {
-    ...mapGetters("error", ["msg"])
+    ...mapGetters("error", ["code", "msg"])
   }
 };
 </script>

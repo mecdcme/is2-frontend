@@ -21,6 +21,6 @@
 
 <script>
 export default {
-  name: "error"
+  name: "Unauthorized"
 };
 </script>
