@@ -23,7 +23,7 @@
             <router-link
               tag="a"
               :to="{
-                name: 'BusinessProcessEdit',
+                name: 'editFile',
                 params: { id: item.id }
               }"
             >
@@ -56,36 +56,48 @@
       </CDataTable>
     </CCardBody>
     <CCardFooter>
-      <file-upload
-        class="btn btn-square btn-sm btn-primary mr-2"
-        post-action="/upload/post"
-        :multiple="true"
-        :drop="true"
-        :drop-directory="true"
-        v-model="files"
-        ref="upload"
-      >
-        <i class="fa fa-plus"></i>
-        Select files
-      </file-upload>
-      <CButton
-        shape="square"
-        size="sm"
-        color="success"
-        v-if="!$refs.upload || !$refs.upload.active"
-        @click.prevent="$refs.upload.active = true"
-      >
-        Start Upload
-      </CButton>
-      <button
-        type="button"
-        class="btn btn-danger"
-        v-else
-        @click.prevent="$refs.upload.active = false"
-      >
-        <i class="fa fa-stop" aria-hidden="true"></i>
-        Stop Upload
-      </button>
+      <div class="upload">
+        <!-- <ul>
+          <li v-for="file in files" :key="file.id">
+            <span>{{ file.name }}</span> -
+            <span>{{ file.size | formatSize }}</span> -
+            <span v-if="file.error">{{ file.error }}</span>
+            <span v-else-if="file.success">success</span>
+            <span v-else-if="file.active">active</span>
+            <span v-else></span>
+          </li>
+        </ul> -->
+        <file-upload
+          class="btn btn-square btn-sm btn-primary mr-2"
+          post-action="/upload/post"
+          :multiple="true"
+          :drop="true"
+          :drop-directory="true"
+          v-model="files"
+          ref="upload"
+        >
+          <i class="fa fa-plus"></i>
+          Select files
+        </file-upload>
+        <CButton
+          shape="square"
+          size="sm"
+          color="success"
+          v-if="!$refs.upload || !$refs.upload.active"
+          @click.prevent="$refs.upload.active = true"
+        >
+          Start Upload
+        </CButton>
+        <button
+          type="button"
+          class="btn btn-danger"
+          v-else
+          @click.prevent="$refs.upload.active = false"
+        >
+          <i class="fa fa-stop" aria-hidden="true"></i>
+          Stop Upload
+        </button>
+      </div>
     </CCardFooter>
   </CCard>
 </template>
@@ -99,10 +111,21 @@ export default {
   data() {
     return {
       files: [],
+      // {
+      //   file: [
+      //     {
+      //       id: "",
+      //       name: "",
+      //       size: "",
+      //       error: ""
+      //     }
+      //   ]
+      // }
+
       fields: [
         { key: "name", _style: "width:15%" },
         { key: "size", _style: "width:15%;" },
-        { key: "status", _style: "width:20%;" },
+        { key: "error", _style: "width:20%;" },
         {
           key: "show_edit",
           label: "",
