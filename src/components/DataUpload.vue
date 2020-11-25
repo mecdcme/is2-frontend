@@ -57,16 +57,6 @@
     </CCardBody>
     <CCardFooter>
       <div class="upload">
-        <!-- <ul>
-          <li v-for="file in files" :key="file.id">
-            <span>{{ file.name }}</span> -
-            <span>{{ file.size | formatSize }}</span> -
-            <span v-if="file.error">{{ file.error }}</span>
-            <span v-else-if="file.success">success</span>
-            <span v-else-if="file.active">active</span>
-            <span v-else></span>
-          </li>
-        </ul> -->
         <file-upload
           class="btn btn-square btn-sm btn-primary mr-2"
           post-action="/upload/post"
@@ -111,17 +101,6 @@ export default {
   data() {
     return {
       files: [],
-      // {
-      //   file: [
-      //     {
-      //       id: "",
-      //       name: "",
-      //       size: "",
-      //       error: ""
-      //     }
-      //   ]
-      // }
-
       fields: [
         { key: "name", _style: "width:15%" },
         { key: "size", _style: "width:15%;" },
