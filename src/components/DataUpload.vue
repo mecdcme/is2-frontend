@@ -23,7 +23,7 @@
             <router-link
               tag="a"
               :to="{
-                name: 'editFile',
+                name: 'AppRoleEdit',
                 params: { id: item.id }
               }"
             >
