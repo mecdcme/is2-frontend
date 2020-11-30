@@ -66,6 +66,7 @@
           v-model="files"
           ref="upload"
         >
+          <!-- @input-file="inputFile" -->
           <i class="fa fa-plus"></i>
           Select files
         </file-upload>
@@ -128,6 +129,64 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    inputFile(newFile, oldFile) {
+      if (newFile && !oldFile) {
+        // Add file
+      }
+
+      if (newFile && oldFile) {
+        // Update file
+
+        // Start upload
+        if (newFile.active !== oldFile.active) {
+          console.log("Start upload", newFile.active, newFile);
+
+          // min size
+          if (newFile.size >= 0 && newFile.size < 100 * 1024) {
+            newFile = this.$refs.upload.update(newFile, { error: "size" });
+          }
+        }
+
+        // Upload progress
+        if (newFile.progress !== oldFile.progress) {
+          console.log("progress", newFile.progress, newFile);
+        }
+
+        // Upload error
+        if (newFile.error !== oldFile.error) {
+          console.log("error", newFile.error, newFile);
+        }
+
+        // Uploaded successfully
+        if (newFile.success !== oldFile.success) {
+          console.log("success", newFile.success, newFile);
+        }
+      }
+
+      if (!newFile && oldFile) {
+        // Remove file
+
+        // Automatically delete files on the server
+        if (oldFile.success && oldFile.response.id) {
+          // $.ajax({
+          //   type: 'DELETE',
+          //   url: '/file/delete?id=' + oldFile.response.id,
+          // });
+        }
+      }
+
+      // Automatic upload
+      if (
+        Boolean(newFile) !== Boolean(oldFile) ||
+        oldFile.error !== newFile.error
+      ) {
+        if (!this.$refs.upload.active) {
+          this.$refs.upload.active = true;
+        }
+      }
+    }
   }
 };
 </script>
