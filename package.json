@@ -11,7 +11,7 @@
     "@coreui/coreui": "^3.3.0",
     "@coreui/icons": "^1.0.1",
     "@coreui/vue": "^3.1.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.7.0",
     "d3": "^6.2.0",
     "flowchart-vue": "^0.15.4",
