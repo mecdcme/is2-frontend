@@ -23,7 +23,7 @@
             <router-link
               tag="a"
               :to="{
-                name: 'BusinessProcessEdit',
+                name: 'AppRoleEdit',
                 params: { id: item.id }
               }"
             >
@@ -56,36 +56,39 @@
       </CDataTable>
     </CCardBody>
     <CCardFooter>
-      <file-upload
-        class="btn btn-square btn-sm btn-primary mr-2"
-        post-action="/upload/post"
-        :multiple="true"
-        :drop="true"
-        :drop-directory="true"
-        v-model="files"
-        ref="upload"
-      >
-        <i class="fa fa-plus"></i>
-        Select files
-      </file-upload>
-      <CButton
-        shape="square"
-        size="sm"
-        color="success"
-        v-if="!$refs.upload || !$refs.upload.active"
-        @click.prevent="$refs.upload.active = true"
-      >
-        Start Upload
-      </CButton>
-      <button
-        type="button"
-        class="btn btn-danger"
-        v-else
-        @click.prevent="$refs.upload.active = false"
-      >
-        <i class="fa fa-stop" aria-hidden="true"></i>
-        Stop Upload
-      </button>
+      <div class="upload">
+        <file-upload
+          class="btn btn-square btn-sm btn-primary mr-2"
+          post-action="/upload/post"
+          :multiple="true"
+          :drop="true"
+          :drop-directory="true"
+          v-model="files"
+          ref="upload"
+        >
+          <!-- @input-file="inputFile" -->
+          <i class="fa fa-plus"></i>
+          Select files
+        </file-upload>
+        <CButton
+          shape="square"
+          size="sm"
+          color="success"
+          v-if="!$refs.upload || !$refs.upload.active"
+          @click.prevent="$refs.upload.active = true"
+        >
+          Start Upload
+        </CButton>
+        <button
+          type="button"
+          class="btn btn-danger"
+          v-else
+          @click.prevent="$refs.upload.active = false"
+        >
+          <i class="fa fa-stop" aria-hidden="true"></i>
+          Stop Upload
+        </button>
+      </div>
     </CCardFooter>
   </CCard>
 </template>
@@ -102,7 +105,7 @@ export default {
       fields: [
         { key: "name", _style: "width:15%" },
         { key: "size", _style: "width:15%;" },
-        { key: "status", _style: "width:20%;" },
+        { key: "error", _style: "width:20%;" },
         {
           key: "show_edit",
           label: "",
@@ -126,6 +129,64 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    inputFile(newFile, oldFile) {
+      if (newFile && !oldFile) {
+        // Add file
+      }
+
+      if (newFile && oldFile) {
+        // Update file
+
+        // Start upload
+        if (newFile.active !== oldFile.active) {
+          console.log("Start upload", newFile.active, newFile);
+
+          // min size
+          if (newFile.size >= 0 && newFile.size < 100 * 1024) {
+            newFile = this.$refs.upload.update(newFile, { error: "size" });
+          }
+        }
+
+        // Upload progress
+        if (newFile.progress !== oldFile.progress) {
+          console.log("progress", newFile.progress, newFile);
+        }
+
+        // Upload error
+        if (newFile.error !== oldFile.error) {
+          console.log("error", newFile.error, newFile);
+        }
+
+        // Uploaded successfully
+        if (newFile.success !== oldFile.success) {
+          console.log("success", newFile.success, newFile);
+        }
+      }
+
+      if (!newFile && oldFile) {
+        // Remove file
+
+        // Automatically delete files on the server
+        if (oldFile.success && oldFile.response.id) {
+          // $.ajax({
+          //   type: 'DELETE',
+          //   url: '/file/delete?id=' + oldFile.response.id,
+          // });
+        }
+      }
+
+      // Automatic upload
+      if (
+        Boolean(newFile) !== Boolean(oldFile) ||
+        oldFile.error !== newFile.error
+      ) {
+        if (!this.$refs.upload.active) {
+          this.$refs.upload.active = true;
+        }
+      }
+    }
   }
 };
 </script>
